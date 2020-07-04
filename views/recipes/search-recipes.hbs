@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Search your recipe!</h1>
+    <form action="/recipes/search" method="get">
+        <label for="name"> Name of the recipe</label>
+        <input type="text" name="query" id="name">
+    </form>
+    <div class="row justify-content-center">
+        {{#each results}}
+        <div class="col-3">
+            <article class="recipe-card">
+                <h3>{{title}}</h3>
+                <img src="{{image}}" alt="{{title}}">
+                <ul>
+                    <li>Preparation: {{preparationMinutes}} min</li>
+                    <li>Cooking: {{cookingMinutes}} min</li>
+                </ul>
+                <ul>
+                    {{#if vegetarian}}
+                    <li>vegetarian</li>
+                    {{/if}}
+                    {{#if vegan}}
+                    <li>vegan</li>
+                    {{/if}}
+                    {{#if veryHealthy}}
+                    <li>Healthy</li>
+                    {{/if}}
+                    {{#if glutenFree}}
+                    <li>Gluten free</li>
+                    {{/if}}
+                </ul>
+                <a href="/recipes/details/{{id}}">See details</a>
+            </article>
+        </div>
+        {{/each}}
+    </div>
+</div>

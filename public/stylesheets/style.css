@@ -1,0 +1,22 @@
+body {
+  font-family: sans-serif; }
+
+.hero {
+  background-image: url("../images/background/geometric-leaves.png");
+  background-repeat: repeat;
+  height: 550px; }
+
+.main-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.hero-container {
+  height: 550px; }
+
+.recipe-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; }
+
+/*# sourceMappingURL=style.css.map */
