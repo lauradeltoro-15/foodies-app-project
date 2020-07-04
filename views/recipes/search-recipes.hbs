@@ -3,6 +3,20 @@
     <form action="/recipes/search" method="get">
         <label for="name"> Name of the recipe</label>
         <input type="text" name="query" id="name">
+        <fieldset>
+            <legend>Filter your interests!</legend>
+            <label for="vegetarian">Vegetarian</label>
+            <input type="checkbox" name="filter" id="vegetarian" value="vegetarian">
+            <label for="vegan">Vegan</label>
+            <input type="checkbox" name="filter" id="vegan" value="vegan">
+            <label for="veryHealthy">Healthy</label>
+            <input type="checkbox" name="filter" id="veryHealthy" value="veryHealthy">
+            <label for="gluttenFree">Gluten free</label>
+            <input type="checkbox" name="filter" id="glutenFree" value="glutenFree">
+        </fieldset>
+
+
+
     </form>
     <div class="row justify-content-center">
         {{#each results}}
