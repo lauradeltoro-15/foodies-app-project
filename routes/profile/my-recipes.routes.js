@@ -1,14 +1,18 @@
 const express = require('express')
 const router = express.Router()
+const multer = require("multer")
+const cloudUploader = require('../../configs/cloudinary.config')
 
 const Recipe = require('../../models/recipe.model')
 
-// Endpoints
 
+
+// Endpoints
 router.get('/add', (req, res) => {
     res.render('recipes/add-recipe')
 })
-router.post("/add", (req, res) => {
+router.post("/add", cloudUploader.single('imageFile'), (req, res) => {
+    console.log(req.file)
     const steps = [...req.body.steps]
     const ingredients = [...req.body.ingredients]
     const amounts = [...req.body.amount]
@@ -24,6 +28,7 @@ router.post("/add", (req, res) => {
     Recipe
         .create({
             title,
+            image: req.file.url,
             description,
             ingredients,
             ingredientsAmount,
