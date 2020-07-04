@@ -39,15 +39,3 @@ router.get('/', (req, res) => res.render("recipes/search-recipes"))
 
 
 module.exports = router
-
-
-
-// const renderAllRecipeInformationsByIds = (ids,res) => {
-//     Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)
-//             .then(response => response)))
-//             .then(response => {
-//                 console.log("Here the response" , response)
-//                 res.render("recipes/search-recipes", {results: response})
-//             })
-//             .catch(err => console.log("There was an error returning from ddbb", err))
-// }

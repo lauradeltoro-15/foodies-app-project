@@ -13,37 +13,14 @@
             <input type="checkbox" name="filter" id="veryHealthy" value="veryHealthy">
             <label for="gluttenFree">Gluten free</label>
             <input type="checkbox" name="filter" id="glutenFree" value="glutenFree">
+            <label for="cheap">Cheap</label>
+            <input type="checkbox" name="filter" id="cheap" value="cheap">
         </fieldset>
-
-
-
     </form>
     <div class="row justify-content-center">
         {{#each results}}
         <div class="col-3">
-            <article class="recipe-card">
-                <h3>{{title}}</h3>
-                <img src="{{image}}" alt="{{title}}">
-                <ul>
-                    <li>Preparation: {{preparationMinutes}} min</li>
-                    <li>Cooking: {{cookingMinutes}} min</li>
-                </ul>
-                <ul>
-                    {{#if vegetarian}}
-                    <li>vegetarian</li>
-                    {{/if}}
-                    {{#if vegan}}
-                    <li>vegan</li>
-                    {{/if}}
-                    {{#if veryHealthy}}
-                    <li>Healthy</li>
-                    {{/if}}
-                    {{#if glutenFree}}
-                    <li>Gluten free</li>
-                    {{/if}}
-                </ul>
-                <a href="/recipes/details/{{id}}">See details</a>
-            </article>
+            {{>basicCardRecipe this}}
         </div>
         {{/each}}
     </div>

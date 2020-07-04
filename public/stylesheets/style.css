@@ -19,4 +19,7 @@ body {
   height: 250px;
   object-fit: cover; }
 
+.ingredients-container {
+  display: flex; }
+
 /*# sourceMappingURL=style.css.map */

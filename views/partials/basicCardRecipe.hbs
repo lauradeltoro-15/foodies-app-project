@@ -1,0 +1,23 @@
+<article class="recipe-card">
+    <h3>{{title}}</h3>
+    <img src="{{image}}" alt="{{title}}">
+    <ul>
+        <li>Preparation: {{preparationMinutes}} min</li>
+        <li>Cooking: {{cookingMinutes}} min</li>
+    </ul>
+    <ul>
+        {{#if vegetarian}}
+        <li>vegetarian</li>
+        {{/if}}
+        {{#if vegan}}
+        <li>vegan</li>
+        {{/if}}
+        {{#if veryHealthy}}
+        <li>Healthy</li>
+        {{/if}}
+        {{#if glutenFree}}
+        <li>Gluten free</li>
+        {{/if}}
+    </ul>
+    <a href="/recipes/details/{{id}}">See details</a>
+</article>

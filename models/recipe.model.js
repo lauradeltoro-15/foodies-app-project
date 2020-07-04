@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const recipeSchema = new Schema({
     title: {
         type: String,
-        required: true
+        //required: true
     },
     originalID: {
         type: Number
@@ -22,15 +22,15 @@ const recipeSchema = new Schema({
     },
     steps: {
         type: [String],
-        required: true
+        //required: true
     },
     description: {
         type: String,
-        required: true
+        //required: true
     },
     ingredients: {
         type: [String],
-        required: true
+        //required: true
     },
     ingredientsAmount: {
         type: [String]
