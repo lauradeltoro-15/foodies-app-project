@@ -9,12 +9,14 @@ router.get('/add', (req, res) => {
     res.render('recipes/add-recipe')
 })
 router.post("/add", (req, res) => {
+    const steps = [...req.body.steps]
+    const ingredients = [...req.body.ingredients]
+    const amounts = [...req.body.amount]
+    const ingredientsAmount = ingredients.map((ingredient, i) => `${amounts[i]} ${ingredient}`)
     const tags = req.body.filter ? req.body.filter : []
     const {
         title,
         description,
-        ingredients,
-        steps,
         preparationMinutes,
         cookingMinutes
     } = req.body
@@ -24,6 +26,7 @@ router.post("/add", (req, res) => {
             title,
             description,
             ingredients,
+            ingredientsAmount,
             steps,
             tags,
             preparationMinutes,
