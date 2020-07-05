@@ -1,18 +1,37 @@
 body {
-  font-family: sans-serif; }
+  font-family: "Montserrat", sans-serif; }
+
+p {
+  font-weight: 300; }
 
 .hero {
-  background-image: url("../images/background/geometric-leaves.png");
+  background-image: url("../images/background/geometric-leaves-color.png");
   background-repeat: repeat;
-  height: 550px; }
+  height: 70vh; }
 
 .main-title-container {
+  height: 70vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center; }
+  .main-title-container h1 {
+    text-align: center;
+    font-weight: 300;
+    font-size: 3.5em;
+    margin-bottom: 50px; }
+  .main-title-container p {
+    text-align: center;
+    margin-bottom: 30px; }
+  .main-title-container span {
+    color: #c3d651;
+    font-weight: 700; }
 
 .hero-container {
-  height: 550px; }
+  padding-top: 70px;
+  height: 70vh; }
+  .hero-container img {
+    width: 100%; }
 
 .recipe-card img {
   width: 100%;
@@ -21,5 +40,51 @@ body {
 
 .ingredients-container {
   display: flex; }
+
+.btn-green {
+  background-color: #c3d651;
+  border-color: #c3d651;
+  width: 40%;
+  max-width: 300px; }
+
+.absolutenav {
+  position: absolute;
+  z-index: 10;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center; }
+
+.navbar-brand {
+  font-weight: 700;
+  color: #c3d651; }
+
+.main-point {
+  margin: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+  .main-point img {
+    width: 40%;
+    margin-bottom: 20px; }
+
+.end-button {
+  margin-bottom: 50px; }
+
+footer {
+  display: flex;
+  text-align: end;
+  color: white;
+  align-items: center;
+  height: 80px;
+  background-color: #d6b1a1; }
+  footer span {
+    font-weight: 600; }
+
+.btn-lg {
+  border-radius: 0; }
 
 /*# sourceMappingURL=style.css.map */
