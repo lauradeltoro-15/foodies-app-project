@@ -1,6 +1,10 @@
-// const mongoose = require("../configs/mongoose.config")
-// const User = require("../models/user.model")
-// const Recipe = require("../models/user.model")
+//Database
+const mongoose = require('mongoose')
+const dbName = 'foodies-app'
+mongoose.connect(`mongodb://localhost/${dbName}`)
+
+const ApiRecipe = require("../models/api-recipe.model")
+ApiRecipe.collection.drop()
 
 const apiValues = [{
         "vegetarian": false,
@@ -47139,3 +47143,10 @@ const options = {
     pasta: [558958, 470736, 218209, 1160081],
     vegetables: [109415, 497187, 499120, 176459]
 }
+
+ApiRecipe.create(apiValues)
+    .then(() => {
+        console.log("Recipes created")
+        mongoose.connection.close(() => console.log("Conection closed after the seed!!!"))
+    })
+    .catch(err => console.log('There was an error creating the recipes', err))
