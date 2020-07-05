@@ -127,7 +127,7 @@ button {
   text-align: center;
 }
 
-.navbar-brand {
+.navbar-light .navbar-brand {
   font-weight: 700;
   color: $light-green;
 }
@@ -173,10 +173,15 @@ footer {
 }
 
 .search-section {
+  
   margin-bottom: 200px;
   text-align: center;
   padding-top: 200px;
-
+  h1{
+    font-weight: 600;
+    color: $light-pink;
+    margin-bottom: 30px;
+  }
   .navbar {
     display: flex;
     justify-content: center;
