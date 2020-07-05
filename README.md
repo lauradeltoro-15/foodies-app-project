@@ -10,6 +10,8 @@ _foodies App is a web Application for cooking and meal planning. It helps you to
 
 - foodies App is still on development. In future updates the running will be published.
 
+## Endpoints
+
 
 | Method  	    | Path  	|  Description 	|
 |---	|---	|---	|
