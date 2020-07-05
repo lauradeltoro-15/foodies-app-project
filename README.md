@@ -1,15 +1,14 @@
-# Express generator
+# _Foodies App
 
-Boilerplate for a basic ExpressJS backend
+_foodies App is a web Application for cooking and meal planning. It helps you to find new recipes (you can specify your interests for suggestions if you want), add them to favourites, plan your week meals and yout shopping list.
 
 ## Install
 
-- Run `npm i` on the root directory
+- foodies App is still on development. In future updates the installation will be published.
 
 ## Run
 
-- Create a `.env` file on the root directory to populate the database (`DB`) and port (`PORT`)
-- Run `npm run dev` command on the root directory
+- foodies App is still on development. In future updates the running will be published.
 
 
 | Method  	    | Path  	|  Description 	|
@@ -27,8 +26,5 @@ Boilerplate for a basic ExpressJS backend
 | GET  	|  /profile/my-recipes/:userID/edit/:recipeID 	| Shows a form to edit an existing recipe|
 | POST  	|  /profile/my-recipes/:userID/edit/:recipeID  	| Edits an existing recipe  	|
 | POST  	| /profile/my-recipes/:userID/delete/:recipeID  	|  Deletes a recipe 	|
-| GET  	| //profile/my-recipes/:userID/details/:recipeID  	| Shows details of the current recipe  	|
-|   	|   	|   	|
-|   	|   	|   	|
-|   	|   	|   	|
-|   	|   	|   	|
+| GET  	| /profile/my-recipes/:userID/details/:recipeID  	| Shows details of the current recipe  	|
+|GET   	|/profile/my-week/:userID   	| Shows the user week planner  	|
