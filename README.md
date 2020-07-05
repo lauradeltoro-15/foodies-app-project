@@ -19,9 +19,9 @@ Boilerplate for a basic ExpressJS backend
 | POST  	|  /auth/signup 	| Saves the user in the DDBB  	|
 | GET  	| auth/login  	| Shows the form to log in  	|
 | POST  	|  auth/login 	| Starts a new session of the user  	|
-|   	|   	|   	|
-|   	|   	|   	|
-|   	|   	|   	|
+| GET  	| auth/logout  	| Ends the current session  	|
+| GET  	| /profile/:id 	| Redirect the current user to his/her profile  	|
+| GET  	| /profile/my-recipes  	| Shows the recipes saved by the user  	|
 |   	|   	|   	|
 |   	|   	|   	|
 |   	|   	|   	|
