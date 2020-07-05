@@ -4,6 +4,10 @@ $light-pink: #d6b1a1;
 $background-color: #f8f5f2;
 $hight-without-footer: 91vh;
 
+main {
+  min-height: $hight-without-footer;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -62,12 +66,32 @@ button {
 }
 
 .recipe-card {
-  height: 350px;
+  min-height: 450px;
   background-color: white;
-  text-align: center;
   border: 1px solid $light-pink;
+  margin-bottom: 50px;
 
-  h3 {
+  .card {
+    border: none;
+  }
+
+  ul {
+    display: flex;
+    padding: 0;
+
+  }
+
+  li {
+    list-style: none;
+    font-size: 0.9em;
+    list-style-position: outside;
+  }
+
+  .green-span {
+    color: $light-green;
+  }
+
+  .card-title {
     font-size: 1.2em;
     color: $light-pink;
   }
@@ -153,6 +177,11 @@ footer {
   text-align: center;
   padding-top: 200px;
 
+  .navbar {
+    display: flex;
+    justify-content: center;
+  }
+
   h3 {
     font-size: 1.2em;
   }
@@ -186,6 +215,7 @@ footer {
 }
 
 .field-container {
+  margin-top: 20px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -204,4 +234,49 @@ footer {
   padding: 100px;
   background-image: url('../images/background/invert-geometric-leaves-color.png');
   background-repeat: repeat;
+}
+
+.recipe-details {
+  img {
+    border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%;
+  }
+}
+
+.navbar {
+  width: 100%;
+}
+
+.auth-container {
+  h1 {
+    text-align: center;
+    margin: 200px 0 30px;
+    font-weight: 600;
+    color: $light-pink;
+  }
+  nav {
+    background-color: $background-color !important;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .form {
+    width: 100%;
+  }
+
+  input {
+    width: 400px;
+  }
+
+  .pink-anchor {
+    color: $light-pink;
+    font-weight: 500;
+  }
+
+  p {
+    margin-top: 10px
+  }
 }

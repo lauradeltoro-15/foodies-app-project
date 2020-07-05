@@ -1,5 +1,35 @@
 <article class="recipe-card">
-    <img src="{{image}}" alt="{{title}}">
+    <div class="card">
+        <img class="card-img-top" src="{{image}}" alt="{{title}}">
+        <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <ul>
+                <li>Prep: <span class="green-span">{{preparationMinutes}}</span> min | </li>
+                <li>Cook: <span class="green-span">{{cookingMinutes}}</span> min |</li>
+            </ul>
+            <hr>
+            <ul>
+                {{#if vegetarian}}
+                <li>vegetarian | </li>
+                {{/if}}
+                {{#if vegan}}
+                <li>vegan | </li>
+                {{/if}}
+                {{#if veryHealthy}}
+                <li>Healthy | </li>
+                {{/if}}
+                {{#if glutenFree}}
+                <li>Gluten free | </li>
+                {{/if}}
+            </ul>
+            <hr>
+
+            <a href="/recipes/details/{{id}}" class="btn btn-sm btn-green">More</a>
+        </div>
+    </div>
+</article>
+
+{{!-- <img src="{{image}}" alt="{{title}}">
     <h3>{{title}}</h3>
     <ul>
         <li>Preparation: {{preparationMinutes}} min</li>
@@ -20,4 +50,4 @@
         {{/if}}
     </ul>
     <a href="/recipes/details/{{id}}">See details</a>
-</article>
+</article> --}}
