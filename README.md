@@ -12,13 +12,13 @@ Boilerplate for a basic ExpressJS backend
 - Run `npm run dev` command on the root directory
 
 
-| Method  	    | Endpoint  	|  Description 	|
+| Method  	    | Path  	|  Description 	|
 |---	|---	|---	|
-|GET  	|   	|   	|
-|   	|   	|   	|
-|   	|   	|   	|
-|   	|   	|   	|
-|   	|   	|   	|
+|GET  	| /  	| Goes to the main  page  	|
+| GET  	| /auth/signup  	| Shows the form to sign up 	|
+| POST  	|  /auth/signup 	| Saves the user in the DDBB  	|
+| GET  	| auth/login  	| Shows the form to log in  	|
+| POST  	|  auth/login 	| Starts a new session of the user  	|
 |   	|   	|   	|
 |   	|   	|   	|
 |   	|   	|   	|
