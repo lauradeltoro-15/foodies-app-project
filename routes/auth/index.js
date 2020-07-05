@@ -19,7 +19,7 @@ router.post("/signup", (req, res, next) => {
 
     if (!username || !password) {
         res.render("auth/signup", {
-            errorMsg: "Rellena el usuario y la contraseña"
+            errorMsg: "Enter a username and password"
         })
         return
     }
@@ -30,7 +30,7 @@ router.post("/signup", (req, res, next) => {
         .then(user => {
             if (user) {
                 res.render("auth/signup", {
-                    errorMsg: "El usuario ya existe en la BBDD"
+                    errorMsg: "That username already exists"
                 })
                 return
             }
@@ -41,9 +41,9 @@ router.post("/signup", (req, res, next) => {
                     username,
                     password: hashPass
                 })
-                .then(() => res.redirect("/"))
+                .then(() => res.redirect("/auth/login"))
                 .catch(() => res.render("auth/signup", {
-                    errorMsg: "No se pudo crear el usuario"
+                    errorMsg: "It was impossible to create the user"
                 }))
         })
         .catch(error => next(error))
@@ -56,17 +56,17 @@ router.get('/login', (req, res) => res.render('auth/login', {
 }))
 router.post('/login', passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login",
+    failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true,
-    badRequestMessage: 'Rellena todos los campos'
-}))
+    badRequestMessage: 'Please, fill the fields'
+}), (req, res) => console.log(req.user))
 
 
 // User logout
 router.get("/logout", (req, res) => {
     req.logout()
-    res.redirect("/login")
+    res.redirect("/auth/login")
 })
 
 module.exports = router

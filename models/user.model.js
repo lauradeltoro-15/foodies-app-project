@@ -25,6 +25,10 @@ const userSchema = new Schema({
             ref: 'Recipes'
         }]
     },
+    image : {
+        type: String,
+        default: "https://res.cloudinary.com/dmqtwgygi/image/upload/v1593936787/recipes/avocado.png.png"
+    },
     weekRecipes: [{
         type: Schema.Types.ObjectId,
         ref: 'Recipes'

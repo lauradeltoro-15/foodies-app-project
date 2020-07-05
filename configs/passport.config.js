@@ -9,7 +9,7 @@ const User = require('../models/user.model')
 module.exports = app => {
 
     app.use(session({
-        secret: "passport-app-webmad0320",
+        secret: "foodies-app",
         resave: true,
         saveUninitialized: true
     }))
@@ -29,10 +29,10 @@ module.exports = app => {
         User.findOne({ username })
             .then(user => {
                 if (!user) {
-                    return next(null, false, { message: "Nombre de usuario incorrecto" })
+                    return next(null, false, { message: "Incorrect user name" })
                 }
                 if (!bcrypt.compareSync(password, user.password)) {
-                    return next(null, false, { message: "Contraseña incorrecta" })
+                    return next(null, false, { message: "Incorrect password" })
                 }
                 return next(null, user)
             })
