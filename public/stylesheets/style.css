@@ -4,6 +4,13 @@ body {
 p {
   font-weight: 300; }
 
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  outline: inherit; }
+
 .hero {
   background-image: url("../images/background/geometric-leaves-color.png");
   background-repeat: repeat;
@@ -33,10 +40,14 @@ p {
   .hero-container img {
     width: 100%; }
 
-.recipe-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover; }
+.recipe-card {
+  background-color: white;
+  text-align: center;
+  border: 2px solid #d6b1a1; }
+  .recipe-card img {
+    width: 70%;
+    height: 150px;
+    object-fit: cover; }
 
 .ingredients-container {
   display: flex; }
@@ -79,12 +90,45 @@ footer {
   text-align: end;
   color: white;
   align-items: center;
-  height: 80px;
+  height: 9vh;
   background-color: #d6b1a1; }
   footer span {
     font-weight: 600; }
 
 .btn-lg {
   border-radius: 0; }
+
+.main-container {
+  min-height: 91vh; }
+
+.search-section {
+  margin-bottom: 200px;
+  text-align: center;
+  padding-top: 200px; }
+  .search-section .input-group-prepend {
+    margin-right: 15px;
+    align-items: center;
+    justify-content: center; }
+  .search-section .input-group {
+    justify-content: center; }
+  .search-section .input-group > .form-control {
+    width: 650px; }
+  .search-section .form-inline {
+    flex-direction: column; }
+
+.field-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .field-container input {
+    margin-right: 30px; }
+  .field-container label {
+    margin-right: 10px; }
+
+.results-section {
+  padding: 100px;
+  background-image: url("../images/background/invert-geometric-leaves-color.png");
+  background-repeat: repeat; }
 
 /*# sourceMappingURL=style.css.map */

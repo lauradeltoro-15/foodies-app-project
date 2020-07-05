@@ -1,12 +1,23 @@
 $hero-height: 70vh;
 $light-green:#c3d651;
 $light-pink: #d6b1a1;
+$background-color: #e8e4e0;
+$hight-without-footer: 91vh;
 
 body {
   font-family: "Montserrat", sans-serif;
 }
+
 p {
   font-weight: 300;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  outline: inherit;
 }
 
 .hero {
@@ -28,10 +39,12 @@ p {
     font-size: 3.5em;
     margin-bottom: 50px;
   }
+
   p {
     text-align: center;
     margin-bottom: 30px;
   }
+
   span {
     color: $light-green;
     font-weight: 700;
@@ -40,29 +53,40 @@ p {
 }
 
 .hero-container {
-  padding-top:70px;
+  padding-top: 70px;
   height: $hero-height;
+
   img {
     width: 100%;
   }
 }
 
-.recipe-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
+.recipe-card {
+  background-color: white;
+  text-align: center;
+  border: 1px solid $light-pink;
+  img {
+    
+    width: 70%;
+    height: 150px;
+    object-fit: cover;
+  }
+
 }
+
 
 .ingredients-container {
   display: flex
 }
+
 .btn-green {
   background-color: $light-green;
   border-color: $light-green;
   width: 40%;
   max-width: 300px;
 }
-.absolutenav{
+
+.absolutenav {
   position: absolute;
   z-index: 10;
   margin-left: auto;
@@ -71,10 +95,12 @@ p {
   right: 0;
   text-align: center;
 }
+
 .navbar-brand {
   font-weight: 700;
   color: $light-green;
 }
+
 .main-point {
   margin: 70px 20px;
   display: flex;
@@ -82,25 +108,81 @@ p {
   justify-content: center;
   align-items: center;
   text-align: center;
+
   img {
     width: 40%;
     margin-bottom: 20px;
   }
 }
+
 .end-button {
   margin-bottom: 50px;
 }
+
 footer {
   display: flex;
   text-align: end;
   color: white;
   align-items: center;
-  height: 80px;
+  height: 9vh;
   background-color: $light-pink;
+
   span {
     font-weight: 600;
   }
 }
+
 .btn-lg {
   border-radius: 0;
 }
+
+.main-container {
+  min-height: $hight-without-footer;
+
+}
+
+.search-section {
+  margin-bottom: 200px;
+  text-align: center;
+  padding-top: 200px;
+
+  .input-group-prepend {
+    margin-right: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-group {
+    justify-content: center;
+  }
+
+  .input-group>.form-control {
+    width: 650px;
+  }
+
+  .form-inline {
+    flex-direction: column;
+  }
+}
+
+.field-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  input {
+    margin-right: 30px;
+  }
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+.results-section {
+  padding: 100px;
+  background-image: url('../images/background/invert-geometric-leaves-color.png');
+  background-repeat: repeat;
+}
+
