@@ -12,8 +12,8 @@ Boilerplate for a basic ExpressJS backend
 - Run `npm run dev` command on the root directory
 
 
-|   	    |   	|   	|   	|   	|
-|---	|---	|---	|---	|---	|
-|   	|   	|   	|   	|   	|
-|   	|   	|   	|   	|   	|
-|   	|   	|   	|   	|   	|
+| Method  	    | Endpoint  	|  Description 	|
+|---	|---	|---	|
+|   	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
