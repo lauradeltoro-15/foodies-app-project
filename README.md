@@ -14,7 +14,7 @@ Boilerplate for a basic ExpressJS backend
 
 | Method  	    | Endpoint  	|  Description 	|
 |---	|---	|---	|
-| GET  	|   	|   	|
+|GET  	|   	|   	|
 |   	|   	|   	|
 |   	|   	|   	|
 |   	|   	|   	|
