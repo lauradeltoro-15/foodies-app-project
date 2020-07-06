@@ -1,27 +1,24 @@
 <main class="my-recipes-container">
-<div class="container">
-    <div class="row justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center">
 
-        {{#each theRecipes}}
-        <div class="col-4">
-<<<<<<< HEAD
-            <article class="recipe-card">
-                <div class="card">
-                    {{>cardRecipeInfo this}}
-                    <div class="card-body">
-                        <form action="/profile/my-recipes/add-to-week/{{id}}" method="POST">
-                            <input type="date" name="mealDate" max="{{../lastDay}}" min="{{../today}}">
-                            <input type="submit" value="Add to week" class="btn btn-sm btn-green">
-                        </form>
+            {{#each theRecipes}}
+            <div class="col-4">
+                <article class="recipe-card">
+                    <div class="card">
+                        {{>cardRecipeInfo this}}
+                        <div class="card-body">
+                            <a href="/profile/my-recipes/details/{{id}}" class="btn btn-sm btn-green">More details</a>
+                            <form action="/profile/my-recipes/add-to-week/{{id}}" method="POST">
+                                <input type="date" name="mealDate" max="{{../lastDay}}" min="{{../today}}">
+                                <input type="submit" value="Add to week" class="btn btn-sm btn-green">
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </article>
-=======
-            {{>basicCardRecipe this}}
->>>>>>> c08a15e62f7c69977ea5792d2bd699a88c10d4ca
+                </article>
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
-    </div>
 
-</div>
+    </div>
 </main>
