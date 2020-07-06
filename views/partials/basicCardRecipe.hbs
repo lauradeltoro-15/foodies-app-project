@@ -36,31 +36,18 @@
             </ul>
             <hr>
 
+            {{#if owner}}
+
+            <a href="/profile/my-recipes/details/{{id}}" class="btn btn-sm btn-green">More details</a>
+            
+            {{else}}
+
             <a href="/recipes/details/{{id}}" class="btn btn-sm btn-green">More</a>
             <a href="/recipes/add-to-favourites/{{id}}" class="btn btn-sm btn-green">Fav</a>
+            {{/if}}
+
+            
         </div>
     </div>
 </article>
 
-{{!-- <img src="{{image}}" alt="{{title}}">
-    <h3>{{title}}</h3>
-    <ul>
-        <li>Preparation: {{preparationMinutes}} min</li>
-        <li>Cooking: {{cookingMinutes}} min</li>
-    </ul>
-    <ul>
-        {{#if vegetarian}}
-        <li>vegetarian</li>
-        {{/if}}
-        {{#if vegan}}
-        <li>vegan</li>
-        {{/if}}
-        {{#if veryHealthy}}
-        <li>Healthy</li>
-        {{/if}}
-        {{#if glutenFree}}
-        <li>Gluten free</li>
-        {{/if}}
-    </ul>
-    <a href="/recipes/details/{{id}}">See details</a>
-</article> --}}

@@ -14,7 +14,10 @@ const uniqueStepContainer = document.querySelector(".unique-steps-container")
 //     return elem;
 //   }
 window.addEventListener('load', () => {
-    addIngredientButton.addEventListener("click", () => IngredientsContainer.appendChild(uniqueIngredientContainer.cloneNode(true)))
+    addIngredientButton.addEventListener("click", () => {
+        
+        IngredientsContainer.appendChild(uniqueIngredientContainer.cloneNode(true))
+    })
     addIngredientButton.addEventListener("click", () => IngredientsContainer.appendChild(uniqueIngredientContainer.cloneNode(true)))
     addStepButton.addEventListener("click", () => stepsContainer.appendChild(uniqueStepContainer.cloneNode(true)))
 })
