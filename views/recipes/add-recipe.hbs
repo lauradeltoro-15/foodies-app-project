@@ -4,17 +4,17 @@
             <h1 style="font-weight: 100">Nueva Receta</h1>
         </div>
         <div class="col-md-6">
-            <form action="/profile/:userID/my-recipes/add" method="post" enctype="multipart/form-data">
+            <form action="/profile/my-recipes/{{userID}}/add" method="post" enctype="multipart/form-data">
                 <div class="form-group">
+                    <br>
+                    <br>
+                    <br>
                     <label for="title">Title of the Recipe</label>
                     <input name="title" type="text" class="form-control" id="title">
                 </div>
                 <label for="title">Image</label>
                 <input type="file" name="imageFile">
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <input name="description" type="text" class="form-control" id="description">
-                </div>
+                
                 <a href="#" class="add-ingredient btn btn-dark">+</a>
 
                 <div class="form-group ingredients-container">

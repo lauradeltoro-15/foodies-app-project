@@ -6,17 +6,23 @@ const passport = require("passport")
 
 const Recipe = require('../../models/recipe.model')
 const User = require("../../models/user.model")
+const { findById } = require('../../models/recipe.model')
+
+const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.userID === req.user.id ? next() : res.redirect("/auth/login")
 
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
     errorMsg: "Restricted area!"
 })
 
 // Endpoints
-router.get('/add', (req, res) => {
-    res.render('recipes/add-recipe')
+router.get('/:userID/add', isCurrentUser, (req, res) => {
+    const userID = req.params.userID
+    
+    res.render('recipes/add-recipe', {userID})
 })
-router.post("/add", cloudUploader.single('imageFile'), (req, res) => {
-    console.log(req.file)
+router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
+
+    const owner = req.params.userID
     const steps = [...req.body.steps]
     const ingredients = [...req.body.ingredients]
     const amounts = [...req.body.amount]
@@ -24,7 +30,6 @@ router.post("/add", cloudUploader.single('imageFile'), (req, res) => {
     const tags = req.body.filter ? req.body.filter : []
     const {
         title,
-        description,
         preparationMinutes,
         cookingMinutes
     } = req.body
@@ -33,15 +38,15 @@ router.post("/add", cloudUploader.single('imageFile'), (req, res) => {
         .create({
             title,
             image: req.file.url,
-            description,
             ingredients,
             ingredientsAmount,
             steps,
             tags,
+            owner,
             preparationMinutes,
             cookingMinutes
         })
-        .then(res.redirect('/profile/:userID/my-recipes'))
+        .then(res.redirect('/profile/my-recipes/:userID'))
         .catch(err => console.log(err))
 
     console.log("ADDING")
@@ -62,13 +67,20 @@ router.get("/add-to-week/:recipeID", (req, res) => {
     res.send("Here adding to week")
 })
 
-router.get("/:userId",isLoggedIn, (req, res) => {
-    console.log(req.user)
-    res.render(`profile/my-recipes`, {
-        user: req.user
-    })
+router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
+    
+    Recipe
+        .find({owner: req.params.userID})
+        .then(theRecipes => { 
+             res.render(`profile/my-recipes`, {theRecipes})
+        })
+    
+
 })
-router.get('/',isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
+    
+
+
     res.redirect(`/profile/my-recipes/${req.user.id}`)
 })
 
