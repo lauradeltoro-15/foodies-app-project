@@ -8,17 +8,22 @@ const Recipe = require('../../models/recipe.model')
 
 //Helpers
 const renderAllRecipeInformationsByIds = (ids, res, req) => {
-    Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)
-            .then(response => response)
-            .catch(err => console.log("There was an error returning from DDBB", err))))
-        .then(recipes => req.query.filter ? filterRecipes(recipes, req) : recipes)
+    getAllRecipeInformationByIds(ids, req)
         .then(response => res.render("recipes/search-recipes", {
             results: response
         }))
         .catch(err => console.log("There was an error returning from ddbb", err))
 }
+const getAllRecipeInformationByIds = (ids, req) => {
+    return Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)
+            .then(response => response)
+            .catch(err => console.log("There was an error returning from DDBB", err))))
+        .then(recipes => req.query.filter ? filterRecipes(recipes, req) : recipes)
+}
 const filterRecipes = (recipes, req) => {
-    const filters = [...req.query.filter]
+
+    const filters = Array.isArray(req.query.filter) ? [...req.query.filter] : [req.query.filter]
+    console.log(filters)
     return recipes.filter(recipe => filters.every(filter => recipe[filter]))
 }
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
@@ -28,7 +33,6 @@ const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.id
     errorMsg: "You are not allowed to edit!"
 })
 const createRecipefromAPI = (APIData, req) => {
-    console.log(req.user.id)
     const tags = ["vegetarian", "vegan", "glutenFree", "veryHealthy", "cheap"].filter(tag => APIData[tag])
     const nutrients = getAllNutrients(APIData)
     const steps = getAllSteps(APIData)
@@ -46,8 +50,6 @@ const createRecipefromAPI = (APIData, req) => {
             preparationMinutes: APIData.preparationMinutes,
             cookingMinutes: APIData.cookingMinutes,
             owner: req.user.id
-
-
         })
         .then(recipe => console.log("Recipe created", recipe))
         .catch(err => console.log("There was an error creating the recipe", err))
