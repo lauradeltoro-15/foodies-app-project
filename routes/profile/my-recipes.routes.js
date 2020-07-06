@@ -74,7 +74,6 @@ router.get("/details/:recipeID", (req, res) => {
     Recipe
         .findById(req.params.recipeID)
         .then(theRecipe => {
-            console.log(theRecipe)
             res.render('partials/detailedOwnerCardRecipe', theRecipe)
         })
         .catch(err => console.log(err))

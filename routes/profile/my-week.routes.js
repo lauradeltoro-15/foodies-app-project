@@ -42,12 +42,12 @@ router.get("/:userId", isLoggedIn, (req, res) => {
 router.get('/', isLoggedIn, (req, res) => {
     Weekmeal.find({
             owner: req.user.id
-        })
+        }).populate("originalRecipe")
         .then(weekmeals => getMealPlanner(weekmeals))
-        .then(days => {
-            console.log(days)
+        .then(daysInfo => {
+            console.log(daysInfo[0].cards[0])
             res.render("profile/my-week", {
-                days
+                daysInfo
             })
         })
         .catch(err => console.log("There was an error returning from DDBB", err))

@@ -1,8 +1,12 @@
 <main>
     <section class="my-week">
     <h1>My week</h1>
-    {{#each days}}
+    {{#each daysInfo}}
     <div class="day-container">
+        <h4>{{date}}</h4>
+        {{#each cards}}
+        {{> smallCardRecipe this.originalRecipe}}
+        {{/each}}
     </div>
     {{/each}}
     </section>
