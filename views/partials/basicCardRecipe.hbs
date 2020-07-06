@@ -11,12 +11,12 @@
                 {{#if preparationMinutes}}
                 <li>Prep: <span class="green-span">{{preparationMinutes}}</span> min | </li>
                 {{else}}
-                <li>Prep: <span class="green-span">Unknown | </span></li>
+                <li>Prep: <span class="green-span">Unknown </span>|</li>
                 {{/if}}
                 {{#if cookingMinutes}}
                 <li>Cook: <span class="green-span">{{cookingMinutes}}</span> min | </li>
                 {{else}}
-                <li>Cook: <span class="green-span">Unknown | </span></li>
+                <li>Cook: <span class="green-span">Unknown </span>|</li>
                 {{/if}}
             </ul>
             <hr>
@@ -35,32 +35,13 @@
                 {{/if}}
             </ul>
             <hr>
-
+            {{#if owner}}
+            <a href="/recipes/details/{{id}}" class="btn btn-sm btn-green">whatever</a>
+            {{else}}
             <a href="/recipes/details/{{id}}" class="btn btn-sm btn-green">More</a>
             <a href="/recipes/add-to-favourites/{{id}}" class="btn btn-sm btn-green">Fav</a>
+            {{/if}}
+
         </div>
     </div>
 </article>
-
-{{!-- <img src="{{image}}" alt="{{title}}">
-    <h3>{{title}}</h3>
-    <ul>
-        <li>Preparation: {{preparationMinutes}} min</li>
-        <li>Cooking: {{cookingMinutes}} min</li>
-    </ul>
-    <ul>
-        {{#if vegetarian}}
-        <li>vegetarian</li>
-        {{/if}}
-        {{#if vegan}}
-        <li>vegan</li>
-        {{/if}}
-        {{#if veryHealthy}}
-        <li>Healthy</li>
-        {{/if}}
-        {{#if glutenFree}}
-        <li>Gluten free</li>
-        {{/if}}
-    </ul>
-    <a href="/recipes/details/{{id}}">See details</a>
-</article> --}}
