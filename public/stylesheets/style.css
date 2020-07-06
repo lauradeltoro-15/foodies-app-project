@@ -201,4 +201,26 @@ footer {
 .my-recipes-container {
   padding-top: 200px; }
 
+.small-card img {
+  width: 100%; }
+
+.my-week h4 {
+  color: #c3d651; }
+
+.my-week .meal-container {
+  min-height: 300px;
+  background-color: #f8f5f2;
+  padding: 40px;
+  margin-bottom: 50px; }
+  .my-week .meal-container .small-card {
+    border: 1px solid #d6b1a1;
+    background-color: white;
+    min-height: 250px;
+    margin-bottom: 25px; }
+    .my-week .meal-container .small-card h5 {
+      text-align: center;
+      margin: 15px;
+      color: #d6b1a1;
+      font-size: 0.9em; }
+
 /*# sourceMappingURL=style.css.map */
