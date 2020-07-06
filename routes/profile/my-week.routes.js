@@ -12,8 +12,19 @@ const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.rend
 
 const getDayOffset = (dateToCompare) => {
     const today = new Date()
-    return dateToCompare - today.getDate()
+    return dateToCompare.getDate() - today.getDate()
 
+}
+const getMealPlanner = (weekmeals) => {
+    return [{
+        day1: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 0),
+        day2: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 1),
+        day3: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 2),
+        day4: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 3),
+        day5: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 4),
+        day6: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 5),
+        day7: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 6),
+    }]
 }
 
 // Endpoints
@@ -32,13 +43,11 @@ router.get('/', isLoggedIn, (req, res) => {
     Weekmeal.find({
             owner: req.user.id
         })
-        .then(weekmeals => {
-            return {
-                day1: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 0)
-            }
-        }).then(day => {
-            console.log(day)
-            res.render("profile/my-week")
+        .then(weekmeals => getMealPlanner(weekmeals))
+        .then(days => {
+            res.render("profile/my-week", {
+                days
+            })
         })
         .catch(err => console.log("There was an error returning from DDBB", err))
 
