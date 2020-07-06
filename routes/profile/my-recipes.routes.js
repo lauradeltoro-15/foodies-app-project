@@ -105,11 +105,12 @@ router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
             owner: req.params.userID
         })
         .then(theRecipes => {
-            console.log("today", obtainLastDate(0), "last day", obtainLastDate(15))
             res.render(`profile/my-recipes`, {
                 theRecipes,
-                today: obtainLastDate(0),
-                lastDay: obtainLastDate(15)
+                dates: {
+                    today: obtainLastDate(0),
+                    lastDay: obtainLastDate(6)
+                }
             })
         })
 

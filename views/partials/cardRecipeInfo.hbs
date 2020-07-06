@@ -1,0 +1,36 @@
+{{#if image}}
+<img class="card-img-top" src="{{image}}" alt="{{title}}">
+{{else}}
+<img class="card-img-top" src="../../images/rec-avocado.png" alt="">
+{{/if}}
+<div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <ul>
+        {{#if preparationMinutes}}
+        <li>Prep: <span class="green-span">{{preparationMinutes}}</span> min |&nbsp</li>
+        {{else}}
+        <li>Prep: <span class="green-span">Unknown </span>|&nbsp</li>
+        {{/if}}
+        {{#if cookingMinutes}}
+        <li>Cook: <span class="green-span">{{cookingMinutes}}</span> min |&nbsp</li>
+        {{else}}
+        <li>Cook: <span class="green-span">Unknown </span>|&nbsp</li>
+        {{/if}}
+    </ul>
+    <hr>
+    <ul>
+        {{#if vegetarian}}
+        <li>Vegetarian |&nbsp</li>
+        {{/if}}
+        {{#if vegan}}
+        <li>Vegan |&nbsp</li>
+        {{/if}}
+        {{#if veryHealthy}}
+        <li>Healthy |&nbsp</li>
+        {{/if}}
+        {{#if glutenFree}}
+        <li>Gluten free |&nbsp</li>
+        {{/if}}
+    </ul>
+    <hr>
+</div>

@@ -1,0 +1,6 @@
+<div class="card-body">
+    <form action="/profile/my-recipes/add-to-week/{{id}}" method="POST">
+        <input type="date" min="2020-07-06" max="{{lastDay}}" name="{{today}}">
+        <input type="submit" value="Add to week" class="btn btn-sm btn-green">
+    </form>
+</div>
