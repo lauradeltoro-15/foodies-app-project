@@ -24,10 +24,6 @@ const recipeSchema = new Schema({
         type: [String],
         //required: true
     },
-    description: {
-        type: String,
-        //required: true
-    },
     ingredients: {
         type: [String],
         //required: true
@@ -37,7 +33,7 @@ const recipeSchema = new Schema({
     },
     tags: {
         type: [String],
-        enum: ["vegetarian", "vegan", "glutenFree", "veryHealthy", "cheap" ]
+        enum: ["vegetarian", "vegan", "glutenFree", "veryHealthy", "cheap"]
     },
     preparationMinutes: {
         type: Number
@@ -49,6 +45,8 @@ const recipeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
+}, {
+    timestamps: true,
 })
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
