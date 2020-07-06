@@ -36,7 +36,12 @@
             </ul>
             <hr>
             {{#if owner}}
-            <a href="/recipes/details/{{id}}" class="btn btn-sm btn-green">whatever</a>
+            <form action="/profile/my-recipes/add-to-week/{{id}}" method="POST">
+                <input type="date" min="2020-07-06" max="2020-07-13" name="mealDate">
+                <input type="submit" value="Add to week" class="btn btn-sm btn-green">
+            </form>
+            
+            {{!-- <a href="/profile/my-recipes/add-to-week/{{id}}" class="btn btn-sm btn-green">Add to week</a> --}}
             {{else}}
             <a href="/recipes/details/{{id}}" class="btn btn-sm btn-green">More</a>
             <a href="/recipes/add-to-favourites/{{id}}" class="btn btn-sm btn-green">Fav</a>
