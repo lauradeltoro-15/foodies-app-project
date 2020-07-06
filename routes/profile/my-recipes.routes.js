@@ -16,6 +16,16 @@ const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.us
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
     errorMsg: "Restricted area!"
 })
+const obtainLastDate = (offset) => {
+    let lastDate = new Date()
+    lastDate.setDate(lastDate.getDate() + offset)
+    const dd = String(lastDate.getDate()).padStart(2, '0')
+    const mm = String(lastDate.getMonth() + 1).padStart(2, '0')
+    const yyyy = lastDate.getFullYear()
+    lastDate = yyyy + '-' + mm + '-' + dd
+    return lastDate
+}
+
 
 // Endpoints
 router.get('/:userID/add', isCurrentUser, (req, res) => {
@@ -28,11 +38,10 @@ router.get('/:userID/add', isCurrentUser, (req, res) => {
 router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
 
     const owner = req.params.userID
-    const steps = [...req.body.steps]
-    const ingredients = [...req.body.ingredients]
-    const amounts = [...req.body.amount]
+    const steps = Array.isArray(req.body.steps) ? req.body.steps : [req.body.steps]
+    const ingredients = Array.isArray(req.body.ingredients) ? req.body.ingredients : [req.body.ingredients]
+    const amounts = Array.isArray(req.body.amount) ? req.body.amount : [req.body.amount]
     const ingredientsAmount = ingredients.map((ingredient, i) => `${amounts[i]} ${ingredient}`)
-    const tags = req.body.filter ? req.body.filter : []
     const {
         title,
         preparationMinutes,
@@ -90,24 +99,23 @@ router.post("/add-to-week/:recipeID", isLoggedIn, (req, res) => {
 })
 
 router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
-
+    console.log("HEY")
     Recipe
         .find({
             owner: req.params.userID
         })
         .then(theRecipes => {
+            console.log("today", obtainLastDate(0), "last day", obtainLastDate(15))
             res.render(`profile/my-recipes`, {
                 theRecipes,
-                
+                today: obtainLastDate(0),
+                lastDay: obtainLastDate(15)
             })
         })
 
 
 })
 router.get('/', isLoggedIn, (req, res) => {
-
-
-
     res.redirect(`/profile/my-recipes/${req.user.id}`)
 })
 

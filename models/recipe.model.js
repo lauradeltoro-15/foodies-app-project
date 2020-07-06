@@ -31,6 +31,9 @@ const recipeSchema = new Schema({
     ingredientsAmount: {
         type: [String]
     },
+    amounts: {
+        type: [String]
+    },
     vegetarian: Boolean,
     vegan: Boolean,
     glutenFree: Boolean,

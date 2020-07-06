@@ -44,7 +44,9 @@ const createRecipefromAPI = (APIData, req) => {
     const steps = getAllSteps(APIData)
     const ingredients = getAllIngredients(APIData)
     const ingredientsAmount = getAllIngredientsWithAmounts(APIData)
-    Recipe.create({
+    const amounts = getAllIngredientsAmounts(APIData)
+        Recipe.create({
+            amounts,
             title: APIData.title,
             originalID: APIData.id,
             image: APIData.image,
@@ -64,7 +66,10 @@ const createRecipefromAPI = (APIData, req) => {
         .then(recipe => console.log("Recipe created", recipe))
         .catch(err => console.log("There was an error creating the recipe", err))
 }
-
+getAllIngredientsAmounts = APIData => {
+    return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) :
+        APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
+}
 const getAllIngredients = APIData => {
     return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.name) :
         APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
