@@ -16,17 +16,17 @@ const getDayOffset = (dateToCompare) => {
 
 }
 const getMealPlanner = (weekmeals) => {
-    return [{
-        day1: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 0),
-        day2: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 1),
-        day3: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 2),
-        day4: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 3),
-        day5: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 4),
-        day6: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 5),
-        day7: weekmeals.filter(meal => getDayOffset(meal.mealDay) === 6),
-    }]
+    const today = new Date()
+    return [getDayMeals(weekmeals, 0, today), getDayMeals(weekmeals, 1, today), getDayMeals(weekmeals, 2, today), getDayMeals(weekmeals, 3, today), getDayMeals(weekmeals, 4, today), getDayMeals(weekmeals, 5, today), getDayMeals(weekmeals, 6, today)]
 }
-
+const getDayMeals = (weekmeals, offset, today) => {
+    return {
+        cards: weekmeals.filter(meal => getDayOffset(meal.mealDay) === offset),
+        date: `${weekDays[getWeekDayToRender(offset, today)]} ${today.getDate() + offset}`
+    }
+}
+const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const getWeekDayToRender = (offset, today) => today.getDay() + offset < 7 ? today.getDay() + offset : today.getDay() + offset - 7
 // Endpoints
 router.post("/delete/:recipeId", (req, res) => res.send("Deleting"))
 
@@ -45,6 +45,7 @@ router.get('/', isLoggedIn, (req, res) => {
         })
         .then(weekmeals => getMealPlanner(weekmeals))
         .then(days => {
+            console.log(days)
             res.render("profile/my-week", {
                 days
             })
