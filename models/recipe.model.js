@@ -37,7 +37,7 @@ const recipeSchema = new Schema({
     },
     tags: {
         type: [String],
-        enum: ["vegetarian", "vegan", "glutenFree", "veryHealthy", "cheap", ]
+        enum: ["vegetarian", "vegan", "glutenFree", "veryHealthy", "cheap" ]
     },
     preparationMinutes: {
         type: Number
