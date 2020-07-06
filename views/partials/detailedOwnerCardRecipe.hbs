@@ -1,0 +1,43 @@
+<div class="container">
+<main class="recipe-details">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{image}}" alt="{{title}}">
+        </div>
+        <div class="col-md-6">
+            <h1>Details of recipe {{title}}</h1>
+            <h4>Ingredients</h4>
+            <ul>
+                <li>{{ingredients}}</li>
+            </ul>
+            <h4>Instructions</h4>
+            <ul>
+                {{#each theRecipe}}
+                <li>{{steps}}</li>
+                {{/each}}
+
+            </ul>
+            <ul>
+                {{#if vegetarian}}
+                <li>vegetarian | </li>
+                {{/if}}
+                {{#if vegan}}
+                <li>vegan | </li>
+                {{/if}}
+                {{#if veryHealthy}}
+                <li>Healthy | </li>
+                {{/if}}
+                {{#if glutenFree}}
+                <li>Gluten free | </li>
+                {{/if}}
+            </ul>
+        <a href="/profile/my-recipes/edit/{{id}}">Edit</a>
+
+        <form action="/profile/my-recipes/delete/{{id}}" method="post">
+        <button type="submit">Remove</button>
+        </form>
+        </div>
+    </div>
+
+</main>
+</div>

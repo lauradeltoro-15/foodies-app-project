@@ -41,12 +41,29 @@
                 <input type="submit" value="Add to week" class="btn btn-sm btn-green">
             </form>
 
+<<<<<<< HEAD
             {{!-- <a href="/profile/my-recipes/add-to-week/{{id}}" class="btn btn-sm btn-green">Add to week</a> --}}
             {{else}}
+=======
+            {{#if owner}}
+
+            <a href="/profile/my-recipes/details/{{id}}" class="btn btn-sm btn-green">More details</a>
+            
+            {{else}}
+
+>>>>>>> c08a15e62f7c69977ea5792d2bd699a88c10d4ca
             <a href="/recipes/details/{{id}}" class="btn btn-sm btn-green">More</a>
             <a href="/recipes/add-to-favourites/{{id}}" class="btn btn-sm btn-green">Fav</a>
             {{/if}}
 
+<<<<<<< HEAD
         </div>
     </div>
 </article>
+=======
+            
+        </div>
+    </div>
+</article>
+
+>>>>>>> c08a15e62f7c69977ea5792d2bd699a88c10d4ca

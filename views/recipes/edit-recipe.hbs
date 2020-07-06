@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 style="font-weight: 100">Edid Recipe</h1>
+        </div>
+        <div class="col-md-6">
+            <form action="/profile/my-recipes/edit/{{id}}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <br>
+                    <br>
+                    <br>
+                    <label for="title">Title of the Recipe</label>
+                    <input name="title" type="text" class="form-control" id="title" value="{{title}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="title">Actual Image</label>
+                    <img src="{{image}}" alt="{{image}}">
+                </div>
+                <input type="file" name="imageFile" value="{{image}}">
+
+                <a href="#" class="add-ingredient btn btn-dark">+</a>
+
+                <div class="form-group ingredients-container">
+                    {{#each amounts}}
+                    <div class="unique-ingredient-container">
+                        <label for="amount">Amount</label>
+                        <input name="amount" type="text" class="form-control" id="amount" value="{{this}}">
+                    </div>
+                    {{/each}}
+                    {{#each ingredients}}
+                    <div class="unique-ingredient-container">
+                        <label for="ingredients">Ingredients</label>
+                        <input name="ingredients" type="text" class="form-control" id="ingredients" value="{{this}}">
+                    </div>
+                    {{/each}}
+                </div>
+                <a href="#" class="add-step btn btn-dark">+</a>
+                <div class="form-group steps-container">
+                    <label for="steps">Steps</label>
+                    {{#each steps}}
+                    <div class="unique-steps-container">
+                        <input name="steps" type="text" class="form-control" id="steps" value="{{this}}">
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <br>
+
+                    <fieldset>
+                        <legend>Filter your interests!</legend>
+                        <label for="vegetarian">Vegetarian</label>
+                        <input type="checkbox" name="vegetarian" id="vegetarian" {{#if vegetarian}} checked {{/if}}>
+                        <label for="vegan">Vegan</label>
+                        <input type="checkbox" name="vegan" id="vegan" {{#if vegan}} checked {{/if}}>
+                        <label for="veryHealthy">Healthy</label>
+                        <input type="checkbox" name="veryHealthy" id="veryHealthy" {{#if veryHealthy}} checked {{/if}}>
+                        <label for="glutenFree">Gluten free</label>
+                        <input type="checkbox" name="glutenFree" id="glutenFree" {{#if glutenFree}} checked {{/if}}>
+                        <label for="cheap">Cheap</label>
+                        <input type="checkbox" name="cheap" id="cheap" {{#if cheap}} checked {{/if}}>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <label for="preparationMinutes">Preparation minutes</label>
+                    <input name="preparationMinutes" type="number" class="form-control" id="inversions-input"
+                        value="{{preparationMinutes}}">
+                    <label for="cookingMinutes">Cooking Minutes minutes</label>
+                    <input name="cookingMinutes" type="number" class="form-control" id="inversions-input"
+                        value="{{cookingMinutes}}">
+                </div>
+                <button type="submit" class="btn btn-dark">Edit</button>
+                <a href="/profile/my-recipes/" class="btn btn-dark">Go back</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/javascripts/add-recipes.js"></script>
