@@ -78,28 +78,24 @@ router.post("/delete/:recipeID", (req, res) => {
     res.send("We are deleting")
 })
 router.post("/add-to-week/:recipeID", isLoggedIn, (req, res) => {
+    console.log(req.body.mealDate)
     Recipe.findById(req.params.recipeID)
         .then(recipe => {
-
-            console.log(recipe.id, req.user.id, new Date())
             return {
                 originalRecipe: recipe.id,
                 ingredients: recipe.ingredients,
                 owner: req.user.id,
-                mealDay: req.body.mealDate
+                mealDay: new Date(req.body.mealDate)
             }
         }).then(meal => {
             console.log(meal)
             Weekmeal.create(meal)
         })
-
-
         .catch(err => console.log("There was an error creating a meal", err))
 
 })
 
 router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
-    console.log("HEY")
     Recipe
         .find({
             owner: req.params.userID
@@ -107,10 +103,8 @@ router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
         .then(theRecipes => {
             res.render(`profile/my-recipes`, {
                 theRecipes,
-                dates: {
-                    today: obtainLastDate(0),
-                    lastDay: obtainLastDate(6)
-                }
+                today: obtainLastDate(0),
+                lastDay: obtainLastDate(6)
             })
         })
 
