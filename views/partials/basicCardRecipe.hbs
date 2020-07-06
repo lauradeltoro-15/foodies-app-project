@@ -1,11 +1,23 @@
 <article class="recipe-card">
     <div class="card">
+        {{#if image}}
         <img class="card-img-top" src="{{image}}" alt="{{title}}">
+        {{else}}
+        <img class="card-img-top" src="../../images/rec-avocado.png" alt="">
+        {{/if}}
         <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <ul>
+                {{#if preparationMinutes}}
                 <li>Prep: <span class="green-span">{{preparationMinutes}}</span> min | </li>
-                <li>Cook: <span class="green-span">{{cookingMinutes}}</span> min |</li>
+                {{else}}
+                <li>Prep: <span class="green-span">Unknown | </span></li>
+                {{/if}}
+                {{#if cookingMinutes}}
+                <li>Cook: <span class="green-span">{{cookingMinutes}}</span> min | </li>
+                {{else}}
+                <li>Cook: <span class="green-span">Unknown | </span></li>
+                {{/if}}
             </ul>
             <hr>
             <ul>

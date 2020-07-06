@@ -22,7 +22,7 @@ const getAllRecipeInformationByIds = (ids, req) => {
 }
 const filterRecipes = (recipes, req) => {
 
-    const filters = Array.isArray(req.query.filter) ? [...req.query.filter] : [req.query.filter]
+    const filters = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter]
     console.log(filters)
     return recipes.filter(recipe => filters.every(filter => recipe[filter]))
 }
@@ -33,7 +33,13 @@ const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.id
     errorMsg: "You are not allowed to edit!"
 })
 const createRecipefromAPI = (APIData, req) => {
-    const tags = ["vegetarian", "vegan", "glutenFree", "veryHealthy", "cheap"].filter(tag => APIData[tag])
+    const {
+        vegetarian,
+        vegan,
+        glutenFree,
+        veryHealthy,
+        cheap
+    } = APIData
     const nutrients = getAllNutrients(APIData)
     const steps = getAllSteps(APIData)
     const ingredients = getAllIngredients(APIData)
@@ -45,7 +51,11 @@ const createRecipefromAPI = (APIData, req) => {
             nutrients,
             ingredients,
             ingredientsAmount,
-            tags,
+            vegetarian,
+            vegan,
+            glutenFree,
+            veryHealthy,
+            cheap,
             steps,
             preparationMinutes: APIData.preparationMinutes,
             cookingMinutes: APIData.cookingMinutes,

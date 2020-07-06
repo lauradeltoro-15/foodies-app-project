@@ -31,10 +31,11 @@ const recipeSchema = new Schema({
     ingredientsAmount: {
         type: [String]
     },
-    tags: {
-        type: [String],
-        enum: ["vegetarian", "vegan", "glutenFree", "veryHealthy", "cheap"]
-    },
+    vegetarian: Boolean,
+    vegan: Boolean,
+    glutenFree: Boolean,
+    veryHealthy: Boolean,
+    cheap: Boolean,
     preparationMinutes: {
         type: Number
     },
