@@ -14,22 +14,30 @@
                 </div>
                 <label for="title">Image</label>
                 <input type="file" name="imageFile">
-                
-                <a href="#" class="add-ingredient btn btn-dark">+</a>
+
 
                 <div class="form-group ingredients-container">
-                    <div class="unique-ingredient-container">
-                        <label for="amount">Amount</label>
-                        <input name="amount" type="text" class="form-control" id="amount">
-                        <label for="ingredients">Ingredients</label>
-                        <input name="ingredients" type="text" class="form-control" id="ingredients">
+                    <div class="row unique-ingredient-container">
+                        <div class="col-md-4" id="amountADD">
+                            <label for="amount">Amount</label>
+                            <input name="amount" type="text" class="form-control" id="amount">
+                        </div>
+                        <div class="col-md-4" id="ingredientADD">
+                            <label for="ingredients">Ingredients</label>
+                            <input name="ingredients" type="text" class="form-control" id="ingredients">
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" class="add-ingredient btn btn-dark">+</a>
+                        </div>
                     </div>
 
                 </div>
                 <a href="#" class="add-step btn btn-dark">+</a>
-                <div class="form-group steps-container">
-                    <label for="steps">Steps</label>
-                    <div class="unique-steps-container">
+                <div class="row form-group steps-container">
+                    <div class="col-md-2">
+                        <label for="steps">Steps</label>
+                    </div>
+                    <div class="col-md-10 unique-steps-container">
                         <input name="steps" type="text" class="form-control" id="steps">
                     </div>
                 </div>
@@ -39,9 +47,9 @@
                     <fieldset>
                         <legend>Filter your interests!</legend>
                         <label for="vegetarian">Vegetarian</label>
-                        <input type="checkbox" name="vegetarian" id="vegetarian" >
+                        <input type="checkbox" name="vegetarian" id="vegetarian">
                         <label for="vegan">Vegan</label>
-                        <input type="checkbox" name="vegan" id="vegan" >
+                        <input type="checkbox" name="vegan" id="vegan">
                         <label for="veryHealthy">Healthy</label>
                         <input type="checkbox" name="veryHealthy" id="veryHealthy">
                         <label for="glutenFree">Gluten free</label>
