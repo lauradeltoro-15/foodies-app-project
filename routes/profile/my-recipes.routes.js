@@ -120,6 +120,7 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
 
 })
 router.post("/delete/:recipeID", (req, res) => {
+    console.log(req.params.recipeID)
     Recipe
         .findByIdAndRemove(req.params.recipeID)
         .then(res.redirect(`/profile/my-recipes/${req.user.id}`))

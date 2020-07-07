@@ -24,30 +24,19 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
-
-
     addToFavourites(recipeInfo, recipeId) {
         return this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
             .then(response => response.data)
             .catch(err => {
-                console.log("CAAATCH")
                 throw new Error(err)
             })
     }
-
-    
-    // addToFavourites(recipeId) {
-    //     console.log("recipeID", recipeId)
-    //     return this.getRecipeInformationById(recipeId)
-    //         .then(recipeInfo => {
-    //             console.log(recipeInfo)
-    //             this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
-    //         })
-    //         .catch(err => {
-    //             throw new Error(err)
-    //         })
-    // }
-
+    deleteRecipe(recipeId) {
+        return this.axiosServer.post(`/profile/my-recipes/delete/${recipeId}`)
+        .then(response => response.data)
+        .catch(err => {
+            throw new Error(err)
+        })
+    }
 }
-
 const RecipeAPIHandler = new RecipeApiHandler()
