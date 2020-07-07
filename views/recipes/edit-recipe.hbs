@@ -17,36 +17,38 @@
                     <img src="{{image}}" alt="{{image}}">
                 </div>
                 <input type="file" name="imageFile" value="{{image}}">
-
-                <a href="#" class="add-ingredient btn btn-dark">+</a>
-
                 <div class="form-group ingredients-container">
-                    {{#each amounts}}
+                    <a href="#" class="add-ingredient btn btn-dark">+</a>
                     <div class="unique-ingredient-container">
                         <label for="amount">Amount</label>
-                        <input name="amount" type="text" class="form-control" id="amount" value="{{this}}">
+                        <div id="amountADD">
+                            {{#each amounts}}
+                            <input name="amount" type="text" class="form-control" id="amount" value="{{this}}">
+                            {{/each}}
+                        </div>
                     </div>
-                    {{/each}}
-                    {{#each ingredients}}
                     <div class="unique-ingredient-container">
                         <label for="ingredients">Ingredients</label>
-                        <input name="ingredients" type="text" class="form-control" id="ingredients" value="{{this}}">
+                        <div id="ingredientADD">
+                            {{#each ingredients}}
+                            <input name="ingredients" type="text" class="form-control" id="ingredients"
+                                value="{{this}}">
+                            {{/each}}
+                        </div>
                     </div>
-                    {{/each}}
                 </div>
-                <a href="#" class="add-step btn btn-dark">+</a>
+
                 <div class="form-group steps-container">
+                    <a href="#" class="add-step btn btn-dark">+</a>
                     <label for="steps">Steps</label>
-                    {{#each steps}}
                     <div class="unique-steps-container">
+                        {{#each steps}}
                         <input name="steps" type="text" class="form-control" id="steps" value="{{this}}">
+                        {{/each}}
                     </div>
-                    {{/each}}
                 </div>
                 <div class="form-group">
-                    <label for="tags">Tags</label>
                     <br>
-
                     <fieldset>
                         <legend>Filter your interests!</legend>
                         <label for="vegetarian">Vegetarian</label>

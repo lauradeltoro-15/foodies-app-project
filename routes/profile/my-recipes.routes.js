@@ -87,42 +87,36 @@ router.get("/edit/:recipeID", (req, res) => {
         .catch(err => console.log(err))
 
 })
-router.post("/edit/:recipeID", (req, res) => {
+router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (req, res) => {
 
+    const steps = getArray(req.body.steps)
+    const ingredients = getArray(req.body.ingredients)
+    const amounts = getArray(req.body.amount)
+    const ingredientsAmount = ingredients.map((ingredient, i) => `${amounts[i]} ${ingredient}`)
+    const {
+        title,
+        preparationMinutes,
+        cookingMinutes
+    } = req.body
 
-    console.log('este es mi req.body ', req.body)
-
-    // const steps = Array.isArray(req.body.steps) ? req.body.steps : [req.body.steps]
-    // const ingredients = Array.isArray(req.body.ingredients) ? req.body.ingredients : [req.body.ingredients]
-    // const amounts = Array.isArray(req.body.amount) ? req.body.amount : [req.body.amount]
-    // const owner = req.params.userID
-    // const ingredientsAmount = ingredients.map((ingredient, i) => `${amounts[i]} ${ingredient}`)
-
-    // const {
-    //     title,
-    //     preparationMinutes,
-    //     cookingMinutes
-    // } = req.body
-
-
-    // Recipe
-    //     .findByIdAndUpdate(req.params.recipeID, {
-    //         amounts,
-    //         vegetarian: isTagTrue(req, 'vegetarian'),
-    //         vegan: isTagTrue(req, 'vegan'),
-    //         glutenFree: isTagTrue(req, 'glutenFree'),
-    //         veryHealthy: isTagTrue(req, 'veryHealthy'),
-    //         cheap: isTagTrue(req, 'cheap'),
-    //         title,
-    //         //image: req.file.url,
-    //         ingredients,
-    //         ingredientsAmount,
-    //         steps,
-    //         preparationMinutes,
-    //         cookingMinutes
-    //     })
-    //     .then(res.redirect('/'))
-    //     .catch(err => console.log(err))
+    Recipe
+        .findByIdAndUpdate(req.params.recipeID, {
+            amounts,
+            vegetarian: isTagTrue(req, 'vegetarian'),
+            vegan: isTagTrue(req, 'vegan'),
+            glutenFree: isTagTrue(req, 'glutenFree'),
+            veryHealthy: isTagTrue(req, 'veryHealthy'),
+            cheap: isTagTrue(req, 'cheap'),
+            title,
+            image: req.file ? req.file.url : null,
+            ingredients,
+            ingredientsAmount,
+            steps,
+            preparationMinutes,
+            cookingMinutes
+        })
+        .then(res.redirect('/'))
+        .catch(err => console.log(err))
 
 })
 router.post("/delete/:recipeID", (req, res) => {
