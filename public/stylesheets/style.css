@@ -227,4 +227,18 @@ footer {
 #ingredients {
   width: 200px; }
 
+.shopping-list-container {
+  padding-top: 150px;
+  padding: 100px;
+  background-image: url("../images/background/invert-geometric-leaves-color.png");
+  background-repeat: repeat; }
+  .shopping-list-container .shopping-list {
+    margin: 100px 0;
+    background-color: white;
+    border: 2px solid #d6b1a1; }
+    .shopping-list-container .shopping-list ul {
+      line-height: 2.5em; }
+      .shopping-list-container .shopping-list ul li {
+        display: inline; }
+
 /*# sourceMappingURL=style.css.map */

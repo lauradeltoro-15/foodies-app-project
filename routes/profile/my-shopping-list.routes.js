@@ -26,7 +26,6 @@ router.get("/edit", (req, res) => res.send("Here I edit to the shopping list"))
 router.post("/edit", (req, res) => res.send("Here I finish to edit to the shopping list"))
 
 router.get("/:userId", isLoggedIn, (req, res) => {
-
     Weekmeal.find({}, {
             mealDay: 1,
             ingredients: 1
