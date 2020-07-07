@@ -127,8 +127,7 @@ router.post("/delete/:recipeID", (req, res) => {
 
 })
 router.post("/add-to-week/:recipeID", isLoggedIn, (req, res) => {
-    console.log(req.body.mealDate)
-    Recipe.findById(req.params.recipeID)
+    return Recipe.findById(req.params.recipeID)
         .then(recipe => getWeekMeal(recipe, req))
         .then(meal => Weekmeal.create(meal))
         .catch(err => console.log("There was an error creating a meal", err))

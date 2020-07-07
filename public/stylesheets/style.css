@@ -250,6 +250,12 @@ footer {
 
 .btn-xs.added {
   background-color: #d6b1a1;
-  color: #942a2a; }
+  color: #942a2a;
+  border-color: #d6b1a1; }
+
+.added {
+  background-color: #d6b1a1;
+  color: #942a2a;
+  border-color: #d6b1a1; }
 
 /*# sourceMappingURL=style.css.map */
