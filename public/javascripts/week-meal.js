@@ -22,6 +22,11 @@ window.addEventListener('load', () => {
         container.addEventListener("dragenter", e => e.preventDefault())
         container.addEventListener("drop", e => {
             container.appendChild(draggedItem)
+            const dataMeal = document.querySelector("[data-meal]")
+            const dataMealVal = dataMeal.getAttribute("data-meal")
+            const newDateVal = container.getAttribute("data-date")
+            console.log(newDateVal)
+            RecipeAPIHandler.changeMealDate(dataMealVal, newDateVal)
         })
     })
 })

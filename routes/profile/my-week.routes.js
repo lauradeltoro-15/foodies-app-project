@@ -26,13 +26,35 @@ const getMealPlanner = (weekmeals) => {
 const getDayMeals = (weekmeals, offset, today) => {
     return {
         cards: weekmeals.filter(meal => getDayOffset(meal.mealDay) === offset),
-        date: `${weekDays[getWeekDayToRender(offset, today)]} ${today.getDate() + offset}`
+        date: `${weekDays[getWeekDayToRender(offset, today)]} ${today.getDate() + offset}`,
+        fullDate: obtainDate(offset)
     }
 }
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 const getWeekDayToRender = (offset, today) => today.getDay() + offset < 7 ? today.getDay() + offset : today.getDay() + offset - 7
 
+const obtainDate = (offset) => {
+    let lastDate = new Date()
+    lastDate.setDate(lastDate.getDate() + offset)
+    const dd = String(lastDate.getDate()).padStart(2, '0')
+    const mm = String(lastDate.getMonth() + 1).padStart(2, '0')
+    const yyyy = lastDate.getFullYear()
+    lastDate = yyyy + '-' + mm + '-' + dd
+    return lastDate
+}
+
 // Endpoints
+router.post("/change-day", (req, res) => {
+    console.log(req.body)
+    const newDate = new Date(req.body.newDateVal)
+    console.log(newDate)
+    return Weekmeal.findByIdAndUpdate(req.body.mealId, {
+            mealDay: newDate
+        })
+        .then(response => console.log(response))
+        .catch(err => console.log("There was an err", err))
+
+})
 router.post("/delete/:recipeId", (req, res) => res.send("Deleting"))
 
 
