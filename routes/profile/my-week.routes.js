@@ -17,7 +17,11 @@ const getDayOffset = (dateToCompare) => {
 }
 const getMealPlanner = (weekmeals) => {
     const today = new Date()
-    return [getDayMeals(weekmeals, 0, today), getDayMeals(weekmeals, 1, today), getDayMeals(weekmeals, 2, today), getDayMeals(weekmeals, 3, today), getDayMeals(weekmeals, 4, today), getDayMeals(weekmeals, 5, today), getDayMeals(weekmeals, 6, today)]
+    const daysValues = []
+    for (let i = 0; i < 7; i++) {
+        daysValues.push(getDayMeals(weekmeals, i, today))
+    }
+    return daysValues
 }
 const getDayMeals = (weekmeals, offset, today) => {
     return {
@@ -27,6 +31,7 @@ const getDayMeals = (weekmeals, offset, today) => {
 }
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 const getWeekDayToRender = (offset, today) => today.getDay() + offset < 7 ? today.getDay() + offset : today.getDay() + offset - 7
+
 // Endpoints
 router.post("/delete/:recipeId", (req, res) => res.send("Deleting"))
 
@@ -34,24 +39,19 @@ router.post("/delete/:recipeId", (req, res) => res.send("Deleting"))
 router.get("/:userId", isLoggedIn, (req, res) => {
     Weekmeal.find()
         .populate("Weekmeal")
-        .then()
-    res.render(`profile/my-week`, {
-        user: req.user
-    })
+        .then(res.render(`profile/my-week`, {
+            user: req.user
+        }))
 })
 router.get('/', isLoggedIn, (req, res) => {
     Weekmeal.find({
             owner: req.user.id
         }).populate("originalRecipe")
         .then(weekmeals => getMealPlanner(weekmeals))
-        .then(daysInfo => {
-            console.log(daysInfo[0].cards[0])
-            res.render("profile/my-week", {
-                daysInfo
-            })
-        })
+        .then(daysInfo => res.render("profile/my-week", {
+            daysInfo
+        }))
         .catch(err => console.log("There was an error returning from DDBB", err))
-
 })
 
 module.exports = router

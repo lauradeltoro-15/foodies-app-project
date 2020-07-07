@@ -19,11 +19,11 @@ const getAllRecipeInformationByIds = (ids, req) => {
             .then(response => response)
             .catch(err => console.log("There was an error returning from DDBB", err))))
         .then(recipes => req.query.filter ? filterRecipes(recipes, req) : recipes)
+        .catch(err => console.log("There was an error returning from DDBB", err))
+
 }
 const filterRecipes = (recipes, req) => {
-
     const filters = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter]
-    console.log(filters)
     return recipes.filter(recipe => filters.every(filter => recipe[filter]))
 }
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
@@ -45,7 +45,7 @@ const createRecipefromAPI = (APIData, req) => {
     const ingredients = getAllIngredients(APIData)
     const ingredientsAmount = getAllIngredientsWithAmounts(APIData)
     const amounts = getAllIngredientsAmounts(APIData)
-        Recipe.create({
+    Recipe.create({
             amounts,
             title: APIData.title,
             originalID: APIData.id,
@@ -102,6 +102,7 @@ const takeNutrientFromAPI = (APIData, nutrient) => {
 router.get('/details/:recipeID', (req, res) => {
     recipeApi.getRecipeInformationById(req.params.recipeID)
         .then(detailedRecipe => res.render("recipes/detailed-recipe", detailedRecipe))
+        .catch(err => console.log("There was an error", err))
 })
 
 router.get('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
@@ -109,15 +110,13 @@ router.get('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
         .then(response => createRecipefromAPI(response, req))
         .catch(err => console.log("There was an error", err))
 })
+
 router.get('/search', (req, res) => {
     recipeApi.getFullList(req.query.query)
-        .then(response => response.results.map(result => result.id))
         .then(ids => renderAllRecipeInformationsByIds(ids, res, req))
         .catch(err => console.log("There was an error returning from ddbb", err))
-
 })
+
 router.get('/', (req, res) => res.render("recipes/search-recipes"))
-
-
 
 module.exports = router
