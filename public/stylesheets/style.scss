@@ -66,7 +66,7 @@ button {
 }
 
 .recipe-card {
-  min-height: 450px;
+  min-height: 550px;
   background-color: white;
   border: 1px solid $light-pink;
   margin-bottom: 50px;
@@ -173,15 +173,17 @@ footer {
 }
 
 .search-section {
-  
+
   margin-bottom: 200px;
   text-align: center;
   padding-top: 200px;
-  h1{
+
+  h1 {
     font-weight: 600;
     color: $light-pink;
     margin-bottom: 30px;
   }
+
   .navbar {
     display: flex;
     justify-content: center;
@@ -258,6 +260,7 @@ footer {
     font-weight: 600;
     color: $light-pink;
   }
+
   nav {
     background-color: $background-color !important;
     padding-top: 20px;
@@ -285,6 +288,42 @@ footer {
     margin-top: 10px
   }
 }
+
 .my-recipes-container {
   padding-top: 200px;
+}
+
+.small-card {
+  img {
+    width: 100%;
+  }
+}
+
+.my-week {
+  padding-top: 200px;
+
+  h4 {
+    color: $light-green
+  }
+
+  .meal-container {
+    min-height: 300px;
+    background-color: $background-color;
+    padding: 40px;
+    margin-bottom: 50px;
+
+    .small-card {
+      border: 1px solid $light-pink;
+      background-color: white;
+      min-height: 250px;
+      margin-bottom: 25px;
+
+      h5 {
+        text-align: center;
+        margin: 15px;
+        color: $light-pink;
+        font-size: 0.9em;
+      }
+    }
+  }
 }

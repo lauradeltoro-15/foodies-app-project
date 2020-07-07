@@ -7,7 +7,10 @@ const weekMealSchema = new Schema({
         ref: 'Recipe'
     },
     ingredients: [String],
-    mealDay: Date,
+    mealDay: {
+        type: Date,
+        required: true
+    },
     owner: {
         type: Schema.Types.ObjectId,
         ref: 'User'

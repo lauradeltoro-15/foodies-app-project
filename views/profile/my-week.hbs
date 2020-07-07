@@ -1,6 +1,19 @@
 <main>
     <section class="my-week">
-    <h1>My week</h1>
+        <div class="container">
+            <h1>My week</h1>
+            {{#each daysInfo}}
+            <h4>{{date}}</h4>
+            <article class="meal-container">
+                <div class="row">
+                    {{#each cards}}
+                    <div class="col-3">
+                        {{> smallCardRecipe this.originalRecipe}}
+                    </div>
+                    {{/each}}
+                </div>
+            </article>
+            {{/each}}
+        </div>
     </section>
-
 </main>

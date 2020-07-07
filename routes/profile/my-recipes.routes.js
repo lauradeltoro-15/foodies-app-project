@@ -7,16 +7,16 @@ const passport = require("passport")
 const Recipe = require('../../models/recipe.model')
 const User = require("../../models/user.model")
 const Weekmeal = require("../../models/week-meal.model")
-const {
-    findById
-} = require('../../models/recipe.model')
 
+//Falta añadir is current user
+//función is admin
+//Helper functions 
 const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.userID === req.user.id ? next() : res.redirect("/auth/login")
-
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
     errorMsg: "Restricted area!"
 })
-const obtainLastDate = (offset) => {
+
+const obtainDate = (offset) => {
     let lastDate = new Date()
     lastDate.setDate(lastDate.getDate() + offset)
     const dd = String(lastDate.getDate()).padStart(2, '0')
@@ -26,20 +26,26 @@ const obtainLastDate = (offset) => {
     return lastDate
 }
 
+const getArray = data => Array.isArray(data) ? data : [data]
+const isTagTrue = (req, tag) => req.body[tag] ? true : false
+const getWeekMeal = (recipe, req) => {
+    return {
+        originalRecipe: recipe.id,
+        ingredients: recipe.ingredients,
+        owner: req.user.id,
+        mealDay: new Date(req.body.mealDate)
+    }
+}
 
 // Endpoints
-router.get('/:userID/add', isCurrentUser, (req, res) => {
-    const userID = req.params.userID
-
-    res.render('recipes/add-recipe', { userID })
-})
+router.get('/:userID/add', isCurrentUser, (req, res) => res.render('recipes/add-recipe', {
+    userID: req.params.userID
+}))
 router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
-    const steps = Array.isArray(req.body.steps) ? req.body.steps : [req.body.steps]
-    const ingredients = Array.isArray(req.body.ingredients) ? req.body.ingredients : [req.body.ingredients]
-    const amounts = Array.isArray(req.body.amount) ? req.body.amount : [req.body.amount]
-    const owner = req.params.userID
+    const steps = getArray(req.body.steps)
+    const ingredients = getArray(req.body.ingredients)
+    const amounts = getArray(req.body.amount)
     const ingredientsAmount = ingredients.map((ingredient, i) => `${amounts[i]} ${ingredient}`)
-
     const {
         title,
         preparationMinutes,
@@ -55,46 +61,36 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
             veryHealthy: isTagTrue(req, 'veryHealthy'),
             cheap: isTagTrue(req, 'cheap'),
             title,
-            image: req.file.url,
+            image: req.file ? req.file.url : null,
             ingredients,
             ingredientsAmount,
             steps,
-            owner,
+            owner: req.user.id,
             preparationMinutes,
             cookingMinutes
         })
         .then(res.redirect('/profile/my-recipes/' + req.params.userID))
         .catch(err => console.log(err))
-
-    console.log("ADDING")
 })
-const isTagTrue = (req, tag) => req.body[tag] ? true : false
 
 router.get("/details/:recipeID", (req, res) => {
     Recipe
         .findById(req.params.recipeID)
-        .then(theRecipe => {
-            console.log(theRecipe)
-            res.render('partials/detailedOwnerCardRecipe', theRecipe)
-        })
+        .then(theRecipe => res.render('partials/detailedOwnerCardRecipe', theRecipe))
         .catch(err => console.log(err))
-
 })
 
 router.get("/edit/:recipeID", (req, res) => {
     Recipe
         .findById(req.params.recipeID)
-        .then(theRecipe => {
-            res.render('recipes/edit-recipe', theRecipe)
-            console.log(theRecipe)
-        })
+        .then(theRecipe => res.render('recipes/edit-recipe', theRecipe))
         .catch(err => console.log(err))
 
 })
 router.post("/edit/:recipeID", (req, res) => {
 
-    
-     console.log('este es mi req.body ', req.body)
+
+    console.log('este es mi req.body ', req.body)
 
     // const steps = Array.isArray(req.body.steps) ? req.body.steps : [req.body.steps]
     // const ingredients = Array.isArray(req.body.ingredients) ? req.body.ingredients : [req.body.ingredients]
@@ -138,17 +134,8 @@ router.post("/delete/:recipeID", (req, res) => {
 router.post("/add-to-week/:recipeID", isLoggedIn, (req, res) => {
     console.log(req.body.mealDate)
     Recipe.findById(req.params.recipeID)
-        .then(recipe => {
-            return {
-                originalRecipe: recipe.id,
-                ingredients: recipe.ingredients,
-                owner: req.user.id,
-                mealDay: new Date(req.body.mealDate)
-            }
-        }).then(meal => {
-            console.log(meal)
-            Weekmeal.create(meal)
-        })
+        .then(recipe => getWeekMeal(recipe, req))
+        .then(meal => Weekmeal.create(meal))
         .catch(err => console.log("There was an error creating a meal", err))
 
 })
@@ -161,8 +148,8 @@ router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
         .then(theRecipes => {
             res.render(`profile/my-recipes`, {
                 theRecipes,
-                today: obtainLastDate(0),
-                lastDay: obtainLastDate(6)
+                today: obtainDate(0),
+                lastDay: obtainDate(6)
             })
         })
 

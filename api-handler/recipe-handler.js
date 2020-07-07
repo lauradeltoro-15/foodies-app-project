@@ -10,17 +10,17 @@ class RecipeApiHandler {
     }
     getFullList(query) {
         return this.axiosApp.get(`/recipes/complexSearch?query=${query}`)
-            .then(response => response.data)
+            .then(response => response.data.results.map(data => data.id))
             .catch(err => {
                 throw new Error(err)
             })
     }
     getRecipeInformationById(id) {
         return this.axiosApp.get(`recipes/${id}/information?includeNutrition=true`)
-        .then(response => response.data)
-        .catch(err => {
-            throw new Error(err)
-        })
+            .then(response => response.data)
+            .catch(err => {
+                throw new Error(err)
+            })
     }
 
 }
