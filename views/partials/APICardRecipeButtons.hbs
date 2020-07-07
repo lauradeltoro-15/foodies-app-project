@@ -1,4 +1,6 @@
 <div class="card-body">
+    <form action="/recipes/add-to-favourites/{{this}}" method="post">
+        <input type="submit" value="Fav" data-recipe="{{this}}" class="favbutton btn btn-sm btn-green">
+    </form>
     <a href="/recipes/details/{{this}}" class="btn btn-sm btn-green">More</a>
-    <a href="/recipes/add-to-favourites/{{this}}" class="btn btn-sm btn-green">Fav</a>
 </div>

@@ -105,10 +105,9 @@ router.get('/details/:recipeID', (req, res) => {
         .catch(err => console.log("There was an error", err))
 })
 
-router.get('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
-    recipeApi.getRecipeInformationById(req.params.recipeID)
-        .then(response => createRecipefromAPI(response, req))
-        .catch(err => console.log("There was an error", err))
+router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
+    console.log(req.body)
+    req.body.recipeInfo
 })
 
 router.get('/search', (req, res) => {
@@ -120,3 +119,9 @@ router.get('/search', (req, res) => {
 router.get('/', (req, res) => res.render("recipes/search-recipes"))
 
 module.exports = router
+
+// router.get('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
+//     recipeApi.getRecipeInformationById(req.params.recipeID)
+//         .then(response => createRecipefromAPI(response, req))
+//         .catch(err => console.log("There was an error", err))
+// })
