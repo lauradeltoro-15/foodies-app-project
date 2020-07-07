@@ -346,8 +346,13 @@ footer {
   width: 200px; }
   .detailedImageRecipe {
     max-width: 100%;
+    border-radius: 10px;
   }
   .steps-container {
     background-color: #f8f5f2;
-    padding: 20px;
+    
+  }
+  .spaceBetween {
+   margin-top: 10px;
+    
   }
