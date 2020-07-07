@@ -1,7 +1,11 @@
-<div class="container">
+<div class="container recipe-detailed">
     <div class="row">
         <div class="col-md-6">
-            <h1 style="font-weight: 100">Edid Recipe</h1>
+            <h1 style="font-weight: 100">Edid Recipe {{title}}</h1>
+            <div>
+                <label for="title">Actual Image</label>
+                <img class="detailedImageRecipe" src="{{image}}" alt="{{image}}">
+            </div>
         </div>
         <div class="col-md-6">
             <form action="/profile/my-recipes/edit/{{id}}" method="post" enctype="multipart/form-data">
@@ -12,10 +16,7 @@
                     <label for="title">Title of the Recipe</label>
                     <input name="title" type="text" class="form-control" id="title" value="{{title}}">
                 </div>
-                <div class="col-md-3">
-                    <label for="title">Actual Image</label>
-                    <img src="{{image}}" alt="{{image}}">
-                </div>
+
                 <input type="file" name="imageFile" value="{{image}}">
                 <div class="form-group ingredients-container">
                     <a href="#" class="add-ingredient btn btn-dark">+</a>

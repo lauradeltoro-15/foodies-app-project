@@ -98,24 +98,29 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
         preparationMinutes,
         cookingMinutes
     } = req.body
-
+    let originalImg
     Recipe
-        .findByIdAndUpdate(req.params.recipeID, {
-            amounts,
-            vegetarian: isTagTrue(req, 'vegetarian'),
-            vegan: isTagTrue(req, 'vegan'),
-            glutenFree: isTagTrue(req, 'glutenFree'),
-            veryHealthy: isTagTrue(req, 'veryHealthy'),
-            cheap: isTagTrue(req, 'cheap'),
-            title,
-            image: req.file ? req.file.url : null,
-            ingredients,
-            ingredientsAmount,
-            steps,
-            preparationMinutes,
-            cookingMinutes
+        .findById(req.params.recipeID)
+        .then(theRecipe => originalImg = theRecipe.image)
+        .then(() => {
+            Recipe
+                .findByIdAndUpdate(req.params.recipeID, {
+                    amounts,
+                    vegetarian: isTagTrue(req, 'vegetarian'),
+                    vegan: isTagTrue(req, 'vegan'),
+                    glutenFree: isTagTrue(req, 'glutenFree'),
+                    veryHealthy: isTagTrue(req, 'veryHealthy'),
+                    cheap: isTagTrue(req, 'cheap'),
+                    title,
+                    image: req.file ? req.file.url : originalImg,
+                    ingredients,
+                    ingredientsAmount,
+                    steps,
+                    preparationMinutes,
+                    cookingMinutes
+                })
         })
-        .then(res.redirect('/'))
+        .then(res.redirect(`/profile/my-recipes/${req.user.id}`))
         .catch(err => console.log(err))
 
 })
