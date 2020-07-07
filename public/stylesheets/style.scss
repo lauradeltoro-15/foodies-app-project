@@ -331,3 +331,23 @@ footer {
 #ingredients {
   width: 200px;
 }
+.recipe-detailed {
+  padding: 20px;
+  background-color: #f8f5f2;
+  display: flex;
+  margin-top: 60px; }
+  .butoner {
+    justify-content: center;
+    display: flex;}
+    .butoner a {
+      margin-right: 20px;
+    }
+    #ingredients {
+  width: 200px; }
+  .detailedImageRecipe {
+    max-width: 100%;
+  }
+  .steps-container {
+    background-color: #f8f5f2;
+    padding: 20px;
+  }
