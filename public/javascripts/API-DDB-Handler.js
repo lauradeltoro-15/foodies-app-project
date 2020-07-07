@@ -26,21 +26,19 @@ class RecipeApiHandler {
     }
 
 
-    addToFavourites(recipeId) {
-        console.log("recipeID", recipeId)
-        return this.getRecipeInformationById(recipeId)
-            .then(recipeInfo => {
-                console.log(recipeInfo)
-                this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
-            })
+    addToFavourites(recipeInfo, recipeId) {
+        return this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
+            .then(response => response.data)
             .catch(err => {
+                console.log("CAAATCH")
                 throw new Error(err)
             })
     }
 
+    
     // addToFavourites(recipeId) {
     //     console.log("recipeID", recipeId)
-    //     this.getRecipeInformationById(recipeId)
+    //     return this.getRecipeInformationById(recipeId)
     //         .then(recipeInfo => {
     //             console.log(recipeInfo)
     //             this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)

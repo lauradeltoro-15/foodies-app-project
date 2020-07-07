@@ -241,4 +241,15 @@ footer {
       .shopping-list-container .shopping-list ul li {
         display: inline; }
 
+.btn-xs {
+  background-color: #c3d651;
+  border-color: #c3d651;
+  width: 40px;
+  color: white;
+  transition: all 0.5s ease; }
+
+.btn-xs.added {
+  background-color: #d6b1a1;
+  color: #942a2a; }
+
 /*# sourceMappingURL=style.css.map */
