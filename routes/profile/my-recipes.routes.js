@@ -88,7 +88,6 @@ router.get("/edit/:recipeID", (req, res) => {
 
 })
 router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (req, res) => {
-
     const steps = getArray(req.body.steps)
     const ingredients = getArray(req.body.ingredients)
     const amounts = getArray(req.body.amount)
@@ -101,9 +100,12 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
     let originalImg
     Recipe
         .findById(req.params.recipeID)
-        .then(theRecipe => originalImg = theRecipe.image)
+        .then(theRecipe => {
+            originalImg = theRecipe.image
+            return
+        })
         .then(() => {
-            Recipe
+            return Recipe
                 .findByIdAndUpdate(req.params.recipeID, {
                     amounts,
                     vegetarian: isTagTrue(req, 'vegetarian'),
@@ -120,7 +122,9 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
                     cookingMinutes
                 })
         })
-        .then(res.redirect(`/profile/my-recipes/${req.user.id}`))
+        .then(() => {
+            res.redirect(`/profile/my-recipes/${req.user.id}`)
+        })
         .catch(err => console.log(err))
 
 })
