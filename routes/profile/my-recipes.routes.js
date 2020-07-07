@@ -64,11 +64,11 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
             veryHealthy: isTagTrue(req, 'veryHealthy'),
             cheap: isTagTrue(req, 'cheap'),
             title,
-            image: req.file.url,
+            image: req.file ? req.file.url : null,
             ingredients,
             ingredientsAmount,
             steps,
-            owner,
+            owner: req.user.id,
             preparationMinutes,
             cookingMinutes
         })

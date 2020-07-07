@@ -44,7 +44,7 @@ button {
     width: 100%; }
 
 .recipe-card {
-  min-height: 450px;
+  min-height: 550px;
   background-color: white;
   border: 1px solid #d6b1a1;
   margin-bottom: 50px; }
