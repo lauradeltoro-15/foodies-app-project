@@ -7,9 +7,6 @@ const passport = require("passport")
 const Recipe = require('../../models/recipe.model')
 const User = require("../../models/user.model")
 const Weekmeal = require("../../models/week-meal.model")
-const {
-    findById
-} = require('../../models/recipe.model') //no entiendo esto
 
 //Falta añadir is current user
 //función is admin

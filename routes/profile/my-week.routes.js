@@ -47,7 +47,8 @@ router.get('/', isLoggedIn, (req, res) => {
     Weekmeal.find({
             owner: req.user.id
         }).populate("originalRecipe")
-        .then(weekmeals => getMealPlanner(weekmeals))
+        .then(weekmeals => weekmeals.filter(meal => meal.originalRecipe))
+        .then(filteredWeekmeals => getMealPlanner(filteredWeekmeals))
         .then(daysInfo => res.render("profile/my-week", {
             daysInfo
         }))
