@@ -26,13 +26,12 @@ const filterRecipes = (recipes, req) => {
     const filters = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter]
     return recipes.filter(recipe => filters.every(filter => recipe[filter]))
 }
-const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
-    errorMsg: "You have to log in to add to favourites!"
-})
+const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.redirect("/auth/login")
 const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.id === req.user.id ? next() : res.render("auth/login", {
     errorMsg: "You are not allowed to edit!"
 })
-const createRecipefromAPI = (APIData, req) => {
+const createRecipeFromAPI = (APIData, req) => {
+    console.log("YEY")
     const {
         vegetarian,
         vegan,
@@ -105,10 +104,9 @@ router.get('/details/:recipeID', (req, res) => {
         .catch(err => console.log("There was an error", err))
 })
 
-router.get('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
-    recipeApi.getRecipeInformationById(req.params.recipeID)
-        .then(response => createRecipefromAPI(response, req))
-        .catch(err => console.log("There was an error", err))
+router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
+    console.log(req.body)
+    createRecipeFromAPI(req.body, req)
 })
 
 router.get('/search', (req, res) => {
@@ -120,3 +118,9 @@ router.get('/search', (req, res) => {
 router.get('/', (req, res) => res.render("recipes/search-recipes"))
 
 module.exports = router
+
+// router.get('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
+//     recipeApi.getRecipeInformationById(req.params.recipeID)
+//         .then(response => createRecipefromAPI(response, req))
+//         .catch(err => console.log("There was an error", err))
+// })

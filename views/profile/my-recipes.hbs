@@ -3,15 +3,21 @@
         <div class="row justify-content-center">
 
             {{#each theRecipes}}
-            <div class="col-4">
-                <article class="recipe-card">
+            <div class="col-4" data-recipe="{{id}}">
+                <article class=" recipe-card">
                     <div class="card">
                         {{>cardRecipeInfo this}}
-                        <div class="card-body">
+                        <div class="card-body" data-recipe="{{id}}">
+                            <form action="/profile/my-recipes/delete/{{id}}" method="post">
+                                <button type="submit" data-recipe="{{id}}"
+                                    class="btn btn-sm btn-green remove-recipe-btn">Remove</button>
+                            </form>
                             <a href="/profile/my-recipes/details/{{id}}" class="btn btn-sm btn-green">More details</a>
                             <form action="/profile/my-recipes/add-to-week/{{id}}" method="POST">
-                                <input type="date" name="mealDate" max="{{../lastDay}}" min="{{../today}}">
-                                <input type="submit" value="Add to week" class="btn btn-sm btn-green">
+                                <input type="date" name="mealDate" max="{{../lastDay}}" min="{{../today}}"
+                                    data-recipe="{{id}}" class="weekdate">
+                                <input type="submit" value="Add to week" data-recipe="{{id}}"
+                                    class="btn btn-sm btn-green add-to-week-btn">
                             </form>
                         </div>
                     </div>
@@ -22,3 +28,7 @@
 
     </div>
 </main>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../../javascripts/API-DDB-Handler.js"></script>
+<script src="../../javascripts/my-recipes.js"></script>

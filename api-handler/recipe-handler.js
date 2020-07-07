@@ -4,7 +4,7 @@ class RecipeApiHandler {
         this.axiosApp = axios.create({
             baseURL: baseUrl,
             headers: {
-                "x-rapidapi-key": process.env.APIKEY
+                "x-rapidapi-key": "9bb56c9bc8msh80f4ea557c0f1a9p1a2052jsna9286dfaab2b"
             }
         })
     }

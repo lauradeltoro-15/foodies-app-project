@@ -252,5 +252,39 @@ footer {
 
 .spaceBetween {
   margin-top: 10px; }
+.shopping-list-container {
+  padding-top: 150px;
+  padding: 100px;
+  background-image: url("../images/background/invert-geometric-leaves-color.png");
+  background-repeat: repeat; }
+  .shopping-list-container .shopping-list {
+    margin: 100px 0;
+    background-color: white;
+    border: 2px solid #d6b1a1; }
+    .shopping-list-container .shopping-list ul {
+      line-height: 2.5em; }
+      .shopping-list-container .shopping-list ul li {
+        display: inline; }
+
+.btn-xs {
+  background-color: #c3d651;
+  border-color: #c3d651;
+  width: 40px;
+  color: white;
+  transition: all 0.5s ease; }
+
+.btn-xs.added {
+  background-color: #d6b1a1;
+  color: #942a2a;
+  border-color: #d6b1a1; }
+
+.added {
+  background-color: #d6b1a1;
+  color: #942a2a;
+  border-color: #d6b1a1; }
+
+.dragabbles-container {
+  min-width: 100%;
+  min-height: 250px; }
 
 /*# sourceMappingURL=style.css.map */
