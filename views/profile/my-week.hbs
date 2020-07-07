@@ -5,9 +5,9 @@
             {{#each daysInfo}}
             <h4>{{date}}</h4>
             <article class="meal-container">
-                <div class="row">
+                <div class="row dragabbles-container">
                     {{#each cards}}
-                    <div class="col-3">
+                    <div class="col-3 draggable-item" draggable="true">
                         {{> smallCardRecipe this.originalRecipe}}
                     </div>
                     {{/each}}
@@ -17,3 +17,6 @@
         </div>
     </section>
 </main>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../../javascripts/API-DDB-Handler.js"></script>
+<script src="../../javascripts/week-meal.js"></script>

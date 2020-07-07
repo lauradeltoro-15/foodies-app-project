@@ -258,4 +258,8 @@ footer {
   color: #942a2a;
   border-color: #d6b1a1; }
 
+.dragabbles-container {
+  min-width: 100%;
+  min-height: 250px; }
+
 /*# sourceMappingURL=style.css.map */
