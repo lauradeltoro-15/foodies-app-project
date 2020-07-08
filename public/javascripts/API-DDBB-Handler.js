@@ -7,7 +7,7 @@ class RecipeApiHandler {
             }
         })
         this.axiosServer = axios.create({
-            baseURL: "http://localhost:5010/"
+            baseURL: "http://localhost:6000/"
         })
     }
     getFullList(query) {

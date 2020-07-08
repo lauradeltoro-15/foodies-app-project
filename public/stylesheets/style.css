@@ -416,4 +416,13 @@ footer {
 .label-ing {
   padding: 5px 0 0 10px; }
 
+.profile-container {
+  padding: 150px 0 100px;
+  min-height: 91vh; }
+  .profile-container h1 {
+    font-weight: 600;
+    color: #d6b1a1;
+    margin-bottom: 30px;
+    text-align: center; }
+
 /*# sourceMappingURL=style.css.map */

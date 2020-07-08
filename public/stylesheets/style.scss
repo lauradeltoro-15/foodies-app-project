@@ -609,3 +609,14 @@ footer {
 .label-ing {
   padding: 5px 0 0 10px;
 }
+
+.profile-container {
+  padding: 150px 0 100px;
+  min-height: $hight-without-footer;
+  h1 {
+    font-weight: 600;
+    color: $light-pink;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
