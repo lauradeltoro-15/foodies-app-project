@@ -7,14 +7,14 @@ const User = require("../../models/user.model")
 const Recipe = require('../../models/recipe.model')
 
 //Helpers
-const renderAllRecipeInformationsByIds = (ids, res, req) => {
-    getAllRecipeInformationByIds(ids, req)
+const renderAllRecipeInformationsByIds = (ids, res, req, next) => {
+    getAllRecipeInformationByIds(ids, req, next)
         .then(response => res.render("recipes/search-recipes", {
             results: response
         }))
         .catch(err => next(new Error(err)))
 }
-const getAllRecipeInformationByIds = (ids, req) => {
+const getAllRecipeInformationByIds = (ids, req, next) => {
     return Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)
             .then(response => response)
             .catch(err => console.log("There was an error returning from DDBB", err))))
@@ -30,7 +30,7 @@ const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.redi
 const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.id === req.user.id ? next() : res.render("auth/login", {
     errorMsg: "You are not allowed to edit!"
 })
-const createRecipeFromAPI = (APIData, req) => {
+const createRecipeFromAPI = (APIData, req, next) => {
     const {
         vegetarian,
         vegan,
@@ -87,17 +87,17 @@ const getAllNutrients = APIData => {
 const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.find(elm => elm.title === nutrient).amount
 
 //Routes
-router.get('/details/:recipeID', (req, res) => {
+router.get('/details/:recipeID', (req, res, next) => {
     recipeApi.getRecipeInformationById(req.params.recipeID)
         .then(detailedRecipe => res.render("recipes/detailed-recipe", detailedRecipe))
         .catch(err => next(new Error(err)))
 })
 
-router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => createRecipeFromAPI(req.body, req))
+router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => createRecipeFromAPI(req.body, req, ))
 
-router.get('/search', (req, res) => {
+router.get('/search', (req, res, next) => {
     recipeApi.getFullList(req.query.query)
-        .then(ids => renderAllRecipeInformationsByIds(ids, res, req))
+        .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next))
         .catch(err => next(new Error(err)))
 })
 

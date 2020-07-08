@@ -25,7 +25,17 @@ const userSchema = new Schema({
             ref: 'Recipes'
         }]
     },
-    image : {
+    interests: {
+        cuisines: {
+            type: [String],
+            enum: ["Indian", "Asian", "Korean", "Italian", "Mediterranean", "European", "French", "Mexican", "Spanish"]
+        },
+        diets: {
+            type: [String],
+            enum: ["gluten free", "dairy free", "fodmap friendly", "pescatarian", "paleolithic", "lacto ovo vegetarian", "vegan", "primal"]
+        }
+    },
+    image: {
         type: String,
         default: "https://res.cloudinary.com/dmqtwgygi/image/upload/v1593936787/recipes/avocado.png.png"
     },

@@ -22,7 +22,7 @@ const filterIngredientsByRecipeDay = weekmeals => {
 }
 
 //Routes
-router.post("/delete", (req, res) => {
+router.post("/delete", (req, res, next) => {
     return Weekmeal.find({
             ingredients: {
                 $in: [`${req.body.ingredient}`]
@@ -42,7 +42,7 @@ router.post("/delete", (req, res) => {
         .then(ingredientsListsFiltered => console.log("ingredients", ingredientsListsFiltered))
         .catch(err => next(new Error(err)))
 })
-router.get("/:userId", isLoggedIn, (req, res) => {
+router.get("/:userId", isLoggedIn, (req, res, next) => {
     Weekmeal.find({}, {
             mealDay: 1,
             ingredients: 1

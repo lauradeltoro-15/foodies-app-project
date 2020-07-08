@@ -3,14 +3,41 @@
         <h1>{{user.username}}'s Profile</h1>
         <img src="{{user.image}}" alt="profile image">
         <h3>About me</h3>
-        {{#if {{user.description}}}}
-            <p>{{user.description}}</p>
+        <hr>
+        {{#if user.description}}
+        <p>{{user.description}}</p>
         {{else}}
-            <p>Why don't you write about yourself?...It would be nice knowing something about you!</p>
+        <p>Why don't you write about yourself?... It would be nice knowing something about you!</p>
         {{/if}}
-    
-        <h3>Interests</h3>
-        <p>{{user.interests}}</p>
 
+        <h3>Favourite cuisines</h3>
+        <hr>
+        {{#if user.interests.cuisines}}
+        <ul>
+            {{#each user.interests.cuisines}}
+            {{#if this}}
+            <li>{{this}}</li>
+            {{/if}}
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>Select your interests! It will help us to give you some recomentations!</p>
+        {{/if}}
+
+        <h3>Diets</h3>
+        <hr>
+        {{#if user.interests.diets}}
+        <ul>
+            {{#each user.interests.diets}}
+            {{#if this}}
+            <li>{{this}}</li>
+            {{/if}}
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>It is important for us to give you that our recommendations fit with your diet! </p>
+        {{/if}}
+        <hr>
+        <a href="/profile/edit/{{user.id}}" class="btn btn-sm btn-green">Edit profile</a>
     </div>
 </main>

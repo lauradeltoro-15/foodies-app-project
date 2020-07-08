@@ -1,0 +1,76 @@
+<main class="recipe-form-container">
+    <div class="container">
+        <div class="row">
+            <div class="recipe-detailed-form">
+                <div class="col-md-6">
+                    <h1 style="font-weight: 100">Edit profile: {{username}}</h1>
+                    <div>
+                        <label for="title">Actual Image</label>
+                        <img class="detailedImageRecipe" src="{{image}}" alt="{{image}}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form action="/profile/edit/{{id}}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">About me</label>
+                            <input name="title" type="text" class="form-control" id="title" value="{{description}}"
+                                placeholder=" Tell us about yourself">
+                            <hr>
+                        </div>
+                        <div class="container">
+                            <span>Choose a new image</span>
+                            <input class="spaceBetween" type="file" name="imageFile" value="{{image}}">
+                        </div>
+                        <hr>
+                        <h5>What cuisines do you like the most ? </h5>
+                        <fieldset>
+                            <label for="indian">Indian</label>
+                            <input type="checkbox" name="cuisines" id="indian" value="Indian">
+                            <label for="asian">Asian</label>
+                            <input type="checkbox" name="cuisines" id="asian" value="Asian">
+                            <label for="korean">Korean</label>
+                            <input type="checkbox" name="cuisines" id="korean" value="Korean">
+                            <label for="italian">Italian</label>
+                            <input type="checkbox" name="cuisines" id="italian" value="Italian">
+                            <label for="mediterranean">Mediterranean</label>
+                            <input type="checkbox" name="cuisines" id="mediterranean" value="Mediterranean">
+                            <label for="european">European</label>
+                            <input type="checkbox" name="cuisines" id="european" , value="European">
+                            <label for="french">french</label>
+                            <input type="checkbox" name="cuisines" id="french" value="French">
+                            <label for="mexican">Mexican</label>
+                            <input type="checkbox" name="cuisines" id="indian" value="Mexican">
+                            <label for="spanish">Spanish</label>
+                            <input type="checkbox" name="cuisines" id="spanish" value="Spanish">
+                        </fieldset>
+                        <hr>
+                        <h5>Do you have any special diet?</h5>
+                        <p>Note! This will be restrictive for our recommendations, be sure of what you check</p>
+                        <fieldset>
+                            <label for="gluten free">Gluten free</label>
+                            <input type="checkbox" name="diets" id="gluten free" value="gluten free">
+                            <label for="dairy free">Dairy free</label>
+                            <input type="checkbox" name="diets" id="dairy free" value="dairy free">
+                            <label for="fodmap friendly">Fodmap friendly</label>
+                            <input type="checkbox" name="diets" id="fodmap friendly" value="fodmap friendly">
+                            <label for="pescatarian">Pescatarian</label>
+                            <input type="checkbox" name="diets" id="gluten free" value="pescatarian">
+                            <label for="paleolithic">Paleo</label>
+                            <input type="checkbox" name="diets" id="paleolithic" value="paleolithic">
+                            <label for="lacto ovo vegetarian">Lacto ovo vegetarian</label>
+                            <input type="checkbox" name="diets" id="lacto ovo vegetarian" value="lacto ovo vegetarian">
+                            <label for="vegan">Vegan</label>
+                            <input type="checkbox" name="diets" id="vegan" value="vegan">
+                            <label for="primal">Primal</label>
+                            <input type="checkbox" name="diets" id="primal" value="primal">
+                        </fieldset>
+                        <a href="/profile/{{id}}" class="btn btn-md btn-green">Go back</a>
+                        <button type="submit" class="btn btn-md btn-green">Finish</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</main>

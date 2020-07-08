@@ -40,7 +40,7 @@ const obtainDate = (offset) => {
 }
 
 // Endpoints
-router.post("/change-day", (req, res) => {
+router.post("/change-day", (req, res, next) => {
     console.log(req.body.newDateVal)
     const newDate = new Date(req.body.newDateVal)
     console.log("new date", newDate)
@@ -53,14 +53,14 @@ router.post("/change-day", (req, res) => {
         .catch(err => next(new Error(err)))
 })
 
-router.post("/delete", (req, res) => {
+router.post("/delete", (req, res, next) => {
     console.log(req.body.mealId)
     Weekmeal.findByIdAndRemove(req.body.mealId)
         .then(removeInfo => console.log("Info removed", removeInfo))
         .catch(err => next(new Error(err)))
 })
 
-router.get("/:userId", isLoggedIn, (req, res) => {
+router.get("/:userId", isLoggedIn, (req, res, next) => {
     Weekmeal.find()
         .populate("Weekmeal")
         .then(() => res.render(`profile/my-week`, {
@@ -69,7 +69,7 @@ router.get("/:userId", isLoggedIn, (req, res) => {
         .catch(err => next(new Error(err)))
 })
 
-router.get('/', isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, (req, res, next) => {
     Weekmeal.find({
             owner: req.user.id
         }).populate("originalRecipe")

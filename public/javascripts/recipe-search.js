@@ -12,6 +12,7 @@ window.addEventListener('load', () => {
                 RecipeAPIHandler.addToFavourites(recipeInfo, recipeId)
                 button.classList.add("added")
             })
-            .catch(err => next(new Error(err)))
+            .catch(err => {
+                throw new Error(err)})
     }))
 })

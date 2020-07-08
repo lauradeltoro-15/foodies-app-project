@@ -40,7 +40,7 @@ router.get('/:userID/add', isLoggedIn, (req, res) => res.render('recipes/add-rec
     userID: req.params.userID
 }))
 
-router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
+router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res, next) => {
     const steps = getArray(req.body.steps)
     const ingredients = getArray(req.body.ingredients)
     const amounts = getArray(req.body.amount)
@@ -71,21 +71,21 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
         .catch(err => next(new Error(err)))
 })
 
-router.get("/details/:recipeID", (req, res) => {
+router.get("/details/:recipeID", (req, res, next) => {
     Recipe
         .findById(req.params.recipeID)
         .then(theRecipe => res.render('partials/detailedOwnerCardRecipe', theRecipe))
         .catch(err => next(new Error(err)))
 })
 
-router.get("/edit/:recipeID", (req, res) => {
+router.get("/edit/:recipeID", (req, res, next) => {
     Recipe
         .findById(req.params.recipeID)
         .then(theRecipe => res.render('recipes/edit-recipe', theRecipe))
         .catch(err => next(new Error(err)))
 
 })
-router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (req, res) => {
+router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (req, res, next) => {
     const steps = getArray(req.body.steps)
     const ingredients = getArray(req.body.ingredients)
     const amounts = getArray(req.body.amount)
@@ -126,7 +126,7 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
         .catch(err => next(new Error(err)))
 
 })
-router.post("/delete/:recipeID", (req, res) => {
+router.post("/delete/:recipeID", (req, res, next) => {
     console.log(req.params.recipeID)
     Recipe
         .findByIdAndRemove(req.params.recipeID)
@@ -134,14 +134,14 @@ router.post("/delete/:recipeID", (req, res) => {
         .catch(err => next(new Error(err)))
 })
 
-router.post("/add-to-week/:recipeID", isLoggedIn, (req, res) => {
+router.post("/add-to-week/:recipeID", isLoggedIn, (req, res, next) => {
     return Recipe.findById(req.params.recipeID)
         .then(recipe => getWeekMeal(recipe, req))
         .then(meal => Weekmeal.create(meal))
         .catch(err => next(new Error(err)))
 })
 
-router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
+router.get("/:userID", isLoggedIn, isCurrentUser, (req, res, next) => {
     Recipe
         .find({
             owner: req.params.userID
