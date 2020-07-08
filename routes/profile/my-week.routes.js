@@ -24,7 +24,6 @@ const getMealPlanner = (weekmeals) => {
     return daysValues
 }
 const getDayMeals = (weekmeals, offset, today) => {
-    console.log(weekmeals)
     return {
         cards: weekmeals.filter(meal => getDayOffset(meal.mealDay) === offset),
         date: `${weekDays[getWeekDayToRender(offset, today)]} ${today.getDate() + offset}`,

@@ -105,7 +105,7 @@ router.get('/details/:recipeID', (req, res) => {
 })
 
 router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
-    console.log(req.body)
+    console.log("entra")
     createRecipeFromAPI(req.body, req)
 })
 

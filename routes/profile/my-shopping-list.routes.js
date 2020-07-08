@@ -19,11 +19,32 @@ const filterIngredientsByRecipeDay = weekmeals => {
 }
 const filterUniqueIngredients = (ingredients) => ingredients.filter((ingredient, i) => ingredients.indexOf(ingredient) === i && ingredient !== null)
 
-router.get("/add", (req, res) => res.send("Here I add to the shopping list"))
-router.post("/add", (req, res) => res.send("Here I finish to add to the shopping list"))
-router.post("/delete", (req, res) => res.send("Here deleting"))
-router.get("/edit", (req, res) => res.send("Here I edit to the shopping list"))
-router.post("/edit", (req, res) => res.send("Here I finish to edit to the shopping list"))
+
+router.post("/delete", (req, res) => {
+    console.log(req.body.ingredient)
+
+    return Weekmeal.find({
+            ingredients: {
+                $in: [`${req.body.ingredient}`]
+            }
+        }, {})
+        .then(weekmealsToModify => {
+            return weekmealsToModify.forEach(meal => {
+                console.log(meal.id)
+                const newLocal = getUpdatedIngredientList(meal, req.body.ingredient)
+                console.log(newLocal)
+                Weekmeal.findByIdAndUpdate(meal.id, {
+                        ingredients: newLocal
+                    }, {new: true})
+                    .then(objUpdated => console.log("NEW OBJECT", objUpdated))
+                    .catch(err => console.log("There was an error".err))
+            })
+        })
+        .then(ingredientsListsFiltered => console.log("ingredients", ingredientsListsFiltered))
+        .catch(err => console.log("There was an error", err))
+})
+
+
 
 router.get("/:userId", isLoggedIn, (req, res) => {
     Weekmeal.find({}, {
@@ -40,4 +61,13 @@ router.get('/', isLoggedIn, (req, res) => {
     res.redirect(`/profile/my-shopping-list/${req.user.id}`)
 })
 
+
+
 module.exports = router
+
+function getUpdatedIngredientList(meal, ingredientToRemove) {
+    return meal.ingredients.filter(ingredient => {
+        console.log("This is ingredient", ingredient, "this is req.body.ingredient", ingredientToRemove)
+        return ingredient !== ingredientToRemove
+    })
+}
