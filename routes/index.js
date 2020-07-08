@@ -5,7 +5,5 @@ module.exports = app => {
     app.use('/', require('./base/index.js'))
     app.use('/profile', require('./profile'))
     app.use('/auth', require('./auth'))
-    
-
 
 }

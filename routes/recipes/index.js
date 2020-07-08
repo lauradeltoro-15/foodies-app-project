@@ -64,23 +64,15 @@ const createRecipeFromAPI = (APIData, req) => {
         .then(recipe => console.log("Recipe created", recipe))
         .catch(err => console.log("There was an error creating the recipe", err))
 }
-const getAllIngredientsAmounts = APIData => {
-    return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) :
-        APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
-}
-const getAllIngredients = APIData => {
-    return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.name) :
-        APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
-}
-const getAllIngredientsWithAmounts = APIData => {
-    return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.originalString) :
-        APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
-}
-const getAllSteps = APIData => {
-    return APIData.analyzedInstructions[0] ? APIData.analyzedInstructions[0].steps.map(ob => ob.step) :
-        APIData.instructions ? APIData.instructions.split(".") :
-        null
-}
+
+const getAllIngredientsAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) : APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
+
+const getAllIngredients = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.name) :
+    APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
+
+const getAllIngredientsWithAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.originalString) : APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
+
+const getAllSteps = APIData => APIData.analyzedInstructions[0] ? APIData.analyzedInstructions[0].steps.map(ob => ob.step) : APIData.instructions ? APIData.instructions.split(".") : null
 
 const getAllNutrients = APIData => {
     return {
@@ -92,9 +84,7 @@ const getAllNutrients = APIData => {
         fiber: takeNutrientFromAPI(APIData, "Fiber")
     }
 }
-const takeNutrientFromAPI = (APIData, nutrient) => {
-    return APIData.nutrition.nutrients.find(elm => elm.title === nutrient).amount
-}
+const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.find(elm => elm.title === nutrient).amount
 
 //Routes
 router.get('/details/:recipeID', (req, res) => {
