@@ -23,7 +23,7 @@ class RecipeApiHandler {
             })
     }
     getRecommendations(tags) {
-        return this.axiosApp.get(`/recipes/random?tags=`)
+        return this.axiosApp.get(`/recipes/random?tags=${tags}`)
             .then(response => response.data)
             .catch(err => {
                 throw new Error(err)
