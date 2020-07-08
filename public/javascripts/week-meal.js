@@ -8,7 +8,6 @@ window.addEventListener('load', () => {
     deleteButtons.forEach(button => {
         button.addEventListener("click", e => {
             e.preventDefault()
-            //console.log(idValue, "this is idValue")
             const idContainer = button.closest("[data-meal]")
             const idValue = idContainer.getAttribute("data-meal")
             RecipeAPIHandler.deleteMealFromWeek(idValue)

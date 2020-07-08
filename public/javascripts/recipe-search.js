@@ -1,3 +1,4 @@
+//Selectors
 const favButtons = document.querySelectorAll(".favbutton")
 
 window.addEventListener('load', () => {
@@ -11,5 +12,5 @@ window.addEventListener('load', () => {
             })
             .catch(err => console.log("There was an error accessing the API", err))
     }))
-
+    
 })

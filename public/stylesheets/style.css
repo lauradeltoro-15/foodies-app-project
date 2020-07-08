@@ -44,12 +44,13 @@ button {
     width: 100%; }
 
 .recipe-card {
-  min-height: 550px;
-  background-color: white;
-  border: 1px solid #d6b1a1;
-  margin-bottom: 50px; }
+  min-height: 550px; }
   .recipe-card .card {
-    border: none; }
+    border: none;
+    min-height: 100%;
+    background-color: white;
+    border: 1px solid #d6b1a1;
+    margin-bottom: 50px; }
   .recipe-card ul {
     display: flex;
     padding: 0; }
@@ -74,7 +75,8 @@ button {
   background-color: #c3d651;
   border-color: #c3d651;
   width: 40%;
-  max-width: 300px; }
+  max-width: 300px;
+  color: white; }
 
 .absolutenav {
   position: absolute;
@@ -287,5 +289,20 @@ footer {
 .dragabbles-container {
   min-width: 100%;
   min-height: 250px; }
+
+.btn-container-in-card {
+  display: flex;
+  flex-direction: row-reverse; }
+  .btn-container-in-card form {
+    width: 40px;
+    margin: 0 15px; }
+
+.buttons-container-recipes {
+  display: flex;
+  flex-direction: row-reverse; }
+  .buttons-container-recipes .btn-green {
+    margin: 0 10px; }
+  .buttons-container-recipes form {
+    display: flex; }
 
 /*# sourceMappingURL=style.css.map */

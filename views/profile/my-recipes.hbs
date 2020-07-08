@@ -7,18 +7,21 @@
                 <article class=" recipe-card">
                     <div class="card">
                         {{>cardRecipeInfo this}}
-                        <div class="card-body" data-recipe="{{id}}">
-                            <form action="/profile/my-recipes/delete/{{id}}" method="post">
-                                <button type="submit" data-recipe="{{id}}"
-                                    class="btn btn-sm btn-green remove-recipe-btn">Remove</button>
-                            </form>
-                            <a href="/profile/my-recipes/details/{{id}}" class="btn btn-sm btn-green">More details</a>
-                            <form action="/profile/my-recipes/add-to-week/{{id}}" method="POST">
-                                <input type="date" name="mealDate" max="{{../lastDay}}" min="{{../today}}"
-                                    data-recipe="{{id}}" class="weekdate">
-                                <input type="submit" value="Add to week" data-recipe="{{id}}"
-                                    class="btn btn-sm btn-green add-to-week-btn">
-                            </form>
+                        <div class="card-body card-body-my-recipes" data-recipe="{{id}}">
+                            <div class="buttons-container-recipes">
+                                <input type="button" data-recipe="{{id}}" class="btn btn-xs btn-green remove-recipe-btn"
+                                    value="&#10006;">
+                                <a href="/profile/my-recipes/details/{{id}}" class="btn btn-xs btn-green">&#10010;</a>
+                            </div>
+                            <hr>
+                            <div class="buttons-container-recipes">
+                                <form action="/profile/my-recipes/add-to-week/{{id}}" method="POST">
+                                    <input type="date" name="mealDate" max="{{../lastDay}}" min="{{../today}}"
+                                        data-recipe="{{id}}" class="weekdate">
+                                    <input type="submit" value="Add to week" data-recipe="{{id}}"
+                                        class="btn btn-sm btn-green add-to-week-btn">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </article>
