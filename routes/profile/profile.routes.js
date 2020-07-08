@@ -7,16 +7,12 @@ const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.rend
     errorMsg: "Restricted area!"
 })
 
-router.get("/:userID",isLoggedIn, (req, res) => {
+router.get("/:userID", isLoggedIn, (req, res) => {
     console.log(req.user)
     res.render(`profile/my-profile`, {
         user: req.user
     })
 })
-
-router.get("/", isLoggedIn, (req, res) => {
-    res.redirect(`/profile/${req.user.id}`)
-})
-
+router.get("/", isLoggedIn, (req, res) => res.redirect(`/profile/${req.user.id}`))
 
 module.exports = router

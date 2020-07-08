@@ -7,7 +7,6 @@ const User = require("../../models/user.model")
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
-
 // User signup
 router.get("/signup", (req, res) => res.render("auth/signup"))
 router.post("/signup", (req, res, next) => {

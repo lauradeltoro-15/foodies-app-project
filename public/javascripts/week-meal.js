@@ -1,9 +1,11 @@
+//Selectors
 const dragContainers = document.querySelectorAll(".dragabbles-container")
 const draggableCards = document.querySelectorAll(".draggable-item")
 const deleteButtons = document.querySelectorAll(".delete-meal")
-console.log()
+
 let draggedItem = null
 
+//Event listeners
 window.addEventListener('load', () => {
     deleteButtons.forEach(button => {
         button.addEventListener("click", e => {
@@ -16,7 +18,6 @@ window.addEventListener('load', () => {
     })
     draggableCards.forEach(card => {
         card.addEventListener("dragstart", () => {
-            console.log("drag started")
             draggedItem = card
             setTimeout(() => card.style.display = "none", 0)
         })

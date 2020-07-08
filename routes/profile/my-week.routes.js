@@ -2,14 +2,12 @@ const express = require('express')
 const router = express.Router()
 const passport = require("passport")
 
-const Recipe = require('../../models/recipe.model')
-const User = require("../../models/user.model")
 const Weekmeal = require("../../models/week-meal.model")
 
+//Helper functions
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
     errorMsg: "Restricted area!"
 })
-
 const getDayOffset = (dateToCompare) => {
     const today = new Date()
     return dateToCompare.getDate() - today.getDate()
@@ -32,7 +30,6 @@ const getDayMeals = (weekmeals, offset, today) => {
 }
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 const getWeekDayToRender = (offset, today) => today.getDay() + offset < 7 ? today.getDay() + offset : today.getDay() + offset - 7
-
 const obtainDate = (offset) => {
     let lastDate = new Date()
     lastDate.setDate(lastDate.getDate() + offset)
@@ -46,19 +43,17 @@ const obtainDate = (offset) => {
 // Endpoints
 router.post("/change-day", (req, res) => {
     console.log(req.body.newDateVal)
-
     const newDate = new Date(req.body.newDateVal)
     console.log("new date", newDate)
-    Weekmeal.findByIdAndUpdate(req.body.mealId, {
+    return Weekmeal.findByIdAndUpdate(req.body.mealId, {
             mealDay: newDate
         }, {
             new: true
         })
-        .then(response => console.log(response))
+        .then(response => response)
         .catch(err => console.log("There was an err", err))
-
-
 })
+
 router.post("/delete", (req, res) => {
     console.log(req.body.mealId)
     Weekmeal.findByIdAndRemove(req.body.mealId)
@@ -66,23 +61,20 @@ router.post("/delete", (req, res) => {
         .catch(err => console.log("There was an error deleting the item", err))
 })
 
-
 router.get("/:userId", isLoggedIn, (req, res) => {
     Weekmeal.find()
         .populate("Weekmeal")
-        .then(res.render(`profile/my-week`, {
+        .then(() => res.render(`profile/my-week`, {
             user: req.user
         }))
+        .catch(err => console.log("There was an error deleting the item", err))
 })
+
 router.get('/', isLoggedIn, (req, res) => {
     Weekmeal.find({
             owner: req.user.id
         }).populate("originalRecipe")
-        .then(weekmeals => {
-            return weekmeals.filter(meal => meal.originalRecipe
-
-            )
-        })
+        .then(weekmeals => weekmeals.filter(meal => meal.originalRecipe))
         .then(filteredWeekmeals => getMealPlanner(filteredWeekmeals))
         .then(daysInfo => res.render("profile/my-week", {
             daysInfo
