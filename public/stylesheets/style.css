@@ -47,7 +47,7 @@ button {
   display: flex; }
 
 .recipe-card {
-  min-height: 550px;
+  min-height: 600px;
   margin-bottom: 40px; }
   .recipe-card .card {
     border: none;
@@ -167,7 +167,7 @@ footer {
 
 .results-section {
   padding: 100px;
-  background-image: url("../images/background/invert-geometric-leaves-color.png");
+  background-color: #f8f5f2;
   background-repeat: repeat; }
 
 .recipe-details img {
@@ -240,6 +240,8 @@ footer {
 
 .recipe-details {
   padding: 150px 0 100px 0; }
+  .recipe-details .tags-cont {
+    margin-top: 20px; }
   .recipe-details .btn-sm {
     width: 15%;
     margin-bottom: 40px; }
@@ -399,5 +401,22 @@ footer {
       color: #d6b1a1;
       background-color: white;
       border-color: white; }
+
+.recipe-form-container {
+  padding: 150px 0 100px;
+  min-height: 91vh; }
+  .recipe-form-container .recipe-detailed-form {
+    padding: 20px;
+    background-color: #f8f5f2;
+    display: flex;
+    margin-top: 60px; }
+  .recipe-form-container .btn-sm {
+    max-width: 120px; }
+
+.separated-input {
+  margin-bottom: 10px; }
+
+.label-ing {
+  padding: 5px  0 0 10px; }
 
 /*# sourceMappingURL=style.css.map */

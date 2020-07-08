@@ -70,7 +70,7 @@ button {
 }
 
 .recipe-card {
-  min-height: 550px;
+  min-height: 600px;
   margin-bottom: 40px;
 
   .card {
@@ -246,7 +246,7 @@ footer {
 
 .results-section {
   padding: 100px;
-  background-image: url('../images/background/invert-geometric-leaves-color.png');
+  background-color: $background-color;
   background-repeat: repeat;
 }
 
@@ -346,55 +346,69 @@ footer {
 #ingredients {
   width: 200px;
 }
+
 .recipe-details {
   padding: 150px 0 100px 0;
+
+  .tags-cont {
+    margin-top: 20px;
+  }
+
   .btn-sm {
     width: 15%;
     margin-bottom: 40px;
   }
+
   h4 {
     margin-bottom: 20px;
   }
+
   .col-with-padding {
     padding: 0 70px;
   }
+
   .last-row {
     padding: 0 50px 50px 50px;
   }
+
   .first-row {
     padding: 50px;
   }
+
   .recipe-detailed {
     padding: 200px 100px;
     display: flex;
     flex-direction: column;
+
     h1 {
       font-weight: 600;
       color: $light-pink;
       margin-bottom: 30px;
       text-align: center;
-  
+
     }
+
     min-height: $hight-without-footer;
     padding: 20px;
     background-color: #f8f5f2;
     display: flex;
     margin-top: 60px;
+
     li {
       margin-bottom: 13px;
       list-style: none;
       font-weight: 300;
     }
   }
-  
+
   .butoner {
     justify-content: center;
     display: flex;
-  
+
     .butoner a {
       margin-right: 20px;
     }
-  } 
+  }
 }
 
 
@@ -572,4 +586,25 @@ footer {
       border-color: white;
     }
   }
+}
+
+.recipe-form-container {
+  padding: 150px 0 100px;
+  min-height: $hight-without-footer;
+  .recipe-detailed-form {
+    padding: 20px;
+    background-color: #f8f5f2;
+    display: flex;
+    margin-top: 60px;
+  }
+  .btn-sm {
+    max-width: 120px;
+  }
+
+}
+.separated-input {
+  margin-bottom: 10px;
+}
+.label-ing {
+  padding:5px  0 0 10px;
 }

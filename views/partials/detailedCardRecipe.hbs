@@ -1,25 +1,53 @@
 <main class="recipe-details">
-    <div class="row">
-        <div class="col-md-6">
-            <img src="{{image}}" alt="{{title}}">
-        </div>
-        <div class="col-md-6">
+    <div class="container">
+        <div class="recipe-detailed">
             <h1>Details of recipe {{title}}</h1>
-            <h4>Ingredients</h4>
-            <ul>
-                {{#each extendedIngredients}}
-                <li>{{original}}</li>
-                {{/each}}
-            </ul>
-            <h4>Instructions</h4>
-            <ul>
-                {{#each analyzedInstructions}}
-                {{#each steps}}
-                <li>{{step}}</li>
-                {{/each}}
-                {{/each}}
-            </ul>
+            <div class="row first-row">
+                <div class="col-md-6">
+                    <img class="detailedImageRecipe" src="{{image}}" alt="{{title}}">
+                </div>
+                <div class="col-md-6 col-with-padding">
+                    <h4>Ingredients</h4>
+                    <ul>
+                        {{#each extendedIngredients}}
+                        <li>{{original}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+            <div class="row last-row">
+                <div class="steps-container">
+                    <div class="col-md-12">
+                        <hr>
+                        <h4>Instructions</h4>
+                        <ul>
+                            {{#each analyzedInstructions}}
+                            {{#each steps}}
+                            <li>{{step}}</li>
+                            {{/each}}
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="tags-cont">
+                    {{#if vegetarian}}
+                    <span>vegetarian |</span>
+                    {{/if}}
+                    {{#if vegan}}
+                    <span>vegan |</span>
+                    {{/if}}
+                    {{#if veryHealthy}}
+                    <span>very Healthy |</span>
+                    {{/if}}
+                    {{#if glutenFree}}
+                    <span>Gluten free |</span>
+                    {{/if}}
+                    {{#if cheap}}
+                    <span>Cheap</span>
+                    {{/if}}
+                </div>
+            </div>
+
         </div>
     </div>
-
 </main>

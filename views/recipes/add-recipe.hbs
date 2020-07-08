@@ -1,94 +1,95 @@
-<div class="container">
-    <div class="row">
-        <div class="recipe-detailed">
-            <div class="col-md-6">
-                <h1 style="font-weight: 100">New Recipe</h1>
-                <img src="/images/rec-avocado.png" alt="">
-            </div>
-            <div class="col-md-6">
+<main class="recipe-form-container">
+    <div class="container">
+        <div class="row">
+            <div class="recipe-detailed-form">
+                <div class="col-md-6">
+                    <h1 style="font-weight: 100">New Recipe</h1>
+                    <img src="/images/rec-avocado.png" alt="">
+                </div>
+                <div class="col-md-6">
+                    <form action="/profile/my-recipes/{{userID}}/add" method="post" enctype="multipart/form-data">
+                        <hr>
+                        <div class="form-group">
+                            <label for="title">Title of the Recipe</label>
+                            <input name="title" type="text" class="form-control" id="title">
+                        </div>
+                        <hr>
+                        <div class="container">
+                            <label for="title">Choose an image</label>
+                            <input type="file" name="imageFile">
+                        </div>
+                        <hr>
 
-                <form action="/profile/my-recipes/{{userID}}/add" method="post" enctype="multipart/form-data">
+                        <div class="row form-group ingredients-container">
+                            <div class="col-md-4 unique-ingredient-container">
+                                <div class="addImput">
+                                    <input type="button" class="add-ingredient btn btn-green btn-xxs" value="&#10010;">
+                                    <label class="label-ing" for="amount">Amount</label>
+                                </div>
 
-                    <hr>
-                    <div class="form-group">
-                        <label for="title">Title of the Recipe</label>
-                        <input name="title" type="text" class="form-control" id="title">
-                    </div>
-                    <hr>
-                    <div class="container">
-                        <label for="title">Choose an image</label>
-                        <input type="file" name="imageFile">
-                    </div>
-                    <hr>
-
-                    <div class="row form-group ingredients-container">
-                        <div class="col-md-4 unique-ingredient-container">
-                            <div class="addImput">
-
-                            <input type="button" class="add-ingredient btn btn-green btn-xs" value="+">
-                            <label for="amount">Amount</label>
+                                <div id="amountADD">
+                                    <input name="amount" type="text" class="form-control separated-input" id="amount">
+                                </div>
                             </div>
-
-                            <div id="amountADD">
-                                <input name="amount" type="text" class="form-control" id="amount">
+                            <div class="col unique-ingredient-container">
+                                <label class="label-ing" for="ingredients">Ingredients</label>
+                                <div id="ingredientADD">
+                                    <input name="ingredients" type="text" class="form-control separated-input" id="indredients">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6 unique-ingredient-container">
-                            <label for="ingredients">Ingredients</label>
-                            <div id="ingredientADD">
-                                <input name="ingredients" type="text" class="form-control" id="indredients">
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <input type="button" class="add-step btn btn-green btn-xs " value="+">
+                        <hr>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="button" class="add-step btn btn-green btn-xxs " value="&#10010;">
 
-                            <label for="steps">Steps</label>
-                            <div class="unique-steps-container">
-                                <input name="steps" type="text" class="form-control" id="steps">
+                                <label for="steps">Steps</label>
+                                <div class="unique-steps-container">
+                                    <input name="steps" type="text" class="form-control" id="steps">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="tags">Tags</label>
-                        <br>
-                        <fieldset>
-                            <legend>Filter your interests!</legend>
-                            <label for="vegetarian">Vegetarian</label>
-                            <input type="checkbox" name="vegetarian" id="vegetarian">
-                            <label for="vegan">Vegan</label>
-                            <input type="checkbox" name="vegan" id="vegan">
-                            <label for="veryHealthy">Healthy</label>
-                            <input type="checkbox" name="veryHealthy" id="veryHealthy">
-                            <label for="glutenFree">Gluten free</label>
-                            <input type="checkbox" name="glutenFree" id="glutenFree">
-                            <label for="cheap">Cheap</label>
-                            <input type="checkbox" name="cheap" id="cheap">
-                        </fieldset>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="preparationMinutes">Preparation minutes</label>
-                                <input name="preparationMinutes" type="number" class="form-control"
-                                    id="inversions-input">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="cookingMinutes">Cooking Minutes</label>
-                                <input name="cookingMinutes" type="number" class="form-control" id="inversions-input">
+                        <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <br>
+                            <fieldset>
+                                <label for="vegetarian">Vegetarian</label>
+                                <input type="checkbox" name="vegetarian" id="vegetarian">
+                                <label for="vegan">Vegan</label>
+                                <input type="checkbox" name="vegan" id="vegan">
+                                <label for="veryHealthy">Healthy</label>
+                                <input type="checkbox" name="veryHealthy" id="veryHealthy">
+                                <label for="glutenFree">Gluten free</label>
+                                <input type="checkbox" name="glutenFree" id="glutenFree">
+                                <label for="cheap">Cheap</label>
+                                <input type="checkbox" name="cheap" id="cheap">
+                            </fieldset>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="preparationMinutes">Preparation minutes</label>
+                                    <input name="preparationMinutes" type="number" class="form-control"
+                                        id="inversions-input">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cookingMinutes">Cooking Minutes</label>
+                                    <input name="cookingMinutes" type="number" class="form-control"
+                                        id="inversions-input">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="butoner">
-                        <a class="btn btn-sm btn-green" href="/profile/my-recipes/{{userID}}" class="btn btn-dark">Go
-                            back</a>
-                        <button type="submit" class="btn btn-sm btn-green">Add Recipe!</button>
-                    </div>
-                </form>
+                        <div class="butoner">
+                            <a class="btn btn-sm btn-green" href="/profile/my-recipes/{{userID}}"
+                                class="btn btn-dark">Go
+                                back</a>
+                            <button type="submit" class="btn btn-sm btn-green">Add Recipe!</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
+
 <script src="/javascripts/add-recipes.js"></script>
