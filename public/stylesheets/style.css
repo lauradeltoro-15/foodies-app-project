@@ -47,7 +47,8 @@ button {
   display: flex; }
 
 .recipe-card {
-  min-height: 550px; }
+  min-height: 550px;
+  margin-bottom: 40px; }
   .recipe-card .card {
     border: none;
     min-height: 100%;
@@ -170,7 +171,7 @@ footer {
   background-repeat: repeat; }
 
 .recipe-details img {
-  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%; }
+  border-radius: 50%; }
 
 .navbar {
   width: 100%; }
@@ -211,6 +212,11 @@ footer {
 
 .my-week {
   padding-top: 200px; }
+  .my-week h1 {
+    font-weight: 600;
+    color: #d6b1a1;
+    margin-bottom: 50px;
+    text-align: center; }
   .my-week h4 {
     color: #c3d651; }
   .my-week .meal-container {
@@ -232,17 +238,42 @@ footer {
 #ingredients {
   width: 200px; }
 
-.recipe-detailed {
-  padding: 20px;
-  background-color: #f8f5f2;
-  display: flex;
-  margin-top: 60px; }
-
-.butoner {
-  justify-content: center;
-  display: flex; }
-  .butoner .butoner a {
-    margin-right: 20px; }
+.recipe-details {
+  padding: 150px 0 100px 0; }
+  .recipe-details .btn-sm {
+    width: 15%;
+    margin-bottom: 40px; }
+  .recipe-details h4 {
+    margin-bottom: 20px; }
+  .recipe-details .col-with-padding {
+    padding: 0 70px; }
+  .recipe-details .last-row {
+    padding: 0 50px 50px 50px; }
+  .recipe-details .first-row {
+    padding: 50px; }
+  .recipe-details .recipe-detailed {
+    padding: 200px 100px;
+    display: flex;
+    flex-direction: column;
+    min-height: 91vh;
+    padding: 20px;
+    background-color: #f8f5f2;
+    display: flex;
+    margin-top: 60px; }
+    .recipe-details .recipe-detailed h1 {
+      font-weight: 600;
+      color: #d6b1a1;
+      margin-bottom: 30px;
+      text-align: center; }
+    .recipe-details .recipe-detailed li {
+      margin-bottom: 13px;
+      list-style: none;
+      font-weight: 300; }
+  .recipe-details .butoner {
+    justify-content: center;
+    display: flex; }
+    .recipe-details .butoner .butoner a {
+      margin-right: 20px; }
 
 #ingredients {
   width: 200px; }
@@ -282,16 +313,24 @@ footer {
 .shopping-list-container {
   padding-top: 150px;
   padding: 100px;
-  background-image: url("../images/background/invert-geometric-leaves-color.png");
-  background-repeat: repeat; }
+  background-color: #f8f5f2; }
+  .shopping-list-container h1 {
+    font-weight: 600;
+    color: #d6b1a1;
+    margin-bottom: 50px;
+    text-align: center; }
   .shopping-list-container .shopping-list {
     margin: 100px 0;
+    padding: 50px;
     background-color: white;
-    border: 2px solid #d6b1a1; }
+    border: 1px solid #d6b1a1; }
     .shopping-list-container .shopping-list ul {
       line-height: 2.5em; }
       .shopping-list-container .shopping-list ul li {
-        display: inline; }
+        font-size: 0.9em;
+        display: inline;
+        font-weight: 300;
+        text-transform: uppercase; }
 
 .btn-xs {
   background-color: #c3d651;
@@ -338,5 +377,27 @@ footer {
     margin: 0 10px; }
   .buttons-container-recipes form {
     display: flex; }
+
+.btn {
+  border-radius: 0; }
+
+.btn.btn-xxs {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  padding: 0;
+  margin-right: 5px; }
+
+.small-card {
+  position: relative; }
+  .small-card #delete-weekmeal-form {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    left: 10px; }
+    .small-card #delete-weekmeal-form .btn-xxs {
+      color: #d6b1a1;
+      background-color: white;
+      border-color: white; }
 
 /*# sourceMappingURL=style.css.map */

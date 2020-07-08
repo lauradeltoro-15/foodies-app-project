@@ -1,12 +1,12 @@
 <main class="shopping-list-container">
     <div class="container">
         <div class="shopping-list">
-            <h1>This is my awesome shopping list</h1>
+            <h1>My shopping list</h1>
             <ul>
-                <div class="row ">
+                <div class="row">
                     {{#each filteredWeekMeals}}
-                    <div class="col-4 list-ingredient-container" >
-                        <input type="button" value="&#10006;" class="btn btn-green btn-xs delete-item-button">
+                    <div class="col-4 list-ingredient-container">
+                        <input type="button" value="&#10006;" class="btn btn-green btn-xxs delete-item-button">
                         <li class="ingredient-item">{{this}}</li>
                     </div>
                     {{/each}}

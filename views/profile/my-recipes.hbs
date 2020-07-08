@@ -2,16 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-
-            <a class="btn btn-md btn-green" href="/profile/my-recipes/{{user}}/add"> Add recipe!</a>
-            
-            <hr>
+                <a class="btn btn-md btn-green" href="/profile/my-recipes/{{user}}/add"> Add recipe!</a>
+                <hr>
             </div>
-
         </div>
-        
         <div class="row justify-content-center">
-
             {{#each theRecipes}}
             <div class="col-4" data-recipe="{{id}}">
                 <article class=" recipe-card">
@@ -38,7 +33,6 @@
             </div>
             {{/each}}
         </div>
-
     </div>
 </main>
 
