@@ -417,8 +417,9 @@ footer {
 }
 
 .detailedImageRecipe {
+  padding: 50px 20px;
   max-width: 100%;
-  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%;
+  border-radius: 50%
 }
 
 .steps-container {
@@ -447,10 +448,6 @@ footer {
   width: 200px;
 }
 
-.detailedImageRecipe {
-  max-width: 100%;
-  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%;
-}
 
 .steps-container {
   background-color: #f8f5f2;
@@ -591,20 +588,24 @@ footer {
 .recipe-form-container {
   padding: 150px 0 100px;
   min-height: $hight-without-footer;
+
   .recipe-detailed-form {
     padding: 20px;
     background-color: #f8f5f2;
     display: flex;
     margin-top: 60px;
   }
+
   .btn-sm {
     max-width: 120px;
   }
 
 }
+
 .separated-input {
   margin-bottom: 10px;
 }
+
 .label-ing {
-  padding:5px  0 0 10px;
+  padding: 5px 0 0 10px;
 }

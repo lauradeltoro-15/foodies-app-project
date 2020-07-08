@@ -281,8 +281,9 @@ footer {
   width: 200px; }
 
 .detailedImageRecipe {
+  padding: 50px 20px;
   max-width: 100%;
-  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%; }
+  border-radius: 50%; }
 
 .steps-container {
   background-color: #f8f5f2; }
@@ -301,10 +302,6 @@ footer {
 
 #ingredients {
   width: 200px; }
-
-.detailedImageRecipe {
-  max-width: 100%;
-  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%; }
 
 .steps-container {
   background-color: #f8f5f2; }
@@ -417,6 +414,6 @@ footer {
   margin-bottom: 10px; }
 
 .label-ing {
-  padding: 5px  0 0 10px; }
+  padding: 5px 0 0 10px; }
 
 /*# sourceMappingURL=style.css.map */

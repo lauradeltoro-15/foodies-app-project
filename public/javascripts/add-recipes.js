@@ -18,10 +18,10 @@ const createElm = (elm, parent, attributeNames, attributeValues) => {
 //Event listeners
 window.addEventListener('load', () => {
     addIngredientButton.addEventListener("click", () => {
-        createElm('input', newAmountADD, ['name', 'type', 'class'], ['amount', 'text', 'form-control'])
-        createElm('input', newIngredientADD, ['name', 'type', 'class'], ['ingredients', 'text', 'form-control'])
+        createElm('input', newAmountADD, ['name', 'type', 'class'], ['amount', 'text', 'form-control separated-input'])
+        createElm('input', newIngredientADD, ['name', 'type', 'class'], ['ingredients', 'text', 'form-control separated-input'])
     })
     addStepButton.addEventListener("click", () => {
-        createElm('input', uniqueStepContainer, ['name', 'type', 'class'], ['steps', 'text', 'form-control'])
+        createElm('input', uniqueStepContainer, ['name', 'type', 'class'], ['steps', 'text', 'form-control separated-input'])
     })
 })
