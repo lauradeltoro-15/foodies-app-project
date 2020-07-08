@@ -45,17 +45,25 @@ const obtainDate = (offset) => {
 
 // Endpoints
 router.post("/change-day", (req, res) => {
-    console.log(req.body)
+    console.log(req.body.newDateVal)
+
     const newDate = new Date(req.body.newDateVal)
-    console.log(newDate)
-    return Weekmeal.findByIdAndUpdate(req.body.mealId, {
+    console.log("new date", newDate)
+    Weekmeal.findByIdAndUpdate(req.body.mealId, {
             mealDay: newDate
+        }, {
+            new: true
         })
         .then(response => console.log(response))
         .catch(err => console.log("There was an err", err))
 
+
 })
-router.post("/delete/:recipeId", (req, res) => res.send("Deleting"))
+router.post("/delete/:recipeId", (req, res) => {
+    Weekmeal.findByIdAndRemove(req.body.recipeId)
+        .then(removeInfo => console.log("Info removed", removeInfo))
+        .catch(err => console.log("There was an error deleting the item", err))
+})
 
 
 router.get("/:userId", isLoggedIn, (req, res) => {
@@ -69,7 +77,11 @@ router.get('/', isLoggedIn, (req, res) => {
     Weekmeal.find({
             owner: req.user.id
         }).populate("originalRecipe")
-        .then(weekmeals => weekmeals.filter(meal => meal.originalRecipe))
+        .then(weekmeals => {
+            return weekmeals.filter(meal => meal.originalRecipe
+
+            )
+        })
         .then(filteredWeekmeals => getMealPlanner(filteredWeekmeals))
         .then(daysInfo => res.render("profile/my-week", {
             daysInfo

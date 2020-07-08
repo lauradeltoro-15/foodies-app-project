@@ -62,6 +62,9 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+    deleteMealFromWeek(mealId) {
+        console.log(mealId)
+    }
 
 }
 const RecipeAPIHandler = new RecipeApiHandler()
