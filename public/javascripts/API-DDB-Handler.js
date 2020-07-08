@@ -63,7 +63,17 @@ class RecipeApiHandler {
             })
     }
     deleteMealFromWeek(mealId) {
-        console.log(mealId)
+        console.log("meal id", mealId)
+        return this.axiosServer.post(`/profile/my-week/delete`, {
+                mealId
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                throw new Error(err)
+            })
+
     }
 
 }

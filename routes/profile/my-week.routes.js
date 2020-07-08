@@ -24,6 +24,7 @@ const getMealPlanner = (weekmeals) => {
     return daysValues
 }
 const getDayMeals = (weekmeals, offset, today) => {
+    console.log(weekmeals)
     return {
         cards: weekmeals.filter(meal => getDayOffset(meal.mealDay) === offset),
         date: `${weekDays[getWeekDayToRender(offset, today)]} ${today.getDate() + offset}`,
@@ -59,8 +60,9 @@ router.post("/change-day", (req, res) => {
 
 
 })
-router.post("/delete/:recipeId", (req, res) => {
-    Weekmeal.findByIdAndRemove(req.body.recipeId)
+router.post("/delete", (req, res) => {
+    console.log(req.body.mealId)
+    Weekmeal.findByIdAndRemove(req.body.mealId)
         .then(removeInfo => console.log("Info removed", removeInfo))
         .catch(err => console.log("There was an error deleting the item", err))
 })

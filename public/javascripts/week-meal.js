@@ -1,9 +1,16 @@
 const dragContainers = document.querySelectorAll(".dragabbles-container")
 const draggableCards = document.querySelectorAll(".draggable-item")
-
+const deleteButtons = document.querySelectorAll(".delete-meal")
 let draggedItem = null
 
 window.addEventListener('load', () => {
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", e => {
+            const idContainer = button.closest("[data-meal]")
+            const idValue = idContainer.getAttribute("data-meal")
+            RecipeAPIHandler.deleteMealFromWeek(idValue)
+        })
+    })
     draggableCards.forEach(card => {
         card.addEventListener("dragstart", () => {
             console.log("drag started")
