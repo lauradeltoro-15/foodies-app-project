@@ -70,12 +70,13 @@ button {
 
 .recipe-card {
   min-height: 550px;
-  background-color: white;
-  border: 1px solid $light-pink;
-  margin-bottom: 50px;
 
   .card {
     border: none;
+    min-height: 100%;
+    background-color: white;
+    border: 1px solid $light-pink;
+    margin-bottom: 50px;
   }
 
   ul {
@@ -118,6 +119,7 @@ button {
   border-color: $light-green;
   width: 40%;
   max-width: 300px;
+  color: white
 }
 
 .absolutenav {
@@ -334,34 +336,66 @@ footer {
 #ingredients {
   width: 200px;
 }
+
 .recipe-detailed {
   padding: 20px;
   background-color: #f8f5f2;
   display: flex;
-  margin-top: 60px; }
-  .butoner {
-    justify-content: center;
-    display: flex;}
-    .butoner a {
-      margin-right: 20px;
-    }
-    #ingredients {
-  width: 200px; }
-  .detailedImageRecipe {
-    max-width: 100%;
-     border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%;
+  margin-top: 60px; 
+}
+.butoner {
+  justify-content: center;
+  display: flex;
+
+  .butoner a {
+    margin-right: 20px;
   }
-  .steps-container {
-    background-color: #f8f5f2;
-    input {
-      margin-bottom: 10px;
-    }
-    
+}
+#ingredients {
+  width: 200px; 
+}
+.detailedImageRecipe {
+  max-width: 100%;
+  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%;
+}
+.steps-container {
+  background-color: #f8f5f2;
+  input {
+    margin-bottom: 10px;
   }
-  .spaceBetween {
-   margin-top: 10px;
-    
-  }
+}
+.spaceBetween {
+ margin-top: 10px;
+  
+}
+
+.butoner {
+  justify-content: center;
+  display: flex;
+}
+
+.butoner a {
+  margin-right: 20px;
+}
+
+#ingredients {
+  width: 200px;
+}
+
+.detailedImageRecipe {
+  max-width: 100%;
+  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%;
+}
+
+.steps-container {
+  background-color: #f8f5f2;
+
+}
+
+.spaceBetween {
+  margin-top: 10px;
+
+}
 
 .shopping-list-container {
   padding-top: 150px;
@@ -421,3 +455,28 @@ footer {
 }
 
 
+
+.btn-container-in-card {
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  form {
+    width: 40px;
+    margin: 0 15px;
+  }
+}
+
+.buttons-container-recipes {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .btn-green {
+    margin: 0 10px;
+  }
+
+  form {
+    display: flex;
+  }
+
+}

@@ -31,7 +31,6 @@ const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.id
     errorMsg: "You are not allowed to edit!"
 })
 const createRecipeFromAPI = (APIData, req) => {
-    console.log("YEY")
     const {
         vegetarian,
         vegan,
@@ -65,23 +64,15 @@ const createRecipeFromAPI = (APIData, req) => {
         .then(recipe => console.log("Recipe created", recipe))
         .catch(err => console.log("There was an error creating the recipe", err))
 }
-getAllIngredientsAmounts = APIData => {
-    return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) :
-        APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
-}
-const getAllIngredients = APIData => {
-    return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.name) :
-        APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
-}
-const getAllIngredientsWithAmounts = APIData => {
-    return APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.originalString) :
-        APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
-}
-const getAllSteps = APIData => {
-    return APIData.analyzedInstructions[0] ? APIData.analyzedInstructions[0].steps.map(ob => ob.step) :
-        APIData.instructions ? APIData.instructions.split(".") :
-        null
-}
+
+const getAllIngredientsAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) : APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
+
+const getAllIngredients = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.name) :
+    APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
+
+const getAllIngredientsWithAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.originalString) : APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
+
+const getAllSteps = APIData => APIData.analyzedInstructions[0] ? APIData.analyzedInstructions[0].steps.map(ob => ob.step) : APIData.instructions ? APIData.instructions.split(".") : null
 
 const getAllNutrients = APIData => {
     return {
@@ -93,9 +84,7 @@ const getAllNutrients = APIData => {
         fiber: takeNutrientFromAPI(APIData, "Fiber")
     }
 }
-const takeNutrientFromAPI = (APIData, nutrient) => {
-    return APIData.nutrition.nutrients.find(elm => elm.title === nutrient).amount
-}
+const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.find(elm => elm.title === nutrient).amount
 
 //Routes
 router.get('/details/:recipeID', (req, res) => {
@@ -104,10 +93,7 @@ router.get('/details/:recipeID', (req, res) => {
         .catch(err => console.log("There was an error", err))
 })
 
-router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
-    console.log(req.body)
-    createRecipeFromAPI(req.body, req)
-})
+router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => createRecipeFromAPI(req.body, req))
 
 router.get('/search', (req, res) => {
     recipeApi.getFullList(req.query.query)
@@ -118,9 +104,3 @@ router.get('/search', (req, res) => {
 router.get('/', (req, res) => res.render("recipes/search-recipes"))
 
 module.exports = router
-
-// router.get('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => {
-//     recipeApi.getRecipeInformationById(req.params.recipeID)
-//         .then(response => createRecipefromAPI(response, req))
-//         .catch(err => console.log("There was an error", err))
-// })

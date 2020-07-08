@@ -8,8 +8,6 @@ const Recipe = require('../../models/recipe.model')
 const User = require("../../models/user.model")
 const Weekmeal = require("../../models/week-meal.model")
 
-//Falta añadir is current user
-//función is admin
 //Helper functions 
 const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.userID === req.user.id ? next() : res.redirect("/auth/login")
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
@@ -41,6 +39,7 @@ const getWeekMeal = (recipe, req) => {
 router.get('/:userID/add', isLoggedIn, (req, res) => res.render('recipes/add-recipe', {
     userID: req.params.userID
 }))
+
 router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
     const steps = getArray(req.body.steps)
     const ingredients = getArray(req.body.ingredients)
@@ -51,7 +50,6 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
         preparationMinutes,
         cookingMinutes
     } = req.body
-
     Recipe
         .create({
             amounts,
@@ -133,14 +131,13 @@ router.post("/delete/:recipeID", (req, res) => {
     Recipe
         .findByIdAndRemove(req.params.recipeID)
         .then(res.redirect(`/profile/my-recipes/${req.user.id}`))
-
 })
+
 router.post("/add-to-week/:recipeID", isLoggedIn, (req, res) => {
     return Recipe.findById(req.params.recipeID)
         .then(recipe => getWeekMeal(recipe, req))
         .then(meal => Weekmeal.create(meal))
         .catch(err => console.log("There was an error creating a meal", err))
-
 })
 
 router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
@@ -156,11 +153,7 @@ router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
                 user:req.params.userID
             })
         })
-
-
 })
-router.get('/', isLoggedIn, (req, res) => {
-    res.redirect(`/profile/my-recipes/${req.user.id}`)
-})
+router.get('/', isLoggedIn, (req, res) => res.redirect(`/profile/my-recipes/${req.user.id}`))
 
 module.exports = router

@@ -5,9 +5,9 @@
             {{#each daysInfo}}
             <h4>{{date}}</h4>
             <article class="meal-container">
-                <div class="row dragabbles-container">
+                <div class="row dragabbles-container" data-date="{{fullDate}}">
                     {{#each cards}}
-                    <div class="col-3 draggable-item" draggable="true">
+                    <div class="col-3 draggable-item" draggable="true" data-meal={{id}}>
                         {{> smallCardRecipe this.originalRecipe}}
                     </div>
                     {{/each}}

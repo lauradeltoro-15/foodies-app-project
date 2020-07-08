@@ -5,9 +5,9 @@
             <ul>
                 <div class="row ">
                     {{#each filteredWeekMeals}}
-                    <div class="col-3">
-                        <a href="#" class="btn btn-green btn-sm">Delete</a>
-                        <li>{{this}}</li>
+                    <div class="col-4 list-ingredient-container" >
+                        <input type="button" value="&#10006;" class="btn btn-green btn-xs delete-item-button">
+                        <li class="ingredient-item">{{this}}</li>
                     </div>
                     {{/each}}
                 </div>
@@ -15,3 +15,6 @@
         </div>
     </div>
 </main>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../../javascripts/API-DDB-Handler.js"></script>
+<script src="../../javascripts/shopping-list.js"></script>

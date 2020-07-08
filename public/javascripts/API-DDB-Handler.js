@@ -39,19 +39,53 @@ class RecipeApiHandler {
             })
     }
     addRecipeToWeek(recipeId, mealDate) {
-        console.log("AQUIII")
         return this.axiosServer.post(`/profile/my-recipes/add-to-week/${recipeId}`, {
                 mealDate
             })
             .then(response => {
                 console.log(response)
-                "Created"
             })
             .catch(err => {
                 throw new Error(err)
             })
     }
+    changeMealDate(mealId, newDateVal) {
+        console.log(mealId, newDateVal)
+        return this.axiosServer.post("/profile/my-week/change-day", {
+                mealId,
+                newDateVal
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                throw new Error(err)
+            })
+    }
+    deleteMealFromWeek(mealId) {
+        return this.axiosServer.post(`/profile/my-week/delete`, {
+                mealId
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                throw new Error(err)
+            })
 
+    }
+    deleteIngredientFromShoppingList(ingredient) {
+        console.log("ingredientname", ingredient)
+        return this.axiosServer.post("/profile/my-shopping-list/delete", {
+                ingredient
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                throw new Error(err)
+            })
+    }
 
 }
 const RecipeAPIHandler = new RecipeApiHandler()
