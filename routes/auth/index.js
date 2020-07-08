@@ -41,11 +41,10 @@ router.post("/signup", (req, res, next) => {
                     password: hashPass
                 })
                 .then(() => res.redirect("/auth/login"))
-                .catch(() => res.render("auth/signup", {
-                    errorMsg: "It was impossible to create the user"
-                }))
+                .catch(err => next(new Error(err)))
+
         })
-        .catch(error => next(error))
+        .catch(err => next(new Error(err)))
 })
 
 

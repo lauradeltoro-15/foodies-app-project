@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
                 const cardToRemove = document.querySelector(`[data-recipe='${recipeId}']`)
                 cardToRemove.remove()
             })
-            .catch(err => console.log("There was an error accessing the API", err))
+            .catch(err => next(new Error(err)))
     }))
     addToWeekBtn.forEach(button => button.addEventListener("click", e => {
         e.preventDefault()

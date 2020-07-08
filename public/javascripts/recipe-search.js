@@ -12,6 +12,6 @@ window.addEventListener('load', () => {
                 RecipeAPIHandler.addToFavourites(recipeInfo, recipeId)
                 button.classList.add("added")
             })
-            .catch(err => console.log("There was an error accessing the API", err))
+            .catch(err => next(new Error(err)))
     }))
 })

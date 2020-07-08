@@ -13,30 +13,22 @@ class RecipeApiHandler {
     getFullList(query) {
         return this.axiosAPI.get(`/recipes/complexSearch?query=${query}`)
             .then(response => response.data.results.map(data => data.id))
-            .catch(err => {
-                throw new Error(err)
-            })
+            .catch(err => next(new Error(err)))
     }
     getRecipeInformationById(id) {
         return this.axiosAPI.get(`recipes/${id}/information?includeNutrition=true`)
             .then(response => response.data)
-            .catch(err => {
-                throw new Error(err)
-            })
+            .catch(err => next(new Error(err)))
     }
     addToFavourites(recipeInfo, recipeId) {
         return this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
             .then(response => response.data)
-            .catch(err => {
-                throw new Error(err)
-            })
+            .catch(err => next(new Error(err)))
     }
     deleteRecipe(recipeId) {
         return this.axiosServer.post(`/profile/my-recipes/delete/${recipeId}`)
             .then(response => response.data)
-            .catch(err => {
-                throw new Error(err)
-            })
+            .catch(err => next(new Error(err)))
     }
     addRecipeToWeek(recipeId, mealDate) {
         return this.axiosServer.post(`/profile/my-recipes/add-to-week/${recipeId}`, {
@@ -45,9 +37,7 @@ class RecipeApiHandler {
             .then(response => {
                 console.log(response)
             })
-            .catch(err => {
-                throw new Error(err)
-            })
+            .catch(err => next(new Error(err)))
     }
     changeMealDate(mealId, newDateVal) {
         console.log(mealId, newDateVal)
@@ -58,9 +48,7 @@ class RecipeApiHandler {
             .then(response => {
                 console.log(response)
             })
-            .catch(err => {
-                throw new Error(err)
-            })
+            .catch(err => next(new Error(err)))
     }
     deleteMealFromWeek(mealId) {
         return this.axiosServer.post(`/profile/my-week/delete`, {
@@ -69,10 +57,7 @@ class RecipeApiHandler {
             .then(response => {
                 console.log(response)
             })
-            .catch(err => {
-                throw new Error(err)
-            })
-
+            .catch(err => next(new Error(err)))
     }
     deleteIngredientFromShoppingList(ingredient) {
         console.log("ingredientname", ingredient)
@@ -82,10 +67,7 @@ class RecipeApiHandler {
             .then(response => {
                 console.log(response)
             })
-            .catch(err => {
-                throw new Error(err)
-            })
+            .catch(err => next(new Error(err)))
     }
-
 }
 const RecipeAPIHandler = new RecipeApiHandler()

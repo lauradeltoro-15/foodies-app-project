@@ -241,6 +241,27 @@ footer {
 .butoner {
   justify-content: center;
   display: flex; }
+  .butoner .butoner a {
+    margin-right: 20px; }
+
+#ingredients {
+  width: 200px; }
+
+.detailedImageRecipe {
+  max-width: 100%;
+  border-radius: 30% 70% 70% 30% / 61% 63% 37% 39%; }
+
+.steps-container {
+  background-color: #f8f5f2; }
+  .steps-container input {
+    margin-bottom: 10px; }
+
+.spaceBetween {
+  margin-top: 10px; }
+
+.butoner {
+  justify-content: center;
+  display: flex; }
 
 .butoner a {
   margin-right: 20px; }
@@ -254,8 +275,6 @@ footer {
 
 .steps-container {
   background-color: #f8f5f2; }
-  .steps-container input {
-    margin-bottom: 10px; }
 
 .spaceBetween {
   margin-top: 10px; }
@@ -304,6 +323,7 @@ footer {
 
 #ingredientADD {
   margin-top: 15px; }
+
 .btn-container-in-card {
   display: flex;
   flex-direction: row-reverse; }

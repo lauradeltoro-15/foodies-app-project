@@ -12,14 +12,14 @@ const renderAllRecipeInformationsByIds = (ids, res, req) => {
         .then(response => res.render("recipes/search-recipes", {
             results: response
         }))
-        .catch(err => console.log("There was an error returning from ddbb", err))
+        .catch(err => next(new Error(err)))
 }
 const getAllRecipeInformationByIds = (ids, req) => {
     return Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)
             .then(response => response)
             .catch(err => console.log("There was an error returning from DDBB", err))))
         .then(recipes => req.query.filter ? filterRecipes(recipes, req) : recipes)
-        .catch(err => console.log("There was an error returning from DDBB", err))
+        .catch(err => next(new Error(err)))
 
 }
 const filterRecipes = (recipes, req) => {
@@ -62,7 +62,7 @@ const createRecipeFromAPI = (APIData, req) => {
             owner: req.user.id
         })
         .then(recipe => console.log("Recipe created", recipe))
-        .catch(err => console.log("There was an error creating the recipe", err))
+        .catch(err => next(new Error(err)))
 }
 
 const getAllIngredientsAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) : APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
@@ -90,7 +90,7 @@ const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.f
 router.get('/details/:recipeID', (req, res) => {
     recipeApi.getRecipeInformationById(req.params.recipeID)
         .then(detailedRecipe => res.render("recipes/detailed-recipe", detailedRecipe))
-        .catch(err => console.log("There was an error", err))
+        .catch(err => next(new Error(err)))
 })
 
 router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => createRecipeFromAPI(req.body, req))
@@ -98,7 +98,7 @@ router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res) => createReci
 router.get('/search', (req, res) => {
     recipeApi.getFullList(req.query.query)
         .then(ids => renderAllRecipeInformationsByIds(ids, res, req))
-        .catch(err => console.log("There was an error returning from ddbb", err))
+        .catch(err => next(new Error(err)))
 })
 
 router.get('/', (req, res) => res.render("recipes/search-recipes"))

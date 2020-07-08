@@ -8,7 +8,6 @@ const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.rend
 })
 
 router.get("/:userID", isLoggedIn, (req, res) => {
-    console.log(req.user)
     res.render(`profile/my-profile`, {
         user: req.user
     })

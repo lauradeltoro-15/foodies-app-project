@@ -11,7 +11,6 @@ const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.rend
 const getDayOffset = (dateToCompare) => {
     const today = new Date()
     return dateToCompare.getDate() - today.getDate()
-
 }
 const getMealPlanner = (weekmeals) => {
     const today = new Date()
@@ -51,14 +50,14 @@ router.post("/change-day", (req, res) => {
             new: true
         })
         .then(response => response)
-        .catch(err => console.log("There was an err", err))
+        .catch(err => next(new Error(err)))
 })
 
 router.post("/delete", (req, res) => {
     console.log(req.body.mealId)
     Weekmeal.findByIdAndRemove(req.body.mealId)
         .then(removeInfo => console.log("Info removed", removeInfo))
-        .catch(err => console.log("There was an error deleting the item", err))
+        .catch(err => next(new Error(err)))
 })
 
 router.get("/:userId", isLoggedIn, (req, res) => {
@@ -67,7 +66,7 @@ router.get("/:userId", isLoggedIn, (req, res) => {
         .then(() => res.render(`profile/my-week`, {
             user: req.user
         }))
-        .catch(err => console.log("There was an error deleting the item", err))
+        .catch(err => next(new Error(err)))
 })
 
 router.get('/', isLoggedIn, (req, res) => {
@@ -79,7 +78,7 @@ router.get('/', isLoggedIn, (req, res) => {
         .then(daysInfo => res.render("profile/my-week", {
             daysInfo
         }))
-        .catch(err => console.log("There was an error returning from DDBB", err))
+        .catch(err => next(new Error(err)))
 })
 
 module.exports = router

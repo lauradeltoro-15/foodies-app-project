@@ -68,21 +68,21 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
             cookingMinutes
         })
         .then(res.redirect('/profile/my-recipes/' + req.params.userID))
-        .catch(err => console.log(err))
+        .catch(err => next(new Error(err)))
 })
 
 router.get("/details/:recipeID", (req, res) => {
     Recipe
         .findById(req.params.recipeID)
         .then(theRecipe => res.render('partials/detailedOwnerCardRecipe', theRecipe))
-        .catch(err => console.log(err))
+        .catch(err => next(new Error(err)))
 })
 
 router.get("/edit/:recipeID", (req, res) => {
     Recipe
         .findById(req.params.recipeID)
         .then(theRecipe => res.render('recipes/edit-recipe', theRecipe))
-        .catch(err => console.log(err))
+        .catch(err => next(new Error(err)))
 
 })
 router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (req, res) => {
@@ -123,7 +123,7 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
         .then(() => {
             res.redirect(`/profile/my-recipes/${req.user.id}`)
         })
-        .catch(err => console.log(err))
+        .catch(err => next(new Error(err)))
 
 })
 router.post("/delete/:recipeID", (req, res) => {
@@ -131,13 +131,14 @@ router.post("/delete/:recipeID", (req, res) => {
     Recipe
         .findByIdAndRemove(req.params.recipeID)
         .then(res.redirect(`/profile/my-recipes/${req.user.id}`))
+        .catch(err => next(new Error(err)))
 })
 
 router.post("/add-to-week/:recipeID", isLoggedIn, (req, res) => {
     return Recipe.findById(req.params.recipeID)
         .then(recipe => getWeekMeal(recipe, req))
         .then(meal => Weekmeal.create(meal))
-        .catch(err => console.log("There was an error creating a meal", err))
+        .catch(err => next(new Error(err)))
 })
 
 router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
@@ -150,9 +151,10 @@ router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
                 theRecipes,
                 today: obtainDate(0),
                 lastDay: obtainDate(6),
-                user:req.params.userID
+                user: req.params.userID
             })
         })
+        .catch(err => next(new Error(err)))
 })
 router.get('/', isLoggedIn, (req, res) => res.redirect(`/profile/my-recipes/${req.user.id}`))
 
