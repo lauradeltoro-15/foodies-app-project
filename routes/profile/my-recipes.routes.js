@@ -38,7 +38,7 @@ const getWeekMeal = (recipe, req) => {
 }
 
 // Endpoints
-router.get('/:userID/add', isCurrentUser, (req, res) => res.render('recipes/add-recipe', {
+router.get('/:userID/add', isLoggedIn, (req, res) => res.render('recipes/add-recipe', {
     userID: req.params.userID
 }))
 router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res) => {
@@ -152,7 +152,8 @@ router.get("/:userID", isLoggedIn, isCurrentUser, (req, res) => {
             res.render(`profile/my-recipes`, {
                 theRecipes,
                 today: obtainDate(0),
-                lastDay: obtainDate(6)
+                lastDay: obtainDate(6),
+                user:req.params.userID
             })
         })
 

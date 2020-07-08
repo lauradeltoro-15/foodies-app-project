@@ -64,6 +64,9 @@ button {
     width: 100%;
   }
 }
+.cardButtons {
+  display: flex;
+}
 
 .recipe-card {
   min-height: 550px;
@@ -350,6 +353,9 @@ footer {
   }
   .steps-container {
     background-color: #f8f5f2;
+    input {
+      margin-bottom: 10px;
+    }
     
   }
   .spaceBetween {
@@ -402,3 +408,16 @@ footer {
   min-width: 100%;
   min-height: 250px;
 }
+.addImput {
+  display: flex;
+ align-items: center;
+ padding-bottom: 10px;
+ input {
+   margin-right: 5px;
+ }
+}
+#ingredientADD {
+  margin-top: 15px;
+}
+
+

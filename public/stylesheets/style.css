@@ -43,6 +43,9 @@ button {
   .hero-container img {
     width: 100%; }
 
+.cardButtons {
+  display: flex; }
+
 .recipe-card {
   min-height: 550px;
   background-color: white;
@@ -249,6 +252,8 @@ footer {
 
 .steps-container {
   background-color: #f8f5f2; }
+  .steps-container input {
+    margin-bottom: 10px; }
 
 .spaceBetween {
   margin-top: 10px; }
@@ -287,5 +292,15 @@ footer {
 .dragabbles-container {
   min-width: 100%;
   min-height: 250px; }
+
+.addImput {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px; }
+  .addImput input {
+    margin-right: 5px; }
+
+#ingredientADD {
+  margin-top: 15px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -18,10 +18,9 @@ const createElm = (elm, parent, attributeNames, attributeValues) => {
     attributeNames.forEach((attribute, i) => newElem.setAttribute(attribute, attributeValues[i]))
 }
 window.addEventListener('load', () => {
-    //esto se podria meter en una funcion en un archivo a parte y llamarla desde aqui
     addIngredientButton.addEventListener("click", () => {
         createElm('input', newAmountADD, ['name', 'type', 'class'], ['amount', 'text', 'form-control'])
-        createElm('input', newIngredientADD, ['name', 'type', 'class'], ['amount', 'text', 'form-control'])
+        createElm('input', newIngredientADD, ['name', 'type', 'class'], ['ingredients', 'text', 'form-control'])
     })
     addStepButton.addEventListener("click", () => {
         createElm('input', uniqueStepContainer, ['name', 'type', 'class'], ['steps', 'text', 'form-control'])

@@ -23,19 +23,21 @@
 
                     <div class="row form-group ingredients-container">
                         <div class="col-md-4 unique-ingredient-container">
-                            <a href="#" class="add-ingredient btn btn-dark">+</a>
-                            <label for="amount">Amount</label>
+                            <div class="addImput">
+                                <input type="button" class="add-ingredient btn btn-green btn-xs" value="+">
+                                <label for="amount">Amount</label>
+                            </div>
                             <div id="amountADD">
                                 {{#each amounts}}
                                 <input name="amount" type="text" class="form-control" id="amount" value="{{this}}">
                                 {{/each}}
                             </div>
                         </div>
-                        <div class="col-md-5 unique-ingredient-container">
+                        <div class="col-md-6 unique-ingredient-container">
                             <label for="ingredients">Ingredients</label>
                             <div id="ingredientADD">
                                 {{#each ingredients}}
-                                <input name="ingredients" type="text" class="form-control" id="ingredients"
+                                <input name="ingredients" type="text" class="form-control"
                                     value="{{this}}">
                                 {{/each}}
                             </div>
@@ -45,7 +47,7 @@
 
                     <div class="row form-group steps-container">
                         <div class="col-md-12">
-                            <a href="#" class="add-step btn btn-dark">+</a>
+                            <input type="button" class="add-step btn btn-green btn-xs " value="+">
                             <label for="steps">Steps</label>
                             <div class="unique-steps-container">
                                 {{#each steps}}
@@ -56,8 +58,8 @@
                     </div>
                     <div class="form-group">
                         <br>
+                            <label for="">Filter your interests!</label>
                         <fieldset>
-                            <legend>Filter your interests!</legend>
                             <label for="vegetarian">Vegetarian</label>
                             <input type="checkbox" name="vegetarian" id="vegetarian" {{#if vegetarian}} checked {{/if}}>
                             <label for="vegan">Vegan</label>
