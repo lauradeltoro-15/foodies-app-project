@@ -79,6 +79,7 @@ button {
     background-color: white;
     border: 1px solid $light-pink;
     margin-bottom: 50px;
+    border-radius: 0;
   }
 
   ul {
@@ -322,15 +323,17 @@ footer {
   }
 
   .meal-container {
-    min-height: 300px;
+    min-height: 100px;
     background-color: $background-color;
+    opacity: 0.8;
     padding: 40px;
     margin-bottom: 50px;
 
     .small-card {
       border: 1px solid $light-pink;
       background-color: white;
-      min-height: 250px;
+      opacity: 1;
+      min-height: 150px;
       margin-bottom: 25px;
 
       h5 {
@@ -462,7 +465,9 @@ footer {
 .shopping-list-container {
   padding-top: 150px;
   padding: 100px;
-  background-color: $background-color;
+  background-image: url(/images/background/coffee.png);
+  background-size: cover;
+
 
   h1 {
     font-weight: 600;
@@ -474,7 +479,8 @@ footer {
   .shopping-list {
     margin: 100px 0;
     padding: 50px;
-    background-color: white;
+    background-color: $background-color;
+    opacity: 0.5;
     border: 1px solid $light-pink;
 
     ul {
@@ -483,7 +489,7 @@ footer {
       li {
         font-size: 0.9em;
         display: inline;
-        font-weight: 300;
+        font-weight: 400;
         text-transform: uppercase;
       }
     }
@@ -512,7 +518,7 @@ footer {
 
 .dragabbles-container {
   min-width: 100%;
-  min-height: 250px;
+  min-height: 150px;
 }
 
 .addImput {
@@ -611,8 +617,25 @@ footer {
 }
 
 .profile-container {
+  img {
+    max-height: 100px;
+    margin: 30px;
+  }
+
+  text-align: center;
   padding: 150px 0 100px;
   min-height: $hight-without-footer;
+
+  ul {
+    display: flex;
+    justify-content: center;
+
+    li {
+      margin: 0 20px;
+      font-weight: 300;
+      list-style: none;
+    }
+  }
 
   h1 {
     font-weight: 600;
@@ -656,6 +679,15 @@ footer {
   padding-left: 0;
   margin-bottom: 25px;
 }
+
 .main-btn-save-changes {
   margin-bottom: 50px;
+}
+
+.main-my-week {
+  background-image: url(/images/background/tomato.png);
+  background-repeat: repeat-y;
+  background-size: cover;
+  padding-bottom: 50px;
+
 }

@@ -34,9 +34,6 @@ const filterRecipes = (recipes, req) => {
     return recipes.filter(recipe => filters.every(filter => recipe[filter]))
 }
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.redirect("/auth/login")
-const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.id === req.user.id ? next() : res.render("auth/login", {
-    errorMsg: "You are not allowed to edit!"
-})
 const createRecipeFromAPI = (APIData, req, next) => {
     const {
         vegetarian,

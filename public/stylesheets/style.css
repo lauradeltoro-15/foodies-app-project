@@ -54,7 +54,8 @@ button {
     min-height: 100%;
     background-color: white;
     border: 1px solid #d6b1a1;
-    margin-bottom: 50px; }
+    margin-bottom: 50px;
+    border-radius: 0; }
   .recipe-card ul {
     display: flex;
     padding: 0; }
@@ -220,14 +221,16 @@ footer {
   .my-week h4 {
     color: #c3d651; }
   .my-week .meal-container {
-    min-height: 300px;
+    min-height: 100px;
     background-color: #f8f5f2;
+    opacity: 0.8;
     padding: 40px;
     margin-bottom: 50px; }
     .my-week .meal-container .small-card {
       border: 1px solid #d6b1a1;
       background-color: white;
-      min-height: 250px;
+      opacity: 1;
+      min-height: 150px;
       margin-bottom: 25px; }
       .my-week .meal-container .small-card h5 {
         text-align: center;
@@ -312,7 +315,8 @@ footer {
 .shopping-list-container {
   padding-top: 150px;
   padding: 100px;
-  background-color: #f8f5f2; }
+  background-image: url(/images/background/coffee.png);
+  background-size: cover; }
   .shopping-list-container h1 {
     font-weight: 600;
     color: #d6b1a1;
@@ -321,14 +325,15 @@ footer {
   .shopping-list-container .shopping-list {
     margin: 100px 0;
     padding: 50px;
-    background-color: white;
+    background-color: #f8f5f2;
+    opacity: 0.5;
     border: 1px solid #d6b1a1; }
     .shopping-list-container .shopping-list ul {
       line-height: 2.5em; }
       .shopping-list-container .shopping-list ul li {
         font-size: 0.9em;
         display: inline;
-        font-weight: 300;
+        font-weight: 400;
         text-transform: uppercase; }
 
 .btn-xs {
@@ -350,7 +355,7 @@ footer {
 
 .dragabbles-container {
   min-width: 100%;
-  min-height: 250px; }
+  min-height: 150px; }
 
 .addImput {
   display: flex;
@@ -417,8 +422,19 @@ footer {
   padding: 5px 0 0 10px; }
 
 .profile-container {
+  text-align: center;
   padding: 150px 0 100px;
   min-height: 91vh; }
+  .profile-container img {
+    max-height: 100px;
+    margin: 30px; }
+  .profile-container ul {
+    display: flex;
+    justify-content: center; }
+    .profile-container ul li {
+      margin: 0 20px;
+      font-weight: 300;
+      list-style: none; }
   .profile-container h1 {
     font-weight: 600;
     color: #d6b1a1;
@@ -451,5 +467,11 @@ footer {
 
 .main-btn-save-changes {
   margin-bottom: 50px; }
+
+.main-my-week {
+  background-image: url(/images/background/tomato.png);
+  background-repeat: repeat-y;
+  background-size: cover;
+  padding-bottom: 50px; }
 
 /*# sourceMappingURL=style.css.map */
