@@ -471,4 +471,14 @@ footer {
   background-size: cover;
   padding-bottom: 50px; }
 
+.dropdown-menu {
+  left: -16px;
+  border-radius: 0; }
+
+.bg-light {
+  background-color: white !important; }
+
+.navbar-light .navbar-nav .show > .nav-link {
+  color: #999; }
+
 /*# sourceMappingURL=style.css.map */
