@@ -68,7 +68,7 @@ const createRecipeFromAPI = (APIData, req, next) => {
         .then(recipe => console.log("Recipe created", recipe))
         .catch(err => next(new Error(err)))
 }
-
+const getArray = data => Array.isArray(data) ? data : [data]
 const getAllIngredientsAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) : APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
 
 const getAllIngredients = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.name) :
@@ -106,6 +106,13 @@ router.get('/details/:recipeID', (req, res, next) => {
 })
 
 router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => createRecipeFromAPI(req.body, req, ))
+
+router.post("/search-by-ingredients", (req, res, next) => {
+    const ingredients = getArray(req.body.ingredients).filter(elm => elm !== "").join(",")
+    recipeApi.getRecipesByIngredients(ingredients)
+        .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next))
+        .catch(err => next(new Error(err)))
+})
 
 router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
 router.get('/search', (req, res, next) => {

@@ -8,5 +8,5 @@ const createElm = (elm, parent, attributeNames, attributeValues) => {
 }
 
 ingredientBtn.addEventListener("click", () => {
-    createElm("input", inputContainer, ["type", "class"], ["text", "form-control search-control search-control-small"])
+    createElm("input", inputContainer, ["type", "class", "name"], ["text", "form-control search-control search-control-small", "ingredients"])
 })

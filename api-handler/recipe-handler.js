@@ -43,6 +43,14 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+    getRecipesByIngredients(ingredients) {
+        console.log(ingredients)
+        return this.axiosApp.get(`/recipes/findByIngredients?ranking=1&number=9&ingredients=${ingredients}`)
+            .then(response => response.data.map(recipe => recipe.id))
+            .catch(err => {
+                throw new Error(err)
+            })
+    }
 }
 
 module.exports = new RecipeApiHandler("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
