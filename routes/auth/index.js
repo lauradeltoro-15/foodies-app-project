@@ -60,7 +60,6 @@ router.post('/login', passport.authenticate("local", {
     badRequestMessage: 'Please, fill the fields'
 }), (req, res) => console.log(req.user))
 
-
 // User logout
 router.get("/auth/logout", (req, res) => {
     req.logout()

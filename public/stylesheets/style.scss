@@ -597,7 +597,7 @@ footer {
   }
 
   .btn-sm {
-    max-width: 120px;
+    max-width: 150px;
   }
 
 }
@@ -632,4 +632,21 @@ footer {
 .results-section-similar.hidden {
   display: none;
   height: 0;
+}
+
+.unique-nutrition-container {
+  display: flex;
+
+}
+
+.nutritions-container.col-md-12 {
+  padding: 0;
+
+  .col-6.nutrition {
+    padding: 0;
+
+  }
+  .first {
+    margin-right: 10px;
+  }
 }

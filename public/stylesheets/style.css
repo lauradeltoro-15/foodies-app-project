@@ -408,7 +408,7 @@ footer {
     display: flex;
     margin-top: 60px; }
   .recipe-form-container .btn-sm {
-    max-width: 120px; }
+    max-width: 150px; }
 
 .separated-input {
   margin-bottom: 10px; }
@@ -434,5 +434,15 @@ footer {
 .results-section-similar.hidden {
   display: none;
   height: 0; }
+
+.unique-nutrition-container {
+  display: flex; }
+
+.nutritions-container.col-md-12 {
+  padding: 0; }
+  .nutritions-container.col-md-12 .col-6.nutrition {
+    padding: 0; }
+  .nutritions-container.col-md-12 .first {
+    margin-right: 10px; }
 
 /*# sourceMappingURL=style.css.map */

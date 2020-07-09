@@ -41,11 +41,16 @@ router.get('/:userID/add', isLoggedIn, (req, res) => res.render('recipes/add-rec
 }))
 
 router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res, next) => {
+    console.log(req.body)
     const steps = getArray(req.body.steps)
     const ingredients = getArray(req.body.ingredients)
     const amounts = getArray(req.body.amount)
     const ingredientsAmount = ingredients.map((ingredient, i) => `${amounts[i]} ${ingredient}`)
     const {
+        calories,
+        proteins,
+        fat,
+        carbohydrates,
         title,
         preparationMinutes,
         cookingMinutes

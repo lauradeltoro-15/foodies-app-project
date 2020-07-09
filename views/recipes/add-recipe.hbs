@@ -48,44 +48,63 @@
                                 <div class="unique-steps-container">
                                     <input name="steps" type="text" class="form-control separated-input" id="steps">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="tags">Tags</label>
-                            <br>
-                            <fieldset>
-                                <label for="vegetarian">Vegetarian</label>
-                                <input type="checkbox" name="vegetarian" id="vegetarian">
-                                <label for="vegan">Vegan</label>
-                                <input type="checkbox" name="vegan" id="vegan">
-                                <label for="veryHealthy">Healthy</label>
-                                <input type="checkbox" name="veryHealthy" id="veryHealthy">
-                                <label for="glutenFree">Gluten free</label>
-                                <input type="checkbox" name="glutenFree" id="glutenFree">
-                                <label for="cheap">Cheap</label>
-                                <input type="checkbox" name="cheap" id="cheap">
-                            </fieldset>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="preparationMinutes">Preparation minutes</label>
-                                    <input name="preparationMinutes" type="number" class="form-control"
-                                        id="inversions-input">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="cookingMinutes">Cooking Minutes</label>
-                                    <input name="cookingMinutes" type="number" class="form-control"
-                                        id="inversions-input">
+                                <div class="col-md-12 nutritions-container">
+                                    <label for="nutrition">Nutrition values</label>
+                                    <div class="unique-nutrition-container">
+                                        <div class="col-6 nutrition first">
+                                            <label for="calories">Calories</label>
+                                            <input name="calories" type="text" class="form-control separated-input"
+                                                id="calories"> <small>kcal</small>
+                                            <label for="proteins">Proteins</label>
+                                            <input name="proteins" type="text" class="form-control separated-input"
+                                                id="proteins">
+                                        </div>
+                                        <div class="col-6 nutrition">
+                                            <label for="fat">Fat</label>
+                                            <input name="fat" type="text" class="form-control separated-input" id="fat">
+                                            <label for="carbohydrates">carbohydrates</label>
+                                            <input name="carbohydrates" type="text" class="form-control separated-input"
+                                                id="carbohydrates">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="butoner">
-                            <a class="btn btn-sm btn-green" href="/profile/my-recipes/{{userID}}"
-                                class="btn btn-dark">Go
-                                back</a>
-                            <button type="submit" class="btn btn-sm btn-green">Add Recipe!</button>
-                        </div>
+                            <div class="form-group">
+                                <label for="tags">Tags</label>
+                                <br>
+                                <fieldset>
+                                    <label for="vegetarian">Vegetarian</label>
+                                    <input type="checkbox" name="vegetarian" id="vegetarian">
+                                    <label for="vegan">Vegan</label>
+                                    <input type="checkbox" name="vegan" id="vegan">
+                                    <label for="veryHealthy">Healthy</label>
+                                    <input type="checkbox" name="veryHealthy" id="veryHealthy">
+                                    <label for="glutenFree">Gluten free</label>
+                                    <input type="checkbox" name="glutenFree" id="glutenFree">
+                                    <label for="cheap">Cheap</label>
+                                    <input type="checkbox" name="cheap" id="cheap">
+                                </fieldset>
+                            </div>
+                            <div class="form-group">
+                                <div class="row ">
+                                    <div class="col-md-6">
+                                        <label for="preparationMinutes">Preparation minutes</label>
+                                        <input name="preparationMinutes" type="number" class="form-control"
+                                            id="inversions-input">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="cookingMinutes">Cooking Minutes</label>
+                                        <input name="cookingMinutes" type="number" class="form-control"
+                                            id="inversions-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="butoner">
+                                <a class="btn btn-sm btn-green" href="/profile/my-recipes/{{userID}}"
+                                    class="btn btn-dark">Go
+                                    back</a>
+                                <button type="submit" class="btn btn-sm btn-green">Add Recipe!</button>
+                            </div>
                     </form>
                 </div>
             </div>
