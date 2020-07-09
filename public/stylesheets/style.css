@@ -481,4 +481,28 @@ footer {
 .navbar-light .navbar-nav .show > .nav-link {
   color: #999; }
 
+.search-section .input-group > .form-control.search-control-small {
+  width: auto;
+  margin-bottom: 10px;
+  border-radius: none; }
+
+.btn-pink {
+  margin: 5px 0 0 15px;
+  background-color: #d6b1a1;
+  color: white; }
+
+.extra-inputs {
+  display: block; }
+
+.search-group-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; }
+
+.main-search {
+  display: flex; }
+
+.search-control-small {
+  margin-bottom: 10px; }
+
 /*# sourceMappingURL=style.css.map */

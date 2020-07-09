@@ -107,6 +107,7 @@ router.get('/details/:recipeID', (req, res, next) => {
 
 router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => createRecipeFromAPI(req.body, req, ))
 
+router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
 router.get('/search', (req, res, next) => {
     recipeApi.getFullList(req.query.query)
         .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next))
