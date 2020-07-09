@@ -429,7 +429,7 @@ footer {
   margin-top: 100px;
   display: block;
   height: auto;
-  transition: all 9s ease; }
+  transition: all 0.5s ease; }
 
 .results-section-similar.hidden {
   display: none;

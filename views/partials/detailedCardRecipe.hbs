@@ -32,6 +32,7 @@
                         </ul>
                     </div>
                 </div>
+                <hr>
                 <div class="tags-cont">
                     {{#if detailedRecipe.vegetarian}}
                     <span>vegetarian |</span>
@@ -50,8 +51,11 @@
                     {{/if}}
                 </div>
             </div>
+            {{#if similarRecipes}}
             <input type="button" value="See similar recipes" class="btn btn-sm btn-green see-similar-btn">
+            {{/if}}
         </div>
+        {{#if similarRecipes}}
         <section class="results-section-similar hidden">
             <div class="container">
                 <div class="row justify-content-center">
@@ -68,5 +72,6 @@
                 </div>
             </div>
         </section>
+        {{/if}}
     </div>
 </main>

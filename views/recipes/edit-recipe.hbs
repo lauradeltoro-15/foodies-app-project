@@ -26,11 +26,12 @@
                             <div class="col-md-4 unique-ingredient-container">
                                 <div class="addImput">
                                     <input type="button" class="add-ingredient btn btn-green btn-xxs" value="&#10010;">
-                                    <label class="label-ing"for="amount">Amount</label>
+                                    <label class="label-ing" for="amount">Amount</label>
                                 </div>
                                 <div id="amountADD">
                                     {{#each amounts}}
-                                    <input name="amount" type="text" class="separated-input form-control" id="amount" value="{{this}}">
+                                    <input name="amount" type="text" class="separated-input form-control" id="amount"
+                                        value="{{this}}">
                                     {{/each}}
                                 </div>
                             </div>
@@ -38,7 +39,8 @@
                                 <label class="label-ing" for="ingredients">Ingredients</label>
                                 <div id="ingredientADD">
                                     {{#each ingredients}}
-                                    <input name="ingredients" type="text" class="form-control separated-input" value="{{this}}">
+                                    <input name="ingredients" type="text" class="form-control separated-input"
+                                        value="{{this}}">
                                     {{/each}}
                                 </div>
                             </div>
@@ -47,18 +49,19 @@
 
                         <div class="row form-group steps-container">
                             <div class="col-md-12">
-                                <input type="button" class="add-step btn btn-green btn-xs " value="+">
+                                <input type="button" class="add-step btn btn-green btn-xxs " value="&#10010;">
                                 <label for="steps">Steps</label>
                                 <div class="unique-steps-container">
                                     {{#each steps}}
-                                    <input name="steps" type="text" class="separated-input form-control" id="steps" value="{{this}}">
+                                    <input name="steps" type="text" class="separated-input form-control" id="steps"
+                                        value="{{this}}">
                                     {{/each}}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <br>
-                            <label for="">Filter your interests!</label>
+                            <label for="">Tags</label>
                             <fieldset>
                                 <label for="vegetarian">Vegetarian</label>
                                 <input type="checkbox" name="vegetarian" id="vegetarian" {{#if vegetarian}} checked

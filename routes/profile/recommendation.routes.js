@@ -18,7 +18,9 @@ router.get("/", isLoggedIn, haveInterestsDeclared, (req, res, next) => {
     const diets = req.user.interests.cuisines ? req.user.interests.diets.join(",") : ""
 
     recipeApi.getRecommendations(`${cuisines},${diets}`)
-        .then(recipeRecommendation => res.render("recipes/detailed-recipe", recipeRecommendation.recipes[0]))
+        .then(recipeRecommendation => res.render("recipes/detailed-recipe", {
+            detailedRecipe: recipeRecommendation.recipes[0]
+        }))
         .catch(err => next(new Error(err)))
 })
 
