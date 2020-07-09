@@ -13,6 +13,8 @@ const caloriesInput = document.querySelector("[name=calories]")
 const proteinsInput = document.querySelector("[name=proteins]")
 const fatInput = document.querySelector("[name=fat]")
 const carbohydratesInput = document.querySelector("[name=carbohydrates]")
+const nutritionContainer = document.querySelector(".col-md-12.nutritions-container")
+const errorMsg = document.createElement("p")
 
 //Helper functions
 const createElm = (elm, parent, attributeNames, attributeValues) => {
@@ -47,14 +49,24 @@ window.addEventListener('load', () => {
         createElm('input', uniqueStepContainer, ['name', 'type', 'class'], ['steps', 'text', 'form-control separated-input'])
     })
     guessNutritionBtn.addEventListener("click", e => {
-        if (titleInput)
+        if (titleInput.value) {
             RecipeAPIHandler.guessNutritionValues(titleInput.value)
-            .then(nutritionGuess => obtainNutritionValues(nutritionGuess))
-            .then(nutritionValues => {
-                renderNutritionValues(nutritionValues)
-            })
-            .catch(err => {
-                throw new Error(err)
-            })
+                .then(nutritionGuess => obtainNutritionValues(nutritionGuess))
+                .then(nutritionValues => {
+                    renderNutritionValues(nutritionValues)
+                    errorMsg ? errorMsg.remove() : null
+                })
+                .catch(err => {
+                    throw new Error(err)
+                })
+        } else {
+
+            errorMsg.setAttribute("class", "errorMessage")
+            errorMsg.innerText = "We need a title for make a guess!"
+            errorMsg.style.color = "red"
+            nutritionContainer.appendChild(errorMsg)
+        }
+
+
     })
 })
