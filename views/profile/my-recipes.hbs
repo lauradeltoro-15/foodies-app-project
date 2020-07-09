@@ -16,8 +16,11 @@
                             <div class="buttons-container-recipes">
 
                                 <a href="/profile/my-recipes/edit/{{id}}" class="btn btn-xs btn-green">&#9998;</a>
-                                <input type="button" data-recipe="{{id}}" class="btn btn-xs btn-green remove-recipe-btn"
-                                    value="&#10006;">
+                                <form action="/profile/my-recipes/delete/{{id}}" method="post">
+                                    <input type="submit" data-recipe="{{id}}"
+                                        class="btn btn-xs btn-green remove-recipe-btn" value="&#10006;">
+                                </form>
+
                                 <a href="/profile/my-recipes/details/{{id}}" class="btn btn-xs btn-green">&#10010;</a>
                             </div>
                             <hr>

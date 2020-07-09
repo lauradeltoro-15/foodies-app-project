@@ -103,10 +103,6 @@ router.get('/details/:recipeID', (req, res, next) => {
             })
         })
         .catch(err => next(new Error(err)))
-
-    // recipeApi.getRecipeInformationById(req.params.recipeID)
-    //     .then(detailedRecipe => res.render("recipes/detailed-recipe", detailedRecipe))
-    //     .catch(err => next(new Error(err)))
 })
 
 router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => createRecipeFromAPI(req.body, req, ))
