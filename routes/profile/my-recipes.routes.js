@@ -64,6 +64,12 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res, next) 
             veryHealthy: isTagTrue(req, 'veryHealthy'),
             cheap: isTagTrue(req, 'cheap'),
             title,
+            nutrients: {
+                calories,
+                proteins,
+                fat,
+                carbohydrates
+            },
             image: req.file ? req.file.url : null,
             ingredients,
             ingredientsAmount,
@@ -72,7 +78,10 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res, next) 
             preparationMinutes,
             cookingMinutes
         })
-        .then(res.redirect('/profile/my-recipes/' + req.params.userID))
+        .then(response => {
+            console.log(response)
+            res.redirect('/profile/my-recipes/' + req.params.userID)
+        })
         .catch(err => next(new Error(err)))
 })
 

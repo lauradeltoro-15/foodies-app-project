@@ -24,6 +24,13 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+    guessNutritionValues(dishName) {
+        return this.axiosAPI.get(`recipes/guessNutrition?title=${dishName}`)
+            .then(response => response.data)
+            .catch(err => {
+                throw new Error(err)
+            })
+    }
     addToFavourites(recipeInfo, recipeId) {
         return this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
             .then(response => response.data)

@@ -7,12 +7,34 @@ const newIngredientADD = document.querySelector('#ingredientADD')
 const IngredientsContainer = document.querySelector(".ingredients-container")
 const stepsContainer = document.querySelector(".steps-container")
 const uniqueStepContainer = document.querySelector(".unique-steps-container")
+const guessNutritionBtn = document.querySelector(".guess-nutrition-btn")
+const titleInput = document.querySelector("[name=title]")
+const caloriesInput = document.querySelector("[name=calories]")
+const proteinsInput = document.querySelector("[name=proteins]")
+const fatInput = document.querySelector("[name=fat]")
+const carbohydratesInput = document.querySelector("[name=carbohydrates]")
 
 //Helper functions
 const createElm = (elm, parent, attributeNames, attributeValues) => {
     const newElem = document.createElement(elm);
     parent.appendChild(newElem)
     attributeNames.forEach((attribute, i) => newElem.setAttribute(attribute, attributeValues[i]))
+}
+const getAverageNutritionValue = (nutritionGuess, nutritionType) => ((nutritionGuess[nutritionType].confidenceRange95Percent.max + nutritionGuess[nutritionType].confidenceRange95Percent.min) / 2).toFixed(2)
+const obtainNutritionValues = (nutritionGuess) => {
+    return {
+        calories: getAverageNutritionValue(nutritionGuess, "calories"),
+        carbohydrates: getAverageNutritionValue(nutritionGuess, "carbs"),
+        fats: getAverageNutritionValue(nutritionGuess, "fat"),
+        proteins: getAverageNutritionValue(nutritionGuess, "protein")
+    }
+}
+const renderNutritionValues = (nutritionValues) => {
+    console.log(caloriesInput, nutritionValues.calories)
+    caloriesInput.value = nutritionValues.calories
+    fatInput.value = nutritionValues.fats
+    proteinsInput.value = nutritionValues.proteins
+    carbohydratesInput.value = nutritionValues.carbohydrates
 }
 
 //Event listeners
@@ -23,5 +45,16 @@ window.addEventListener('load', () => {
     })
     addStepButton.addEventListener("click", () => {
         createElm('input', uniqueStepContainer, ['name', 'type', 'class'], ['steps', 'text', 'form-control separated-input'])
+    })
+    guessNutritionBtn.addEventListener("click", e => {
+        if (titleInput)
+            RecipeAPIHandler.guessNutritionValues(titleInput.value)
+            .then(nutritionGuess => obtainNutritionValues(nutritionGuess))
+            .then(nutritionValues => {
+                renderNutritionValues(nutritionValues)
+            })
+            .catch(err => {
+                throw new Error(err)
+            })
     })
 })

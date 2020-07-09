@@ -52,20 +52,24 @@
                                     <label for="nutrition">Nutrition values</label>
                                     <div class="unique-nutrition-container">
                                         <div class="col-6 nutrition first">
-                                            <label for="calories">Calories</label>
+                                            <label for="calories">Calories | <small>kcal</small></label>
                                             <input name="calories" type="text" class="form-control separated-input"
-                                                id="calories"> <small>kcal</small>
-                                            <label for="proteins">Proteins</label>
+                                                id="calories">
+                                            <label for="proteins">Proteins | <small>gr</small></label>
                                             <input name="proteins" type="text" class="form-control separated-input"
                                                 id="proteins">
                                         </div>
                                         <div class="col-6 nutrition">
-                                            <label for="fat">Fat</label>
+                                            <label for="fat">Fat | <small>gr</small></label>
                                             <input name="fat" type="text" class="form-control separated-input" id="fat">
-                                            <label for="carbohydrates">carbohydrates</label>
+                                            <label for="carbohydrates">Carbohydrates | <small>gr</small></label>
                                             <input name="carbohydrates" type="text" class="form-control separated-input"
                                                 id="carbohydrates">
                                         </div>
+                                    </div>
+                                    <div class="col-12 nutrition">
+                                        <input type="button" value="Guess Nutrition"
+                                            class="btn btn-green btn-sm guess-nutrition-btn">
                                     </div>
                                 </div>
                             </div>
@@ -112,4 +116,6 @@
     </div>
 </main>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/../../javascripts/API-DDBB-Handler.js"></script>
 <script src="/javascripts/add-recipes.js"></script>

@@ -16,7 +16,7 @@ const recipeSchema = new Schema({
         calories: Number,
         fat: Number,
         carbohydrates: Number,
-        protein: Number,
+        proteins: Number,
     },
     steps: {
         type: [String],
