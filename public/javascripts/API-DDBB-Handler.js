@@ -7,7 +7,7 @@ class RecipeApiHandler {
             }
         })
         this.axiosServer = axios.create({
-            baseURL: "http://localhost:3000/"
+            baseURL: "https://foodies-app-ironhack.herokuapp.com/"
         })
     }
     getFullList(query) {
