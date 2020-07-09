@@ -43,7 +43,9 @@ router.post("/delete", (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 router.get("/:userId", isLoggedIn, (req, res, next) => {
-    Weekmeal.find({}, {
+    Weekmeal.find({
+            owner: req.user.id
+        }, {
             mealDay: 1,
             ingredients: 1
         })
