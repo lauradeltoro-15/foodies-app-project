@@ -41,16 +41,34 @@ const obtainDate = (offset) => {
 
 // Endpoints
 router.post("/change-day", (req, res, next) => {
-    console.log(req.body.newDateVal)
-    const newDate = new Date(req.body.newDateVal)
-    console.log("new date", newDate)
-    return Weekmeal.findByIdAndUpdate(req.body.mealId, {
-            mealDay: newDate
-        }, {
-            new: true
+    console.log(req.body.mealDateChangesInfo)
+    return Promise.all(req.body.mealDateChangesInfo.map(elm => {
+            const newDate = new Date(elm.newDateVal)
+            console.log(newDate)
+            return Weekmeal.findByIdAndUpdate(elm.dataMealVal, {
+                mealDay: newDate
+            }, {
+                new: true
+            })
+        })).then(response => {
+            console.log(response)
+            return response
         })
-        .then(response => response)
         .catch(err => next(new Error(err)))
+
+
+
+
+    //req.body.mealDateChangesInfo.forEach 
+    // const newDate = new Date(req.body.newDateVal)
+    // console.log("new date", newDate)
+    // return Weekmeal.findByIdAndUpdate(req.body.mealId, {
+    //         mealDay: newDate
+    //     }, {
+    //         new: true
+    //     })
+    //     .then(response => response)
+    //     .catch(err => next(new Error(err)))
 })
 
 router.post("/delete", (req, res, next) => {

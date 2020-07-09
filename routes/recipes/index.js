@@ -10,14 +10,13 @@ const Recipe = require('../../models/recipe.model')
 const renderAllRecipeInformationsByIds = (ids, res, req, next) => {
     getAllRecipeInformationByIds(ids, req, next)
         .then(response => res.render("recipes/search-recipes", {
+            user: req.user ? req.user.id : null,
             results: response
         }))
         .catch(err => next(new Error(err)))
 }
 const getAllRecipeInformationByIds = (ids, req, next) => {
-    return Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)
-            .then(response => response)
-            .catch(err => console.log("There was an error returning from DDBB", err))))
+    return Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)))
         .then(recipes => req.query.filter ? filterRecipes(recipes, req) : recipes)
         .catch(err => next(new Error(err)))
 
@@ -102,7 +101,8 @@ router.get('/details/:recipeID', (req, res, next) => {
         .then(response => {
             res.render("recipes/detailed-recipe", {
                 detailedRecipe: response[0],
-                similarRecipes: response[1]
+                similarRecipes: response[1],
+                user: req.user ? req.user : null
             })
         })
         .catch(err => next(new Error(err)))

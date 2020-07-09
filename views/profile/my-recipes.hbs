@@ -14,6 +14,8 @@
                         {{>cardRecipeInfo this}}
                         <div class="card-body card-body-my-recipes" data-recipe="{{id}}">
                             <div class="buttons-container-recipes">
+
+                                <a href="/profile/my-recipes/edit/{{id}}" class="btn btn-xs btn-green">&#9998;</a>
                                 <input type="button" data-recipe="{{id}}" class="btn btn-xs btn-green remove-recipe-btn"
                                     value="&#10006;">
                                 <a href="/profile/my-recipes/details/{{id}}" class="btn btn-xs btn-green">&#10010;</a>

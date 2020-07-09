@@ -2,8 +2,18 @@
 const dragContainers = document.querySelectorAll(".dragabbles-container")
 const draggableCards = document.querySelectorAll(".draggable-item")
 const deleteButtons = document.querySelectorAll(".delete-meal")
+const saveChangesBtn = document.querySelector(".main-btn-save-changes")
 
+//Helpers
+let weekmealsChanged = []
 let draggedItem = null
+let draggedItemId = null
+const gettingUniqueChanges = () => {
+
+    const ids = weekmealsChanged.map(elm => elm.dataMealVal)
+    console.log("this is the id", ids, "this is the meal to change", weekmealsChanged)
+    return weekmealsChanged.filter((elm, i) => ids.indexOf(elm.dataMealVal) === i)
+}
 
 //Event listeners
 window.addEventListener('load', () => {
@@ -19,12 +29,14 @@ window.addEventListener('load', () => {
     draggableCards.forEach(card => {
         card.addEventListener("dragstart", () => {
             draggedItem = card
+            draggedItemId = card.getAttribute("data-meal")
             setTimeout(() => card.style.display = "none", 0)
         })
         card.addEventListener("dragend", () => {
             setTimeout(() => {
                 draggedItem.style.display = "block"
                 draggedItem = null
+                draggedItemId = null
             }, 0)
         })
     })
@@ -33,11 +45,17 @@ window.addEventListener('load', () => {
         container.addEventListener("dragenter", e => e.preventDefault())
         container.addEventListener("drop", e => {
             container.appendChild(draggedItem)
-            const dataMeal = document.querySelector("[data-meal]")
-            const dataMealVal = dataMeal.getAttribute("data-meal")
             const newDateVal = container.getAttribute("data-date")
-            console.log(newDateVal)
-            RecipeAPIHandler.changeMealDate(dataMealVal, newDateVal)
+            weekmealsChanged.unshift({
+                dataMealVal: draggedItemId,
+                newDateVal
+            })
+
         })
     })
+    saveChangesBtn.addEventListener("click", () => {
+        RecipeAPIHandler.changeMealDate(gettingUniqueChanges())
+
+    })
+
 })

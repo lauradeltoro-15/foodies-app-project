@@ -56,11 +56,9 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
-    changeMealDate(mealId, newDateVal) {
-        console.log(mealId, newDateVal)
+    changeMealDate(mealDateChangesInfo) {
         return this.axiosServer.post("/profile/my-week/change-day", {
-                mealId,
-                newDateVal
+                mealDateChangesInfo
             })
             .then(response => {
                 console.log(response)
@@ -81,7 +79,6 @@ class RecipeApiHandler {
             })
     }
     deleteIngredientFromShoppingList(ingredient) {
-        console.log("ingredientname", ingredient)
         return this.axiosServer.post("/profile/my-shopping-list/delete", {
                 ingredient
             })

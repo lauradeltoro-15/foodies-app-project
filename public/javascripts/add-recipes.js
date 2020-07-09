@@ -60,7 +60,6 @@ window.addEventListener('load', () => {
                     throw new Error(err)
                 })
         } else {
-
             errorMsg.setAttribute("class", "errorMessage")
             errorMsg.innerText = "We need a title for make a guess!"
             errorMsg.style.color = "red"
