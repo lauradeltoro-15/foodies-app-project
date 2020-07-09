@@ -1,15 +1,18 @@
+{{!-- detailedRecipe: response[0],
+                similarRecipes: response[1] --}}
+
 <main class="recipe-details">
     <div class="container">
         <div class="recipe-detailed">
-            <h1>Details of recipe {{title}}</h1>
+            <h1>Details of recipe {{detailedRecipe.title}}</h1>
             <div class="row first-row">
                 <div class="col-md-6">
-                    <img class="detailedImageRecipe" src="{{image}}" alt="{{title}}">
+                    <img class="detailedImageRecipe" src="{{detailedRecipe.image}}" alt="{{detailedRecipe.title}}">
                 </div>
                 <div class="col-md-6 col-with-padding">
                     <h4>Ingredients</h4>
                     <ul>
-                        {{#each extendedIngredients}}
+                        {{#each detailedRecipe.extendedIngredients}}
                         <li>{{original}}</li>
                         {{/each}}
                     </ul>
@@ -21,7 +24,7 @@
                         <hr>
                         <h4>Instructions</h4>
                         <ul>
-                            {{#each analyzedInstructions}}
+                            {{#each detailedRecipe.analyzedInstructions}}
                             {{#each steps}}
                             <li>{{step}}</li>
                             {{/each}}
@@ -30,24 +33,40 @@
                     </div>
                 </div>
                 <div class="tags-cont">
-                    {{#if vegetarian}}
+                    {{#if detailedRecipe.vegetarian}}
                     <span>vegetarian |</span>
                     {{/if}}
-                    {{#if vegan}}
+                    {{#if detailedRecipe.vegan}}
                     <span>vegan |</span>
                     {{/if}}
-                    {{#if veryHealthy}}
+                    {{#if detailedRecipe.veryHealthy}}
                     <span>very Healthy |</span>
                     {{/if}}
-                    {{#if glutenFree}}
+                    {{#if detailedRecipe.glutenFree}}
                     <span>Gluten free |</span>
                     {{/if}}
-                    {{#if cheap}}
+                    {{#if detailedRecipe.cheap}}
                     <span>Cheap</span>
                     {{/if}}
                 </div>
             </div>
-
+            <input type="button" value="See similar recipes" class="btn btn-sm btn-green see-similar-btn">
         </div>
+        <section class="results-section-similar hidden">
+            <div class="container">
+                <div class="row justify-content-center">
+                    {{#each similarRecipes}}
+                    <div class="col-4">
+                        <article class="recipe-card">
+                            <div class="card">
+                                {{>cardRecipeInfo this}}
+                                {{>APICardRecipeButtons this.id}}
+                            </div>
+                        </article>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </section>
     </div>
 </main>

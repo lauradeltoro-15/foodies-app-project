@@ -22,6 +22,13 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+    getRecipesInformationByIds(ids) {
+        return this.axiosApp.get(`recipes/informationBulk?includeNutrition=true&ids=${ids}`)
+            .then(response => response.data)
+            .catch(err => {
+                throw new Error(err)
+            })
+    }
     getRecommendations(tags) {
         return this.axiosApp.get(`/recipes/random?tags=${tags}`)
             .then(response => response.data)
@@ -29,7 +36,13 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
-
+    getSimilarRecipes(recipeId) {
+        return this.axiosApp.get(`/recipes/${recipeId}/similar?number=3`)
+            .then(response => response.data.map(recipe => recipe.id))
+            .catch(err => {
+                throw new Error(err)
+            })
+    }
 }
 
 module.exports = new RecipeApiHandler("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")

@@ -22,6 +22,14 @@ const getAllRecipeInformationByIds = (ids, req, next) => {
         .catch(err => next(new Error(err)))
 
 }
+const getRecipeInformationWithSimilars = (similarIds, actualRecipeId, next) => {
+    const IdsToString = similarIds.map(id => id.toString()).join(",")
+    console.log(IdsToString)
+    return Promise.all([recipeApi.getRecipeInformationById(actualRecipeId), recipeApi.getRecipesInformationByIds(IdsToString)])
+        .then(response => response)
+        .catch(err => next(new Error(err)))
+
+}
 const filterRecipes = (recipes, req) => {
     const filters = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter]
     return recipes.filter(recipe => filters.every(filter => recipe[filter]))
@@ -88,9 +96,20 @@ const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.f
 
 //Routes
 router.get('/details/:recipeID', (req, res, next) => {
-    recipeApi.getRecipeInformationById(req.params.recipeID)
-        .then(detailedRecipe => res.render("recipes/detailed-recipe", detailedRecipe))
+
+    recipeApi.getSimilarRecipes(req.params.recipeID)
+        .then(similarsIds => getRecipeInformationWithSimilars(similarsIds, req.params.recipeID, next))
+        .then(response => {
+            res.render("recipes/detailed-recipe", {
+                detailedRecipe: response[0],
+                similarRecipes: response[1]
+            })
+        })
         .catch(err => next(new Error(err)))
+
+    // recipeApi.getRecipeInformationById(req.params.recipeID)
+    //     .then(detailedRecipe => res.render("recipes/detailed-recipe", detailedRecipe))
+    //     .catch(err => next(new Error(err)))
 })
 
 router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => createRecipeFromAPI(req.body, req, ))

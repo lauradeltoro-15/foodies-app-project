@@ -251,7 +251,7 @@ footer {
 }
 
 .recipe-details {
-  img {
+  .detailedImageRecipe {
     border-radius: 50%
   }
 }
@@ -613,10 +613,23 @@ footer {
 .profile-container {
   padding: 150px 0 100px;
   min-height: $hight-without-footer;
+
   h1 {
     font-weight: 600;
     color: $light-pink;
     margin-bottom: 30px;
     text-align: center;
   }
+}
+
+.results-section-similar {
+  margin-top: 100px;
+  display: block;
+  height: auto;
+  transition: all 0.5s ease;
+}
+
+.results-section-similar.hidden {
+  display: none;
+  height: 0;
 }

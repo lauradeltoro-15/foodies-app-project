@@ -170,7 +170,7 @@ footer {
   background-color: #f8f5f2;
   background-repeat: repeat; }
 
-.recipe-details img {
+.recipe-details .detailedImageRecipe {
   border-radius: 50%; }
 
 .navbar {
@@ -424,5 +424,15 @@ footer {
     color: #d6b1a1;
     margin-bottom: 30px;
     text-align: center; }
+
+.results-section-similar {
+  margin-top: 100px;
+  display: block;
+  height: auto;
+  transition: all 9s ease; }
+
+.results-section-similar.hidden {
+  display: none;
+  height: 0; }
 
 /*# sourceMappingURL=style.css.map */
