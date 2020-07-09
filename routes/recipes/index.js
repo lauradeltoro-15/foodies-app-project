@@ -88,7 +88,7 @@ const getAllNutrients = APIData => {
         fat: takeNutrientFromAPI(APIData, "Fat"),
         carbohydrates: takeNutrientFromAPI(APIData, "Carbohydrates"),
         sugar: takeNutrientFromAPI(APIData, "Sugar"),
-        protein: takeNutrientFromAPI(APIData, "Protein"),
+        proteins: takeNutrientFromAPI(APIData, "Protein"),
         fiber: takeNutrientFromAPI(APIData, "Fiber")
     }
 }
