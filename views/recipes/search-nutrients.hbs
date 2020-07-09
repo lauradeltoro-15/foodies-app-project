@@ -1,0 +1,101 @@
+<main class="main-container">
+
+    <section class="search-section">
+        <div class="container">
+            <h1>Worried about your diet?</h1>
+            <div class="input-group md-form form-sm form-2 pl-0">
+                <nav class="navbar navbar-light bg-light search-nav-bar">
+                    <form class="form-inline search-form-api" action="/recipes/search-by-nutrients" method="post">
+                        <div class="input-group search-group-cont">
+                            <div class="main-search">
+                                <button>
+                                    <div class="input-group-prepend">
+                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                                            <path fill-rule="evenodd"
+                                                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div class="search-nutrient">
+                                    <label for="maxCalories">max Calories</label>
+                                    <input type="text" name="maxCalories"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="maxCalories">
+                                    <label for="minCalories">min Calories</label>
+                                    <input type="text" name="minCalories"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="minCalories">
+                                </div>
+                                <div class="search-nutrient">
+                                    <label for="maxCarbs">max Carbs</label>
+                                    <input type="text" name="maxCarbs"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="maxCarbs">
+                                    <label for="maxCarbs">min Carbs</label>
+                                    <input type="text" name="maxCarbs"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="minCarbs">
+                                </div>
+                                <div class="search-nutrient">
+                                    <label for="maxProtein">max Proteins</label>
+                                    <input type="text" name="maxProtein"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="maxProtein">
+                                    <label for="minProtein">min Proteins</label>
+                                    <input type="text" name="minCalories"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="minProtein">
+                                </div>
+                                <div class="search-nutrient">
+                                    <label for="maxFat">max Fat</label>
+                                    <input type="text" name="maxFat"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="maxFat">
+                                    <label for="minFat">min Fat</label>
+                                    <input type="text" name="minFat"
+                                        class="form-control search-control search-control-small" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="minFat">
+                                </div>
+                            </div>
+                            <button>
+                        </div>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </section>
+    {{#if results}}
+    <section class="results-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                {{#each results}}
+                <div class="col-4">
+                    <article class="recipe-card">
+                        <div class="card">
+                            {{>cardRecipeInfo this}}
+                            <div class="card-body">
+                                <div class="btn-container-in-card">
+                                    {{#if ../user}}
+                                    <form action="/recipes/add-to-favourites/{{this.id}}" method="post">
+                                        <input type="submit" value="&#10084;" data-recipe="{{this.id}}"
+                                            class="favbutton btn btn-xs btn-green">
+                                    </form>
+                                    {{/if}}
+                                    <a href="/recipes/details/{{this.id}}" class="btn btn-xs btn-green">&#10010;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>
+    {{/if}}
+</main>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/API-DDBB-Handler.js"></script>
+<script src="/javascripts/search-by-ingredients.js"></script>

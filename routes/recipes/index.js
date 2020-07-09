@@ -113,8 +113,11 @@ router.post("/search-by-ingredients", (req, res, next) => {
         .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next))
         .catch(err => next(new Error(err)))
 })
-
 router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
+router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
+
+router.get("/search-by-nutrients", (req, res, next) => res.render("recipes/search-nutrients"))
+
 router.get('/search', (req, res, next) => {
     recipeApi.getFullList(req.query.query)
         .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next))
