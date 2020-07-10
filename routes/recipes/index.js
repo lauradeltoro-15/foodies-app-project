@@ -15,24 +15,26 @@ const renderAllRecipeInformationsByIds = (ids, res, req, next, view) => {
         }))
         .catch(err => next(new Error(err)))
 }
+
 const getAllRecipeInformationByIds = (ids, req, next) => {
     return Promise.all(ids.map(id => recipeApi.getRecipeInformationById(id)))
         .then(recipes => req.query.filter ? filterRecipes(recipes, req) : recipes)
         .catch(err => next(new Error(err)))
-
 }
+
 const getRecipeInformationWithSimilars = (similarIds, actualRecipeId, next) => {
     const IdsToString = similarIds.map(id => id.toString()).join(",")
     console.log(IdsToString)
     return Promise.all([recipeApi.getRecipeInformationById(actualRecipeId), recipeApi.getRecipesInformationByIds(IdsToString)])
         .then(response => response)
         .catch(err => next(new Error(err)))
-
 }
+
 const filterRecipes = (recipes, req) => {
     const filters = Array.isArray(req.query.filter) ? req.query.filter : [req.query.filter]
     return recipes.filter(recipe => filters.every(filter => recipe[filter]))
 }
+
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.redirect("/auth/login")
 const createRecipeFromAPI = (APIData, req, next) => {
     const {
@@ -93,10 +95,8 @@ const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.f
 const getQueryString = (req) => {
     const keys = Object.keys(req.body)
     const values = Object.values(req.body)
-    console.log(keys, values)
     const filterdKeys = keys.filter((key, i) => values[i] !== "")
     const filteredValues = values.filter(val => val !== "")
-    console.log(filterdKeys, filteredValues)
     return keys.map((key, i) => `${filterdKeys}=${filteredValues[i]}`).join("&")
 }
 //Routes

@@ -26,8 +26,16 @@
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/recipes">Search recipes</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Search recipes
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="nav-link" href="/recipes">Search by dishName</a>
+            <a class="nav-link" href="/recipes/search-by-ingredients">What's in the fridge?</a>
+            <a class="nav-link" href="/recipes/search-by-nutrients">Worried about diet?</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/auth/signup">Sign up</a>
