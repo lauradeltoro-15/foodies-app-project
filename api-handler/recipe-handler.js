@@ -44,8 +44,15 @@ class RecipeApiHandler {
             })
     }
     getRecipesByIngredients(ingredients) {
-        console.log(ingredients)
         return this.axiosApp.get(`/recipes/findByIngredients?ranking=1&number=9&ingredients=${ingredients}`)
+            .then(response => response.data.map(recipe => recipe.id))
+            .catch(err => {
+                throw new Error(err)
+            })
+    }
+    getRecipeByNutrition(nutritionQuery) {
+        console.log(nutritionQuery)
+        return this.axiosApp.get(`/recipes/findByNutrients?number=9&${nutritionQuery}}`)
             .then(response => response.data.map(recipe => recipe.id))
             .catch(err => {
                 throw new Error(err)

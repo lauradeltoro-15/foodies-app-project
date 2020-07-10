@@ -7,9 +7,9 @@ const User = require("../../models/user.model")
 const Recipe = require('../../models/recipe.model')
 
 //Helpers
-const renderAllRecipeInformationsByIds = (ids, res, req, next) => {
+const renderAllRecipeInformationsByIds = (ids, res, req, next, view) => {
     getAllRecipeInformationByIds(ids, req, next)
-        .then(response => res.render("recipes/search-recipes", {
+        .then(response => res.render(view, {
             user: req.user ? req.user.id : null,
             results: response
         }))
@@ -90,6 +90,15 @@ const getAllNutrients = APIData => {
 }
 const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.find(elm => elm.title === nutrient).amount
 
+const getQueryString = (req) => {
+    const keys = Object.keys(req.body)
+    const values = Object.values(req.body)
+    console.log(keys, values)
+    const filterdKeys = keys.filter((key, i) => values[i] !== "")
+    const filteredValues = values.filter(val => val !== "")
+    console.log(filterdKeys, filteredValues)
+    return keys.map((key, i) => `${filterdKeys}=${filteredValues[i]}`).join("&")
+}
 //Routes
 router.get('/details/:recipeID', (req, res, next) => {
 
@@ -110,17 +119,21 @@ router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => crea
 router.post("/search-by-ingredients", (req, res, next) => {
     const ingredients = getArray(req.body.ingredients).filter(elm => elm !== "").join(",")
     recipeApi.getRecipesByIngredients(ingredients)
-        .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next))
+        .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next, "recipes/search-ingredients"))
         .catch(err => next(new Error(err)))
 })
 router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
 router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
-
+router.post("/search-by-nutrients", (req, res, next) => {
+    recipeApi.getRecipeByNutrition(getQueryString(req))
+        .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next, "recipes/search-nutrients"))
+        .catch(err => next(new Error(err)))
+})
 router.get("/search-by-nutrients", (req, res, next) => res.render("recipes/search-nutrients"))
 
 router.get('/search', (req, res, next) => {
     recipeApi.getFullList(req.query.query)
-        .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next))
+        .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next, "recipes/search-recipes"))
         .catch(err => next(new Error(err)))
 })
 
