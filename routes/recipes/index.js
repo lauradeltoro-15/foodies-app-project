@@ -95,9 +95,10 @@ const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.f
 const getQueryString = (req) => {
     const keys = Object.keys(req.body)
     const values = Object.values(req.body)
-    const filterdKeys = keys.filter((key, i) => values[i] !== "")
+    const filteredKeys = keys.filter((key, i) => values[i] !== "")
     const filteredValues = values.filter(val => val !== "")
-    return keys.map((key, i) => `${filterdKeys}=${filteredValues[i]}`).join("&")
+    console.log(filteredKeys, filteredValues)
+    return filteredKeys.map((key, i) => `${key}=${filteredValues[i]}`).join("&")
 }
 //Routes
 router.get('/details/:recipeID', (req, res, next) => {
