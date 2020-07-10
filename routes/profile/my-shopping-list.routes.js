@@ -23,6 +23,7 @@ const filterIngredientsByRecipeDay = weekmeals => {
 
 //Routes
 router.post("/delete", (req, res, next) => {
+    console.log(req.body)
     return Weekmeal.find({
             ingredients: {
                 $in: [`${req.body.ingredient}`]
@@ -35,7 +36,7 @@ router.post("/delete", (req, res, next) => {
                     }, {
                         new: true
                     })
-                    .then(objUpdated => console.log("NEW OBJECT", objUpdated))
+                    .then(objUpdated => objUpdated)
                     .catch(err => next(new Error(err)))
             })
         })
