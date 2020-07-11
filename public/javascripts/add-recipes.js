@@ -32,7 +32,6 @@ const obtainNutritionValues = (nutritionGuess) => {
     }
 }
 const renderNutritionValues = (nutritionValues) => {
-    console.log(caloriesInput, nutritionValues.calories)
     caloriesInput.value = nutritionValues.calories
     fatInput.value = nutritionValues.fats
     proteinsInput.value = nutritionValues.proteins

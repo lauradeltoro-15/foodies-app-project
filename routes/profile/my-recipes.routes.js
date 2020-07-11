@@ -41,7 +41,6 @@ router.get('/:userID/add', isLoggedIn, (req, res) => res.render('recipes/add-rec
 }))
 
 router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res, next) => {
-    console.log(req.body)
     const steps = getArray(req.body.steps)
     const ingredients = getArray(req.body.ingredients)
     const amounts = getArray(req.body.amount)
@@ -79,7 +78,6 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res, next) 
             cookingMinutes
         })
         .then(response => {
-            console.log(response)
             res.redirect('/profile/my-recipes/' + req.params.userID)
         })
         .catch(err => next(new Error(err)))
@@ -141,7 +139,6 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
 
 })
 router.post("/delete/:recipeID", (req, res, next) => {
-    console.log(req.params.recipeID)
     Recipe
         .findByIdAndRemove(req.params.recipeID)
         .then(res.redirect(`/profile/my-recipes/${req.user.id}`))

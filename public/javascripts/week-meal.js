@@ -11,7 +11,6 @@ let draggedItemId = null
 const gettingUniqueChanges = () => {
 
     const ids = weekmealsChanged.map(elm => elm.dataMealVal)
-    console.log("this is the id", ids, "this is the meal to change", weekmealsChanged)
     return weekmealsChanged.filter((elm, i) => ids.indexOf(elm.dataMealVal) === i)
 }
 

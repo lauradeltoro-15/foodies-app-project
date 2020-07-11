@@ -20,10 +20,8 @@ const filterIngredientsByRecipeDay = weekmeals => {
     const lastDay = today + 6
     return weekmeals.filter(meal => meal.mealDay.getDate() >= today && meal.mealDay.getDate() <= lastDay).map(meal => meal.ingredients).flat();
 }
-
 //Routes
 router.post("/delete", (req, res, next) => {
-    console.log(req.body)
     return Weekmeal.find({
             ingredients: {
                 $in: [`${req.body.ingredient}`]
@@ -40,7 +38,6 @@ router.post("/delete", (req, res, next) => {
                     .catch(err => next(new Error(err)))
             })
         })
-        .then(ingredientsListsFiltered => console.log("ingredients", ingredientsListsFiltered))
         .catch(err => next(new Error(err)))
 })
 router.get("/:userId", isLoggedIn, (req, res, next) => {

@@ -24,7 +24,6 @@ const getAllRecipeInformationByIds = (ids, req, next) => {
 
 const getRecipeInformationWithSimilars = (similarIds, actualRecipeId, next) => {
     const IdsToString = similarIds.map(id => id.toString()).join(",")
-    console.log(IdsToString)
     return Promise.all([recipeApi.getRecipeInformationById(actualRecipeId), recipeApi.getRecipesInformationByIds(IdsToString)])
         .then(response => response)
         .catch(err => next(new Error(err)))
@@ -67,7 +66,7 @@ const createRecipeFromAPI = (APIData, req, next) => {
             cookingMinutes: APIData.cookingMinutes,
             owner: req.user.id
         })
-        .then(recipe => console.log("Recipe created", recipe))
+        .then(recipe => recipe)
         .catch(err => next(new Error(err)))
 }
 const getArray = data => Array.isArray(data) ? data : [data]
@@ -97,7 +96,6 @@ const getQueryString = (req) => {
     const values = Object.values(req.body)
     const filteredKeys = keys.filter((key, i) => values[i] !== "")
     const filteredValues = values.filter(val => val !== "")
-    console.log(filteredKeys, filteredValues)
     return filteredKeys.map((key, i) => `${key}=${filteredValues[i]}`).join("&")
 }
 //Routes

@@ -6,9 +6,7 @@
                 <div class="row">
                     {{#each filteredWeekMeals}}
                     <div class="col-4 list-ingredient-container">
-                        <form action="/profile/my-shopping-list/delete" method="post">
-                            <input type="submit" value="&#10006;" class="btn btn-green btn-xxs delete-item-button">
-                        </form>
+                        <input type="button" value="&#10006;" class="btn btn-green btn-xxs delete-item-button">
                         <li class="ingredient-item">{{this}}</li>
                     </div>
                     {{/each}}

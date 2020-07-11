@@ -15,7 +15,6 @@ router.get("/edit/:userID", isLoggedIn, (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 router.post("/edit/:userID", isLoggedIn, cloudUploader.single('imageFile'), (req, res, next) => {
-    console.log(req.body)
     const {
         description
     } = req.body
