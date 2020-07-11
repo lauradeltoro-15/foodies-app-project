@@ -8,11 +8,10 @@ window.addEventListener('load', () => {
         e.preventDefault()
         const recipeId = button.getAttribute("data-recipe")
         RecipeAPIHandler.getRecipeInformationById(recipeId)
-            .then(recipeInfo => {
-                RecipeAPIHandler.addToFavourites(recipeInfo, recipeId)
-                button.classList.add("added")
-            })
+            .then(recipeInfo => RecipeAPIHandler.addToFavourites(recipeInfo, recipeId))
+            .then(() => button.classList.add("added"))
             .catch(err => {
-                throw new Error(err)})
+                throw new Error(err)
+            })
     }))
 })

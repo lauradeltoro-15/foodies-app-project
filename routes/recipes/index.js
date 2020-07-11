@@ -48,7 +48,7 @@ const createRecipeFromAPI = (APIData, req, next) => {
     const ingredients = getAllIngredients(APIData)
     const ingredientsAmount = getAllIngredientsWithAmounts(APIData)
     const amounts = getAllIngredientsAmounts(APIData)
-    Recipe.create({
+    return Recipe.create({
             amounts,
             title: APIData.title,
             originalID: APIData.id,
@@ -113,7 +113,12 @@ router.get('/details/:recipeID', (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 
-router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => createRecipeFromAPI(req.body, req, ))
+router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => {
+    createRecipeFromAPI(req.body, req, next)
+        .then(response => res.send(`Recipe created: ${response}`))
+        .catch(err => next(new Error(err)))
+
+})
 
 router.post("/search-by-ingredients", (req, res, next) => {
     const ingredients = getArray(req.body.ingredients).filter(elm => elm !== "").join(",")

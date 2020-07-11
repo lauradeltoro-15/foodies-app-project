@@ -8,7 +8,10 @@ window.addEventListener('load', () => {
             const ingredientContainer = btn.closest(".list-ingredient-container")
             const ingredientName = ingredientContainer.children[1].innerHTML
             RecipeAPIHandler.deleteIngredientFromShoppingList(ingredientName)
-            ingredientContainer.remove()
+                .then(() => ingredientContainer.remove())
+                .catch(err => {
+                    throw new Error(err)
+                })
         })
     )
 })

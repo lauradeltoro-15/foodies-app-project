@@ -138,10 +138,10 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
         .catch(err => next(new Error(err)))
 
 })
-router.post("/delete/:recipeID", (req, res, next) => {
+router.delete("/delete/:recipeID", (req, res, next) => {
     Recipe
         .findByIdAndRemove(req.params.recipeID)
-        .then(res.redirect(`/profile/my-recipes/${req.user.id}`))
+        .then(response => res.send(`recipe deleted: ${response}`))
         .catch(err => next(new Error(err)))
 })
 
@@ -149,6 +149,7 @@ router.post("/add-to-week/:recipeID", isLoggedIn, (req, res, next) => {
     return Recipe.findById(req.params.recipeID)
         .then(recipe => getWeekMeal(recipe, req))
         .then(meal => Weekmeal.create(meal))
+        .then(response => res.send(response))
         .catch(err => next(new Error(err)))
 })
 

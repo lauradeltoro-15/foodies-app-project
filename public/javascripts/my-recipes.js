@@ -22,15 +22,21 @@ window.addEventListener('load', () => {
                 cardToRemove.remove()
             })
             .catch(err => {
-                throw new Error(err)})
+                throw new Error(err)
+            })
     }))
     addToWeekBtn.forEach(button => button.addEventListener("click", e => {
         e.preventDefault()
         const recipeId = button.getAttribute("data-recipe")
         const inputDate = document.querySelector(`.weekdate[data-recipe="${recipeId}"]`)
         RecipeAPIHandler.addRecipeToWeek(recipeId, inputDate.value)
-        inputDate.remove()
-        button.remove()
-        createBackValue(recipeId, inputDate.value)
+            .then(() => {
+                inputDate.remove()
+                button.remove()
+                createBackValue(recipeId, inputDate.value)
+            })
+            .catch(err => {
+                throw new Error(err)
+            })
     }))
 })

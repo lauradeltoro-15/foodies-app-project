@@ -7,7 +7,7 @@ class RecipeApiHandler {
             }
         })
         this.axiosServer = axios.create({
-            baseURL: "//foodies-app-ironhack.herokuapp.com"
+            baseURL: "http://localhost:3000"
         })
     }
     getFullList(query) {
@@ -33,14 +33,14 @@ class RecipeApiHandler {
     }
     addToFavourites(recipeInfo, recipeId) {
         return this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
-            .then(response => response.data)
+            .then(response => response)
             .catch(err => {
                 throw new Error(err)
             })
     }
     deleteRecipe(recipeId) {
-        return this.axiosServer.post(`/profile/my-recipes/delete/${recipeId}`)
-            .then(response => response.data)
+        return this.axiosServer.delete(`/profile/my-recipes/delete/${recipeId}`)
+            .then(response => response)
             .catch(err => {
                 throw new Error(err)
             })
@@ -49,42 +49,34 @@ class RecipeApiHandler {
         return this.axiosServer.post(`/profile/my-recipes/add-to-week/${recipeId}`, {
                 mealDate
             })
-            .then(response => {
-                console.log(response)
-            })
+            .then(response => response)
             .catch(err => {
                 throw new Error(err)
             })
     }
     changeMealDate(mealDateChangesInfo) {
-        return this.axiosServer.post("/profile/my-week/change-day", {
+        return this.axiosServer.put("/profile/my-week/change-day", {
                 mealDateChangesInfo
             })
-            .then(response => {
-                console.log(response)
-            })
+            .then(response => response)
             .catch(err => {
                 throw new Error(err)
             })
     }
     deleteMealFromWeek(mealId) {
-        return this.axiosServer.post(`/profile/my-week/delete`, {
+        return this.axiosServer.delete(`/profile/my-week/delete`, {
                 mealId
             })
-            .then(response => {
-                console.log(response)
-            })
+            .then(response => response)
             .catch(err => {
                 throw new Error(err)
             })
     }
     deleteIngredientFromShoppingList(ingredient) {
-        return this.axiosServer.post("/profile/my-shopping-list/delete", {
+        return this.axiosServer.delete("/profile/my-shopping-list/delete", {
                 ingredient
             })
-            .then(response => {
-                console.log(response)
-            })
+            .then(response => response)
             .catch(err => {
                 throw new Error(err)
             })

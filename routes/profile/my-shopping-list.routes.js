@@ -21,24 +21,29 @@ const filterIngredientsByRecipeDay = weekmeals => {
     return weekmeals.filter(meal => meal.mealDay.getDate() >= today && meal.mealDay.getDate() <= lastDay).map(meal => meal.ingredients).flat();
 }
 //Routes
-router.post("/delete", (req, res, next) => {
-    return Weekmeal.find({
+router.delete("/delete", (req, res, next) => {
+    Weekmeal.find({
             ingredients: {
                 $in: [`${req.body.ingredient}`]
             }
         }, {})
         .then(weekmealsToModify => {
-            return weekmealsToModify.forEach(meal => {
-                Weekmeal.findByIdAndUpdate(meal.id, {
+            let findByIdAndUpdateCalls = [];
+            weekmealsToModify.forEach(meal => {
+                findByIdAndUpdateCalls.push(
+                    Weekmeal.findByIdAndUpdate(meal.id, {
                         ingredients: getUpdatedIngredientList(meal, req.body.ingredient)
                     }, {
                         new: true
                     })
-                    .then(objUpdated => objUpdated)
+                    .then(response => response)
                     .catch(err => next(new Error(err)))
+                )
             })
+            Promise.all(findByIdAndUpdateCalls)
+                .then(() => res.send(`${req.body.ingredient} removed`))
+                .catch(err => next(new Error(err)))
         })
-        .catch(err => next(new Error(err)))
 })
 router.get("/:userId", isLoggedIn, (req, res, next) => {
     Weekmeal.find({

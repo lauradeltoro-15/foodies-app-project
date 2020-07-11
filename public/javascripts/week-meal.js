@@ -22,7 +22,11 @@ window.addEventListener('load', () => {
             const idContainer = button.closest("[data-meal]")
             const idValue = idContainer.getAttribute("data-meal")
             RecipeAPIHandler.deleteMealFromWeek(idValue)
-            idContainer.remove()
+                .then(() => idContainer.remove())
+                .catch(err => {
+                    throw new Error(err)
+                })
+
         })
     })
     draggableCards.forEach(card => {
