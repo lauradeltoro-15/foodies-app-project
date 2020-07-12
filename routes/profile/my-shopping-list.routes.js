@@ -20,13 +20,14 @@ const filterIngredientsByRecipeDay = weekmeals => {
     const lastDay = today + 6
     return weekmeals.filter(meal => meal.mealDay.getDate() >= today && meal.mealDay.getDate() <= lastDay).map(meal => meal.ingredients).flat();
 }
+
 //Routes
 router.delete("/delete", (req, res, next) => {
     Weekmeal.find({
             ingredients: {
                 $in: [`${req.body.ingredient}`]
             }
-        }, {})
+        })
         .then(weekmealsToModify => {
             let findByIdAndUpdateCalls = [];
             weekmealsToModify.forEach(meal => {

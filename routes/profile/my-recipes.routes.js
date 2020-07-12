@@ -10,6 +10,7 @@ const Weekmeal = require("../../models/week-meal.model")
 
 //Helper functions 
 const isCurrentUser = (req, res, next) => req.isAuthenticated() && req.params.userID === req.user.id ? next() : res.redirect("/auth/login")
+
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
     errorMsg: "Restricted area!"
 })
@@ -25,7 +26,9 @@ const obtainDate = (offset) => {
 }
 
 const getArray = data => Array.isArray(data) ? data : [data]
+
 const isTagTrue = (req, tag) => req.body[tag] ? true : false
+
 const getWeekMeal = (recipe, req) => {
     return {
         originalRecipe: recipe.id,
@@ -77,7 +80,7 @@ router.post("/:userID/add", cloudUploader.single('imageFile'), (req, res, next) 
             preparationMinutes,
             cookingMinutes
         })
-        .then(response => {
+        .then(() => {
             res.redirect('/profile/my-recipes/' + req.params.userID)
         })
         .catch(err => next(new Error(err)))
@@ -112,7 +115,6 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
         .findById(req.params.recipeID)
         .then(theRecipe => {
             originalImg = theRecipe.image
-            return
         })
         .then(() => {
             return Recipe
@@ -138,6 +140,7 @@ router.post("/edit/:recipeID", isLoggedIn, cloudUploader.single('imageFile'), (r
         .catch(err => next(new Error(err)))
 
 })
+
 router.delete("/delete/:recipeID", (req, res, next) => {
     Recipe
         .findByIdAndRemove(req.params.recipeID)

@@ -35,24 +35,25 @@ const filterRecipes = (recipes, req) => {
 }
 
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.redirect("/auth/login")
-const createRecipeFromAPI = (APIData, req, next) => {
+
+const createRecipeWithOwner = (recipe, owner, next) => {
     const {
         vegetarian,
         vegan,
         glutenFree,
         veryHealthy,
         cheap
-    } = APIData
-    const nutrients = getAllNutrients(APIData)
-    const steps = getAllSteps(APIData)
-    const ingredients = getAllIngredients(APIData)
-    const ingredientsAmount = getAllIngredientsWithAmounts(APIData)
-    const amounts = getAllIngredientsAmounts(APIData)
+    } = recipe
+    const nutrients = getAllNutrients(recipe)
+    const steps = getAllSteps(recipe)
+    const ingredients = getAllIngredients(recipe)
+    const ingredientsAmount = getAllIngredientsWithAmounts(recipe)
+    const amounts = getAllIngredientsAmounts(recipe)
     return Recipe.create({
             amounts,
-            title: APIData.title,
-            originalID: APIData.id,
-            image: APIData.image,
+            title: recipe.title,
+            originalID: recipe.id,
+            image: recipe.image,
             nutrients,
             ingredients,
             ingredientsAmount,
@@ -62,34 +63,36 @@ const createRecipeFromAPI = (APIData, req, next) => {
             veryHealthy,
             cheap,
             steps,
-            preparationMinutes: APIData.preparationMinutes,
-            cookingMinutes: APIData.cookingMinutes,
-            owner: req.user.id
+            preparationMinutes: recipe.preparationMinutes,
+            cookingMinutes: recipe.cookingMinutes,
+            owner: owner.id
         })
         .then(recipe => recipe)
         .catch(err => next(new Error(err)))
 }
 const getArray = data => Array.isArray(data) ? data : [data]
-const getAllIngredientsAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) : APIData.ingredients ? APIData.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
 
-const getAllIngredients = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.name) :
-    APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
+const getAllIngredientsAmounts = recipe => recipe.extendedIngredients ? recipe.extendedIngredients.map(elm => `${elm.amount} ${elm.unit}`) : recipe.ingredients ? recipe.ingredients.map(elm => `${elm.amount} ${elm.unit}`) : null
 
-const getAllIngredientsWithAmounts = APIData => APIData.extendedIngredients ? APIData.extendedIngredients.map(elm => elm.originalString) : APIData.ingredients ? APIData.ingredients.map(elm => elm.name) : null
+const getAllIngredients = recipe => recipe.extendedIngredients ? recipe.extendedIngredients.map(elm => elm.name) :
+    recipe.ingredients ? recipe.ingredients.map(elm => elm.name) : null
 
-const getAllSteps = APIData => APIData.analyzedInstructions[0] ? APIData.analyzedInstructions[0].steps.map(ob => ob.step) : APIData.instructions ? APIData.instructions.split(".") : null
+const getAllIngredientsWithAmounts = recipe => recipe.extendedIngredients ? recipe.extendedIngredients.map(elm => elm.originalString) : recipe.ingredients ? recipe.ingredients.map(elm => elm.name) : null
 
-const getAllNutrients = APIData => {
+const getAllSteps = recipe => recipe.analyzedInstructions[0] ? recipe.analyzedInstructions[0].steps.map(ob => ob.step) : recipe.instructions ? recipe.instructions.split(".") : null
+
+const getAllNutrients = recipe => {
     return {
-        calories: takeNutrientFromAPI(APIData, "Calories"),
-        fat: takeNutrientFromAPI(APIData, "Fat"),
-        carbohydrates: takeNutrientFromAPI(APIData, "Carbohydrates"),
-        sugar: takeNutrientFromAPI(APIData, "Sugar"),
-        proteins: takeNutrientFromAPI(APIData, "Protein"),
-        fiber: takeNutrientFromAPI(APIData, "Fiber")
+        calories: takeNutrientFromAPI(recipe, "Calories"),
+        fat: takeNutrientFromAPI(recipe, "Fat"),
+        carbohydrates: takeNutrientFromAPI(recipe, "Carbohydrates"),
+        sugar: takeNutrientFromAPI(recipe, "Sugar"),
+        proteins: takeNutrientFromAPI(recipe, "Protein"),
+        fiber: takeNutrientFromAPI(recipe, "Fiber")
     }
 }
-const takeNutrientFromAPI = (APIData, nutrient) => APIData.nutrition.nutrients.find(elm => elm.title === nutrient).amount
+
+const takeNutrientFromAPI = (recipe, nutrient) => recipe.nutrition.nutrients.find(elm => elm.title === nutrient).amount
 
 const getQueryString = (req) => {
     const keys = Object.keys(req.body)
@@ -98,6 +101,7 @@ const getQueryString = (req) => {
     const filteredValues = values.filter(val => val !== "")
     return filteredKeys.map((key, i) => `${key}=${filteredValues[i]}`).join("&")
 }
+
 //Routes
 router.get('/details/:recipeID', (req, res, next) => {
 
@@ -114,7 +118,7 @@ router.get('/details/:recipeID', (req, res, next) => {
 })
 
 router.post('/add-to-favourites/:recipeID', isLoggedIn, (req, res, next) => {
-    createRecipeFromAPI(req.body, req, next)
+    createRecipeWithOwner(req.body, req.user, next)
         .then(response => res.send(`Recipe created: ${response}`))
         .catch(err => next(new Error(err)))
 
@@ -126,13 +130,15 @@ router.post("/search-by-ingredients", (req, res, next) => {
         .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next, "recipes/search-ingredients"))
         .catch(err => next(new Error(err)))
 })
+
 router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
-router.get("/search-by-ingredients", (req, res, next) => res.render("recipes/search-ingredients"))
+
 router.post("/search-by-nutrients", (req, res, next) => {
     recipeApi.getRecipeByNutrition(getQueryString(req))
         .then(ids => renderAllRecipeInformationsByIds(ids, res, req, next, "recipes/search-nutrients"))
         .catch(err => next(new Error(err)))
 })
+
 router.get("/search-by-nutrients", (req, res, next) => res.render("recipes/search-nutrients"))
 
 router.get('/search', (req, res, next) => {

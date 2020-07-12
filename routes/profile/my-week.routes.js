@@ -8,10 +8,12 @@ const Weekmeal = require("../../models/week-meal.model")
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render("auth/login", {
     errorMsg: "Restricted area!"
 })
+
 const getDayOffset = (dateToCompare) => {
     const today = new Date()
     return dateToCompare.getDate() - today.getDate()
 }
+
 const getMealPlanner = (weekmeals) => {
     const today = new Date()
     const daysValues = []
@@ -20,6 +22,7 @@ const getMealPlanner = (weekmeals) => {
     }
     return daysValues
 }
+
 const getDayMeals = (weekmeals, offset, today) => {
     return {
         cards: weekmeals.filter(meal => getDayOffset(meal.mealDay) === offset),
@@ -27,8 +30,11 @@ const getDayMeals = (weekmeals, offset, today) => {
         fullDate: obtainDate(offset)
     }
 }
+
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
 const getWeekDayToRender = (offset, today) => today.getDay() + offset < 7 ? today.getDay() + offset : today.getDay() + offset - 7
+
 const obtainDate = (offset) => {
     let lastDate = new Date()
     lastDate.setDate(lastDate.getDate() + offset)
