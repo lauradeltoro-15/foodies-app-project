@@ -9,13 +9,13 @@ let weekmealsChanged = []
 let draggedItem = null
 let draggedItemId = null
 const gettingUniqueChanges = () => {
-
     const ids = weekmealsChanged.map(elm => elm.dataMealVal)
     return weekmealsChanged.filter((elm, i) => ids.indexOf(elm.dataMealVal) === i)
 }
 
 //Event listeners
 window.addEventListener('load', () => {
+
     deleteButtons.forEach(button => {
         button.addEventListener("click", e => {
             e.preventDefault()
@@ -29,6 +29,7 @@ window.addEventListener('load', () => {
 
         })
     })
+
     draggableCards.forEach(card => {
         card.addEventListener("dragstart", () => {
             draggedItem = card
@@ -43,6 +44,7 @@ window.addEventListener('load', () => {
             }, 0)
         })
     })
+
     dragContainers.forEach(container => {
         container.addEventListener("dragover", e => e.preventDefault())
         container.addEventListener("dragenter", e => e.preventDefault())
@@ -56,9 +58,9 @@ window.addEventListener('load', () => {
 
         })
     })
+
     saveChangesBtn.addEventListener("click", () => {
         RecipeAPIHandler.changeMealDate(gettingUniqueChanges())
-
     })
 
 })

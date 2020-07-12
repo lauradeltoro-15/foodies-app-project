@@ -22,7 +22,10 @@ const createElm = (elm, parent, attributeNames, attributeValues) => {
     parent.appendChild(newElem)
     attributeNames.forEach((attribute, i) => newElem.setAttribute(attribute, attributeValues[i]))
 }
-const getAverageNutritionValue = (nutritionGuess, nutritionType) => ((nutritionGuess[nutritionType].confidenceRange95Percent.max + nutritionGuess[nutritionType].confidenceRange95Percent.min) / 2).toFixed(2)
+
+const getAverageNutritionValue = (nutritionGuess, nutritionType) =>
+    ((nutritionGuess[nutritionType].confidenceRange95Percent.max + nutritionGuess[nutritionType].confidenceRange95Percent.min) / 2).toFixed(2)
+
 const obtainNutritionValues = (nutritionGuess) => {
     return {
         calories: getAverageNutritionValue(nutritionGuess, "calories"),
@@ -31,6 +34,7 @@ const obtainNutritionValues = (nutritionGuess) => {
         proteins: getAverageNutritionValue(nutritionGuess, "protein")
     }
 }
+
 const renderNutritionValues = (nutritionValues) => {
     caloriesInput.value = nutritionValues.calories
     fatInput.value = nutritionValues.fats
@@ -40,13 +44,16 @@ const renderNutritionValues = (nutritionValues) => {
 
 //Event listeners
 window.addEventListener('load', () => {
+
     addIngredientButton.addEventListener("click", () => {
         createElm('input', newAmountADD, ['name', 'type', 'class'], ['amount', 'text', 'form-control separated-input'])
         createElm('input', newIngredientADD, ['name', 'type', 'class'], ['ingredients', 'text', 'form-control separated-input'])
     })
+
     addStepButton.addEventListener("click", () => {
         createElm('input', uniqueStepContainer, ['name', 'type', 'class'], ['steps', 'text', 'form-control separated-input'])
     })
+
     guessNutritionBtn.addEventListener("click", e => {
         if (titleInput.value) {
             RecipeAPIHandler.guessNutritionValues(titleInput.value)
@@ -64,7 +71,5 @@ window.addEventListener('load', () => {
             errorMsg.style.color = "red"
             nutritionContainer.appendChild(errorMsg)
         }
-
-
     })
 })

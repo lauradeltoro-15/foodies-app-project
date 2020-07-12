@@ -1,4 +1,5 @@
 class RecipeApiHandler {
+
     constructor() {
         this.axiosAPI = axios.create({
             baseURL: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -10,6 +11,7 @@ class RecipeApiHandler {
             baseURL: "http://localhost:3000"
         })
     }
+
     getFullList(query) {
         return this.axiosAPI.get(`/recipes/complexSearch?query=${query}`)
             .then(response => response.data.results.map(data => data.id))
@@ -17,6 +19,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+
     getRecipeInformationById(id) {
         return this.axiosAPI.get(`recipes/${id}/information?includeNutrition=true`)
             .then(response => response.data)
@@ -24,6 +27,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+
     guessNutritionValues(dishName) {
         return this.axiosAPI.get(`recipes/guessNutrition?title=${dishName}`)
             .then(response => response.data)
@@ -31,6 +35,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+
     addToFavourites(recipeInfo, recipeId) {
         return this.axiosServer.post(`/recipes/add-to-favourites/${recipeId}`, recipeInfo)
             .then(response => response)
@@ -38,6 +43,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+
     deleteRecipe(recipeId) {
         return this.axiosServer.delete(`/profile/my-recipes/delete/${recipeId}`)
             .then(response => response)
@@ -45,6 +51,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+
     addRecipeToWeek(recipeId, mealDate) {
         return this.axiosServer.post(`/profile/my-recipes/add-to-week/${recipeId}`, {
                 mealDate
@@ -54,6 +61,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+
     changeMealDate(mealDateChangesInfo) {
         return this.axiosServer.put("/profile/my-week/change-day", {
                 mealDateChangesInfo
@@ -63,6 +71,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+
     deleteMealFromWeek(mealId) {
         return this.axiosServer.delete(`/profile/my-week/delete`, {
                 mealId
@@ -72,6 +81,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
+    
     deleteIngredientFromShoppingList(ingredient) {
         return this.axiosServer.delete("/profile/my-shopping-list/delete", {
                 ingredient

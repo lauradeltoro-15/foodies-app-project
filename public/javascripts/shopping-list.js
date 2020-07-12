@@ -3,6 +3,7 @@ const deleteIngredientButton = document.querySelectorAll(".delete-item-button")
 
 //Event listeners
 window.addEventListener('load', () => {
+
     deleteIngredientButton.forEach(btn =>
         btn.addEventListener("click", e => {
             const ingredientContainer = btn.closest(".list-ingredient-container")
@@ -14,4 +15,5 @@ window.addEventListener('load', () => {
                 })
         })
     )
+
 })

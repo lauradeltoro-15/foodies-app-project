@@ -13,6 +13,7 @@ const createBackValue = (recipeId, dateValue) => {
 
 //Event listeners
 window.addEventListener('load', () => {
+
     removeButtons.forEach(button => button.addEventListener("click", e => {
         e.preventDefault()
         const recipeId = button.getAttribute("data-recipe")
@@ -25,6 +26,7 @@ window.addEventListener('load', () => {
                 throw new Error(err)
             })
     }))
+    
     addToWeekBtn.forEach(button => button.addEventListener("click", e => {
         e.preventDefault()
         const recipeId = button.getAttribute("data-recipe")
