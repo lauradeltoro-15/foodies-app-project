@@ -8,7 +8,7 @@ class RecipeApiHandler {
             }
         })
         this.axiosServer = axios.create({
-            baseURL: "http://localhost:3000"
+            baseURL: "https://foodies-app-ironhack.herokuapp.com/"
         })
     }
 
@@ -81,7 +81,7 @@ class RecipeApiHandler {
                 throw new Error(err)
             })
     }
-    
+
     deleteIngredientFromShoppingList(ingredient) {
         return this.axiosServer.delete("/profile/my-shopping-list/delete", {
                 ingredient
