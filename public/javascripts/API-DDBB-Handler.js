@@ -1,19 +1,17 @@
 class RecipeApiHandler {
 
-    constructor() {
+    constructor(spoonacularApiKey) {
         this.axiosAPI = axios.create({
-            baseURL: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            headers: {
-                "x-rapidapi-key": "9bb56c9bc8msh80f4ea557c0f1a9p1a2052jsna9286dfaab2b"
-            }
+            baseURL: "https://api.spoonacular.com",
         })
         this.axiosServer = axios.create({
-            baseURL: "https://foodies-app-ironhack.herokuapp.com/"
+            baseURL: "http://localhost:3000"
         })
+        this.spoonacularApiKey = spoonacularApiKey
     }
 
     getFullList(query) {
-        return this.axiosAPI.get(`/recipes/complexSearch?query=${query}`)
+        return this.axiosAPI.get(`/recipes/complexSearch?query=${query}&apiKey=${this.spoonacularApiKey}`)
             .then(response => response.data.results.map(data => data.id))
             .catch(err => {
                 throw new Error(err)
@@ -21,7 +19,7 @@ class RecipeApiHandler {
     }
 
     getRecipeInformationById(id) {
-        return this.axiosAPI.get(`recipes/${id}/information?includeNutrition=true`)
+        return this.axiosAPI.get(`recipes/${id}/information?includeNutrition=true&apiKey=${this.spoonacularApiKey}`)
             .then(response => response.data)
             .catch(err => {
                 throw new Error(err)
@@ -29,7 +27,7 @@ class RecipeApiHandler {
     }
 
     guessNutritionValues(dishName) {
-        return this.axiosAPI.get(`recipes/guessNutrition?title=${dishName}`)
+        return this.axiosAPI.get(`recipes/guessNutrition?title=${dishName}&apiKey=${this.spoonacularApiKey}`)
             .then(response => response.data)
             .catch(err => {
                 throw new Error(err)
@@ -92,4 +90,4 @@ class RecipeApiHandler {
             })
     }
 }
-const RecipeAPIHandler = new RecipeApiHandler()
+const RecipeAPIHandler = new RecipeApiHandler("f1e871b479de4f4a9be20b64133fc19e")

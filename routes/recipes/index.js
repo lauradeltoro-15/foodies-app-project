@@ -92,7 +92,9 @@ const getAllNutrients = recipe => {
     }
 }
 
-const takeNutrientFromAPI = (recipe, nutrient) => recipe.nutrition.nutrients.find(elm => elm.title === nutrient).amount
+const takeNutrientFromAPI = (recipe, nutrient) => hasNutrientsDefined ? recipe.nutrition.nutrients.find(elm => elm.title === nutrient).amount : null
+
+const hasNutrientsDefined = recipe => recipe.nutrition.nutrients.find(elm => elm.title === nutrient) ? true : false
 
 const getQueryString = (req) => {
     const keys = Object.keys(req.body)

@@ -1,57 +1,55 @@
 const axios = require("axios")
 class RecipeApiHandler {
-    constructor(baseUrl) {
+    constructor(baseUrl, apiKey) {
         this.axiosApp = axios.create({
-            baseURL: baseUrl,
-            headers: {
-                "x-rapidapi-key": "9bb56c9bc8msh80f4ea557c0f1a9p1a2052jsna9286dfaab2b"
-            }
+            baseURL: baseUrl
         })
+        this.apiKey = apiKey
     }
     getFullList(query) {
-        return this.axiosApp.get(`/recipes/complexSearch?query=${query}`)
+        return this.axiosApp.get(`/recipes/complexSearch?query=${query}&apiKey=${this.apiKey}`)
             .then(response => response.data.results.map(data => data.id))
             .catch(err => {
                 throw new Error(err)
             })
     }
     getRecipeInformationById(id) {
-        return this.axiosApp.get(`recipes/${id}/information?includeNutrition=true`)
+        return this.axiosApp.get(`recipes/${id}/information?includeNutrition=true&apiKey=${this.apiKey}`)
             .then(response => response.data)
             .catch(err => {
                 throw new Error(err)
             })
     }
     getRecipesInformationByIds(ids) {
-        return this.axiosApp.get(`recipes/informationBulk?includeNutrition=true&ids=${ids}`)
+        return this.axiosApp.get(`recipes/informationBulk?includeNutrition=true&ids=${ids}&apiKey=${this.apiKey}`)
             .then(response => response.data)
             .catch(err => {
                 throw new Error(err)
             })
     }
     getRecommendations(tags) {
-        return this.axiosApp.get(`/recipes/random?tags=${tags}`)
+        return this.axiosApp.get(`/recipes/random?tags=${tags}&apiKey=${this.apiKey}`)
             .then(response => response.data)
             .catch(err => {
                 throw new Error(err)
             })
     }
     getSimilarRecipes(recipeId) {
-        return this.axiosApp.get(`/recipes/${recipeId}/similar?number=3`)
+        return this.axiosApp.get(`/recipes/${recipeId}/similar?number=3&apiKey=${this.apiKey}`)
             .then(response => response.data.map(recipe => recipe.id))
             .catch(err => {
                 throw new Error(err)
             })
     }
     getRecipesByIngredients(ingredients) {
-        return this.axiosApp.get(`/recipes/findByIngredients?ranking=1&number=9&ingredients=${ingredients}`)
+        return this.axiosApp.get(`/recipes/findByIngredients?ranking=1&number=9&ingredients=${ingredients}&apiKey=${this.apiKey}`)
             .then(response => response.data.map(recipe => recipe.id))
             .catch(err => {
                 throw new Error(err)
             })
     }
     getRecipeByNutrition(nutritionQuery) {
-        return this.axiosApp.get(`/recipes/findByNutrients?number=9&${nutritionQuery}`)
+        return this.axiosApp.get(`/recipes/findByNutrients?number=9&${nutritionQuery}&apiKey=${this.apiKey}`)
             .then(response => {
                 return response.data.map(recipe => recipe.id)
             })
@@ -61,4 +59,4 @@ class RecipeApiHandler {
     }
 }
 
-module.exports = new RecipeApiHandler("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+module.exports = new RecipeApiHandler("https://api.spoonacular.com", "f1e871b479de4f4a9be20b64133fc19e")
