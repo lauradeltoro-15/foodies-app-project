@@ -15,26 +15,34 @@ _foodies App is a Desktop Web Application for cooking and meal planning. It has 
 
 ## Endpoints
 
-| Method  	    | Path  	|  Description 	|
-|---	|---	|---	|
-|GET  	| /  	| Goes to the main  page  	|
-| GET  	| /auth/signup  	| Shows the form to sign up 	|
-| POST  	|  /auth/signup 	| Saves the user in the DDBB  	|
-| GET  	| auth/login  	| Shows the form to log in  	|
-| POST  	|  auth/login 	| Starts a new session of the user  	|
-| GET  	| auth/logout  	| Ends the current session  	|
-| GET  	| /profile/:id 	| Redirect the current user to his/her profile  	|
-| GET  	| /profile/my-recipes/:userID  	| Shows the recipes saved by the user  	|
-| GET  	| /profile/my-recipes/:userID/add  	|  Shows a form to add a new recipe 	|
-|  POST 	|   /profile/my-recipes/:userID/add 	|  Creates a new recipe 	|
-| GET  	|  /profile/my-recipes/:userID/edit/:recipeID 	| Shows a form to edit an existing recipe|
-| POST  	|  /profile/my-recipes/:userID/edit/:recipeID  	| Edits an existing recipe  	|
-| POST  	| /profile/my-recipes/:userID/delete/:recipeID  	|  Deletes a recipe 	|
-| GET  	| /profile/my-recipes/:userID/details/:recipeID  	| Shows details of the current recipe  	|
-|GET   	|/profile/my-week/:userID   	| Shows the user week planner  	|
-| GET|/recipes | Shows the form to make a new recipe search|
-|POST |/recipes | Shows the results of the recipe search |
-| POST|/recipes/add-to-favourites/:recipeID |Adds the recipe to the user recipes |
-| GET|/profile/:userID/shopping-list-delete |Deletes an item from the user's shopping list |
-|GET |/profile/:userID/shopping-list | Shows the user shopping list | 
-| POST|/profile/:userID/shopping-list/add |Adds item to the user shopping list |
+| Method 	| Endpoint                                 	| Description                                                                        	|
+|--------	|------------------------------------------	|------------------------------------------------------------------------------------	|
+| GET    	| /recipes                                 	| Renders the main recipe search bar.                                                	|
+| GET    	| /recipes/search-by-ingredients           	| Renders the ingredients recipe search bar.                                         	|
+| POST   	| /recipes/search-by-ingredients           	| Shows a list of recipes according to the ingredients search.                       	|
+| GET    	| /recipes/search-by-nutrients             	| Renders the nutrients recipe search bar.                                           	|
+| POST   	| /recipes/search-by-nutrients             	| Shows a list of recipes according to the nutrients search.                         	|
+| POST   	| /recipes/add-to-favourites/:recipeID     	| Adds a new recipe to the user's profile.                                           	|
+| GET    	| /recipes/details/:recipeID               	| Show details about a certain recipe.                                               	|
+| GET    	| /profile/recommendation                  	| Generates a suggested recipe for the user depending on his/her diet and interests. 	|
+| GET    	| profile/edit/:userID                     	| Renders a form to edit the user's profile.                                         	|
+| POST   	| profile/edit/:userID                     	| Changes the user profile.                                                          	|
+| GET    	| profile/:userID                          	| Shows the user's profile.                                                          	|
+| PUT    	| profile/my-week/change-day               	| Change the day of week-meals.                                                      	|
+| DELETE 	| profile/my-week/delete                   	| Deletes a meal from the current week plan.                                         	|
+| GET    	| profile/my-week/:userID                  	| Shows the user's meal planner.                                                     	|
+| DELETE 	| profile/my-shopping-list/delete          	| Deletes ingredients from the shopping list.                                        	|
+| GET    	| profile/my-shopping-list/:userID         	| Shows the user's shopping list.                                                    	|
+| GET    	| profile/my-recipes/:userID/add           	| Renders a form to create a new recipe manually by the user.                        	|
+| POST   	| profile/my-recipes/:userID/add           	| Creates a user's new recipe.                                                       	|
+| GET    	| profile/my-recipes/:recipeID             	| Shows details of an user's recipe.                                                 	|
+| GET    	| profile/my-recipes/edit/:recipeID        	| Shows a form to edit an existing recipe.                                           	|
+| POST   	| profile/my-recipes/edit/:recipeID        	| Edits an existing recipe.                                                          	|
+| DELETE 	| profile/my-recipes/delete/:recipeID      	| Deletes a recipe from the user's profile.                                          	|
+| POST   	| profile/my-recipes/add-to-week/:recipeID 	| Adds to the week planner a recipe                                                  	|
+| GET    	| profile/my-recipes/:userID               	| Renders the user's recipes                                                         	|
+| GET    	| /auth/signup                             	| Shows a form to sign up                                                            	|
+| POST   	| /auth/signup                             	| Generates a new user                                                               	|
+| GET    	| /auth/login                              	| Shows a form to log in                                                             	|
+| POST   	| /auth/login                              	| Starts a new session for the user                                                  	|
+| GET    	| /auth/logout                             	| Ends the current session                                                           	|
