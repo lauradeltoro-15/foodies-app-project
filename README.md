@@ -1,17 +1,19 @@
 # _Foodies App
 
-_foodies App is a web Application for cooking and meal planning. It helps you to find new recipes (you can specify your interests for suggestions if you want), add them to favourites, plan your week meals and yout shopping list.
-
-## Install
-
-- foodies App is still on development. In future updates the installation will be published.
+_foodies App is a Desktop Web Application for cooking and meal planning. It has the following functionalities: 
+  - Search new recipes with many filters. By dish name, by ingredients (what is left on your fridge?) or by nutritional values.
+  - See similar recipes to the ones you are seeing.
+  - Add them to favourites. In your account, you will find all these recipes, you can edit or delete them, or even add new ones.
+  - The apps helps you to guess the nutritional values of your new recipe if you don't know them. 
+  - Add recipes to your week planner. Drag and drop them in the day you want to make changes!
+  - It will automatically generate a shopping list with your week planner. You can delete the ingredients you already have at home!
+  - You can also have sugestions based on your interests. Fill them in your profile!
 
 ## Run
 
-- foodies App is still on development. In future updates the running will be published.
+- You can see the app in https://foodies-app-ironhack.herokuapp.com/
 
 ## Endpoints
-
 
 | Method  	    | Path  	|  Description 	|
 |---	|---	|---	|
