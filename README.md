@@ -2,7 +2,7 @@
 
 _foodies App is a Desktop Web Application for cooking and meal planning.
 
-# Features
+## Features
 
 It has the following functionalities: 
   - Search new recipes with many filters. By dish name, by ingredients (what is left on your fridge?) or by nutritional values.
@@ -13,7 +13,7 @@ It has the following functionalities:
   - It will automatically generate a shopping list with your week planner. You can delete the ingredients you already have at home!
   - You can also have sugestions based on your interests. Fill them in your profile!
 
-# Technologies
+## Technologies
   - HTML5
   - Sass
   - Javascript ES6
@@ -21,7 +21,7 @@ It has the following functionalities:
   - Express JS
   - Mongo DB
   
-## Run
+## Launch
 
 - You can see the app in https://foodies-app-ironhack.herokuapp.com/
 
