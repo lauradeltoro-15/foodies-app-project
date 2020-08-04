@@ -21,6 +21,8 @@ It has the following functionalities:
   - Express JS
   - Mongo DB
   
+## Demo video 
+[Open](https://www.linkedin.com/posts/laura-del-toro-sosa_this-week-i-delivered-my-second-project-at-activity-6688063885766889472-w04G)
 ## Launch
 
 - You can see the app in https://foodies-app-ironhack.herokuapp.com/
